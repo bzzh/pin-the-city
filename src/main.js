@@ -19,6 +19,10 @@ const mapElement = document.getElementById('map');
 const leaderboardButton = document.getElementById('leaderboard-button');
 let game = null;
 const map = createMap(mapElement, { onPick: (guess) => game?.handlePick(guess) });
+// The results sheet fills the screen below the top bar, whose height changes with its text.
+new ResizeObserver(() => {
+  document.documentElement.style.setProperty('--topbar-height', `${topbar.offsetHeight}px`);
+}).observe(topbar);
 
 setHud('Pin the City', 'Loading cities…');
 // Built by scripts/build-cities.js; a relative URL so it also works on GitHub Pages.

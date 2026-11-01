@@ -150,29 +150,204 @@ body {
   font-weight: 700;
 }
 
-.summary {
-  margin: 0;
+/* End-of-game results: the panel becomes a sheet filling the screen under the top bar. */
+#panel.sheet {
+  top: var(--topbar-height, 64px);
+  bottom: 0;
+  left: 0;
+  transform: none;
+  width: 100%;
+  max-height: none;
   padding: 0;
-  list-style: none;
-  display: grid;
-  gap: 8px;
+  background: var(--ocean);
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
 }
 
-.summary li {
-  display: flex;
-  justify-content: space-between;
-  gap: 12px;
-  padding-bottom: 8px;
+.sheet-inner {
+  width: min(860px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+#panel .sheet-title {
+  margin: 0;
+  color: var(--muted);
+  font-size: 1.05rem;
+  font-weight: 600;
+}
+
+.results {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+.results th,
+.results td {
+  padding: 12px 14px;
+  text-align: left;
+  vertical-align: top;
   border-bottom: 1px solid var(--line);
-  font-size: 0.95rem;
 }
 
-.summary .muted {
+.results thead th {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  background: var(--raised);
+}
+
+.results tbody th {
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.results .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.results .strong,
+.results tfoot th {
+  font-weight: 700;
+}
+
+.results tfoot > tr > * {
+  border-bottom: 0;
+  background: var(--raised);
+}
+
+.results .cell-sub {
+  display: block;
+  margin-top: 2px;
+  font-size: 0.85rem;
   white-space: nowrap;
 }
 
-.summary .what .muted {
-  white-space: normal;
+.results .good {
+  color: var(--answer);
+}
+
+.results .bad {
+  color: var(--guess);
+}
+
+.legend-title {
+  margin: 24px 0 8px;
+  font-size: 1rem;
+}
+
+.results-legend {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 6px 16px;
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.results-legend dt {
+  color: var(--text);
+  font-weight: 600;
+}
+
+.results-legend dd {
+  margin: 0;
+}
+
+.sheet-actions {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 8px;
+  margin-top: 16px;
+}
+
+.sheet-actions .continue {
+  margin-top: 0;
+}
+
+/* Phones: each round becomes a small card, every value labelled with its column. */
+@media (max-width: 640px) {
+  .results thead {
+    display: none;
+  }
+
+  .results,
+  .results tbody,
+  .results tfoot,
+  .results tr {
+    display: block;
+  }
+
+  .results tbody tr {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    column-gap: 12px;
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--line);
+  }
+
+  .results tbody th {
+    grid-row: span 6;
+    padding: 0;
+    border: 0;
+    font-size: 1.1rem;
+  }
+
+  .results tbody td {
+    display: flex;
+    justify-content: space-between;
+    gap: 12px;
+    padding: 3px 0;
+    text-align: right;
+    border: 0;
+  }
+
+  .results tbody td .cell-sub {
+    display: inline;
+    margin-left: 6px;
+  }
+
+  .results tbody td[data-label='City'] .cell-sub {
+    display: block;
+    margin-left: 0;
+  }
+
+  .results tbody td::before {
+    content: attr(data-label);
+    color: var(--muted);
+    text-align: left;
+  }
+
+  .results tbody td[data-label='City'] {
+    display: block;
+    margin-bottom: 4px;
+    text-align: left;
+  }
+
+  .results tbody td[data-label='City']::before {
+    content: none;
+  }
+
+  .results tfoot tr {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  .results-legend {
+    grid-template-columns: 1fr;
+  }
+
+  .results-legend dd {
+    margin-bottom: 6px;
+  }
 }
 
 #panel .eyebrow {

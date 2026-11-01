@@ -7,6 +7,7 @@ export function showChoiceCard(panel, round, nextLabel, onDone) {
   const { category, cities, winner } = round;
   const title = element('h2', 'category', category.label);
   title.tabIndex = -1;
+  panel.classList.remove('sheet'); // a new game starts from the end-of-game results sheet
   panel.replaceChildren(element('p', 'eyebrow', 'Which city is…'), title);
 
   const list = element('div', 'choices');

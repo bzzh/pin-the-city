@@ -13,7 +13,9 @@ function button(label, onClick, className = 'continue') {
 
 // Replaces the panel's content. `focus` (an element inside it) receives keyboard focus, so
 // keyboard and screen-reader users land on the new screen instead of a button that vanished.
-function show(panel, children, focus) {
+// `sheet` makes the panel fill the screen under the top bar (the end-of-game results).
+function show(panel, children, focus, { sheet = false } = {}) {
+  panel.classList.toggle('sheet', sheet);
   panel.replaceChildren(...children);
   panel.hidden = false;
   focus?.focus();
@@ -89,28 +91,99 @@ export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
   );
 }
 
-// End-of-game summary. `shareText` adds a preview and a share button (daily challenge only);
-// `notice` is a status line (e.g. the leaderboard result); `actions` are the buttons
-// underneath, e.g. [{ label: 'Practice game', onClick }].
+// What each results column means, shown under the table.
+const RESULT_COLUMNS = [
+  ['Choice', '500 points if you picked the right city of the three, otherwise 0.'],
+  ['Bet', 'How sure you said you were. Inside means the city touched your circle, so your placement was multiplied up; outside means it was multiplied down.'],
+  ['Distance', 'How far your pin landed from the city.'],
+  ['Placement', 'Up to 1,000 points for distance, times your bet. Only a Pinpoint hit reaches 1,500.'],
+  ['Round', 'Choice plus placement, out of 2,000.'],
+];
+
+// One results row: [column, text or elements, extra class]. Rounds from before confidence
+// levels have no bet.
+function resultCells({ city, category, correct, km: distance, choicePoints, placePoints, points, level, hit }) {
+  const bet = confidenceLevel(level);
+  return [
+    ['City', [element('strong', '', city), element('span', 'muted cell-sub', category)]],
+    ['Choice', [element('span', correct ? 'good' : 'bad', correct ? '✓ Right' : '✗ Wrong'), element('span', 'muted cell-sub', `+${pts(choicePoints)}`)]],
+    [
+      'Bet',
+      bet
+        ? [element('span', '', bet.label), element('span', `cell-sub ${hit ? 'good' : 'bad'}`, hit ? `✓ inside ×${bet.win}` : `✗ outside ×${bet.lose}`)]
+        : '—',
+    ],
+    ['Distance', km(distance), 'num'],
+    ['Placement', `+${pts(placePoints)}`, 'num'],
+    ['Round', pts(points), 'num strong'],
+  ];
+}
+
+// End-of-game results: a full-width sheet with a table of the rounds and what each column
+// means. `shareText` adds a preview and a share button (daily challenge only); `notice` is a
+// status line (e.g. the leaderboard result); `actions` are the buttons underneath, e.g.
+// [{ label: 'Practice game', onClick }].
 export function showSummary(panel, records, maxRoundPoints, { heading: title, shareText, notice, actions }) {
   const total = records.reduce((sum, record) => sum + record.points, 0);
-  const list = element('ol', 'summary');
-  for (const { city, category, correct, km: distance, points, level, hit } of records) {
-    const row = element('li');
-    const what = element('span', 'what');
-    what.append(element('strong', '', city), element('span', 'muted', ` · ${category}`));
-    const bet = level ? ` · ${confidenceLevel(level).label} ${hit ? '✓' : '✗'}` : '';
-    row.append(what, element('span', 'muted', `${correct ? '✓' : '✗'}${bet} · ${km(distance)} · ${pts(points)}`));
-    list.append(row);
+  const top = heading('h2', 'sheet-title', title);
+
+  const table = element('table', 'results');
+  table.append(element('caption', 'visually-hidden', `Results by round, ${pts(total)} points in total`));
+  const head = element('tr');
+  for (const [text, className] of [['#', 'num'], ['City', ''], ['Choice', ''], ['Bet', ''], ['Distance', 'num'], ['Placement', 'num'], ['Round', 'num']]) {
+    const th = element('th', className, text);
+    th.scope = 'col';
+    head.append(th);
   }
-  const top = heading('h2', 'eyebrow', title);
-  const children = [top, element('p', 'score-big', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`), list];
+  const thead = element('thead');
+  thead.append(head);
+  const tbody = element('tbody');
+  records.forEach((record, i) => {
+    const tr = element('tr');
+    const number = element('th', 'num', String(i + 1));
+    number.scope = 'row';
+    tr.append(number);
+    for (const [column, content, className = ''] of resultCells(record)) {
+      const td = element('td', className);
+      td.dataset.label = column; // shown before the value on phones, where rows stack
+      const value = element('span', 'cell-value');
+      if (Array.isArray(content)) value.append(...content);
+      else value.textContent = content;
+      td.append(value);
+      tr.append(td);
+    }
+    tbody.append(tr);
+  });
+  const foot = element('tr');
+  const totalLabel = element('th', '', 'Total');
+  totalLabel.scope = 'row';
+  totalLabel.colSpan = 6;
+  foot.append(totalLabel, element('td', 'num strong', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`));
+  const tfoot = element('tfoot');
+  tfoot.append(foot);
+  table.append(thead, tbody, tfoot);
+
+  const legend = element('dl', 'results-legend');
+  for (const [term, meaning] of RESULT_COLUMNS) legend.append(element('dt', '', term), element('dd', '', meaning));
+
+  const children = [
+    top,
+    element('p', 'score-big', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`),
+    table,
+    element('h3', 'legend-title', 'How to read this'),
+    legend,
+  ];
   if (notice) children.push(element('p', 'notice', notice));
   if (shareText) children.push(element('pre', 'share-preview', shareText), shareButton(shareText));
+  const buttons = element('div', 'sheet-actions');
   for (const { label, onClick } of actions) {
-    children.push(button(label, onClick, shareText ? 'continue secondary' : 'continue'));
+    buttons.append(button(label, onClick, shareText ? 'continue secondary' : 'continue'));
   }
-  show(panel, children, top);
+  children.push(buttons);
+
+  const inner = element('div', 'sheet-inner');
+  inner.append(...children);
+  show(panel, [inner], top, { sheet: true });
 }
 
 // Asks for a leaderboard nickname. `check(name)` returns a problem message or null (instant
