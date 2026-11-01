@@ -1,0 +1,4 @@
+node_modules/
+dist/
+# Local Claude app settings (dev-server preview)
+.claude/

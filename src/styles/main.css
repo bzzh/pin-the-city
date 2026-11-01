@@ -1,0 +1,209 @@
+:root {
+  --ocean: #5f93ba; /* matches the Natural Earth II ocean, shown around the map edges */
+  --text: #1f2a33;
+  --muted: #5b6b78;
+  --panel: #ffffff;
+  --guess: #d9480f;
+  --answer: #2b8a3e;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  font-family: system-ui, -apple-system, 'Segoe UI', sans-serif;
+  color: var(--text);
+  background: var(--ocean);
+}
+
+#hud {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 16px;
+  background: var(--panel);
+  box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+  z-index: 1000;
+}
+
+#hud .status {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+  white-space: nowrap;
+}
+
+#hud .prompt {
+  margin: 0;
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+#hud .detail {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+#map {
+  flex: 1;
+}
+
+/* Choice card: floats over the bottom of the map. */
+#panel {
+  position: fixed;
+  left: 50%;
+  bottom: 16px;
+  transform: translateX(-50%);
+  width: min(420px, calc(100% - 32px));
+  padding: 16px;
+  background: var(--panel);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.18);
+  z-index: 1000;
+  max-height: calc(100% - 120px);
+  overflow-y: auto;
+}
+
+#panel .rules,
+#panel .result-line {
+  margin: 0;
+}
+
+#panel .result-total {
+  margin: 4px 0 0;
+  color: var(--muted);
+}
+
+.muted {
+  color: var(--muted);
+}
+
+.score-big {
+  margin: 2px 0 12px;
+  font-size: 2rem;
+  font-weight: 700;
+}
+
+.summary {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 8px;
+}
+
+.summary li {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 8px;
+  border-bottom: 1px solid #eef1f4;
+  font-size: 0.95rem;
+}
+
+.summary .muted {
+  white-space: nowrap;
+}
+
+.summary .what .muted {
+  white-space: normal;
+}
+
+#panel .eyebrow {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+#panel .category {
+  margin: 2px 0 12px;
+  font-size: 1.3rem;
+}
+
+.choices {
+  display: grid;
+  gap: 8px;
+}
+
+.choice {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 12px 14px;
+  font: inherit;
+  color: var(--text);
+  text-align: left;
+  background: var(--panel);
+  border: 1px solid #d0d7de;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.choice:hover:not(:disabled) {
+  border-color: var(--text);
+}
+
+.choice:disabled {
+  cursor: default;
+}
+
+.choice .value {
+  color: var(--muted);
+}
+
+.choice.correct {
+  border-color: var(--answer);
+  background: #ebfbee;
+}
+
+.choice.wrong {
+  border-color: var(--guess);
+  background: #fff4e6;
+}
+
+.continue {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  font: inherit;
+  font-weight: 600;
+  color: #fff;
+  background: var(--text);
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.continue.secondary {
+  margin-top: 8px;
+  color: var(--text);
+  background: var(--panel);
+  border: 1px solid #d0d7de;
+}
+
+.share-preview {
+  margin: 12px 0 0;
+  padding: 10px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  white-space: pre-wrap;
+  word-break: break-all;
+  background: #f4f6f8;
+  border-radius: 8px;
+  user-select: all;
+}
+
+/* Ocean colour around the map edges. The id beats Leaflet's own default grey. */
+#map.leaflet-container {
+  background: var(--ocean);
+}

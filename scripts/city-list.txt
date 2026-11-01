@@ -1,0 +1,392 @@
+# The cities in the game: "City | Country", one per line.
+# The city name must match its English Wikidata label; the country is used to pick the right
+# place when several share a name (Perth, Australia vs Perth, Scotland). If it still picks the
+# wrong one, pin the Wikidata ID as a third column: "San Antonio | United States | Q975".
+# To add a city later: add a line, then run  node scripts/build-cities.js
+
+# Western Europe
+London | United Kingdom
+Manchester | United Kingdom
+Liverpool | United Kingdom
+Birmingham | United Kingdom
+Edinburgh | United Kingdom
+Glasgow | United Kingdom
+Belfast | United Kingdom
+Cardiff | United Kingdom
+Dublin | Ireland
+Paris | France
+Marseille | France
+Lyon | France
+Toulouse | France
+Nice | France
+Bordeaux | France
+Strasbourg | France
+Brussels | Belgium
+Antwerp | Belgium
+Amsterdam | Netherlands
+Rotterdam | Netherlands
+Luxembourg | Luxembourg
+Berlin | Germany
+Hamburg | Germany
+Munich | Germany
+Frankfurt | Germany
+Cologne | Germany
+Stuttgart | Germany
+Dresden | Germany
+Leipzig | Germany
+Zurich | Switzerland
+Geneva | Switzerland
+Bern | Switzerland
+Vienna | Austria
+Salzburg | Austria
+Madrid | Spain
+Barcelona | Spain
+Valencia | Spain
+Seville | Spain
+Málaga | Spain
+Lisbon | Portugal
+Porto | Portugal
+Rome | Italy
+Milan | Italy
+Naples | Italy
+Turin | Italy
+Florence | Italy
+Venice | Italy
+Bologna | Italy
+Palermo | Italy
+Valletta | Malta
+
+# Northern Europe
+Copenhagen | Denmark
+Stockholm | Sweden
+Gothenburg | Sweden
+Oslo | Norway
+Bergen | Norway
+Tromsø | Norway
+Helsinki | Finland
+Reykjavík | Iceland
+Tallinn | Estonia
+Riga | Latvia
+Vilnius | Lithuania
+
+# Central & Eastern Europe
+Warsaw | Poland
+Kraków | Poland
+Gdańsk | Poland
+Prague | Czech Republic
+Bratislava | Slovakia
+Budapest | Hungary
+Ljubljana | Slovenia
+Zagreb | Croatia
+Sarajevo | Bosnia and Herzegovina
+Belgrade | Serbia
+Podgorica | Montenegro
+Skopje | North Macedonia
+Tirana | Albania
+Sofia | Bulgaria
+Bucharest | Romania
+Chișinău | Moldova
+Kyiv | Ukraine
+Lviv | Ukraine
+Odesa | Ukraine
+Minsk | Belarus
+Athens | Greece
+Thessaloniki | Greece
+Nicosia | Cyprus
+
+# Russia
+Moscow | Russia
+Saint Petersburg | Russia
+Kazan | Russia
+Sochi | Russia
+Murmansk | Russia
+Yekaterinburg | Russia
+Novosibirsk | Russia
+Irkutsk | Russia
+Yakutsk | Russia
+Norilsk | Russia
+Vladivostok | Russia
+
+# Turkey, Caucasus & Middle East
+Istanbul | Turkey
+Ankara | Turkey
+İzmir | Turkey
+Antalya | Turkey
+Tbilisi | Georgia
+Yerevan | Armenia
+Baku | Azerbaijan
+Beirut | Lebanon
+Damascus | Syria
+Aleppo | Syria
+Amman | Jordan
+Jerusalem | Israel
+Tel Aviv | Israel
+Baghdad | Iraq
+Tehran | Iran
+Isfahan | Iran
+Mashhad | Iran
+Shiraz | Iran
+Riyadh | Saudi Arabia
+Jeddah | Saudi Arabia
+Mecca | Saudi Arabia
+Medina | Saudi Arabia
+Kuwait City | Kuwait
+Manama | Bahrain
+Doha | Qatar
+Abu Dhabi | United Arab Emirates
+Dubai | United Arab Emirates
+Muscat | Oman
+Sanaa | Yemen
+
+# Central Asia
+Kabul | Afghanistan
+Tashkent | Uzbekistan
+Samarkand | Uzbekistan
+Almaty | Kazakhstan
+Astana | Kazakhstan
+Bishkek | Kyrgyzstan
+Dushanbe | Tajikistan
+Ashgabat | Turkmenistan
+Ulaanbaatar | Mongolia
+
+# South Asia
+Delhi | India
+Mumbai | India
+Kolkata | India
+Chennai | India
+Bengaluru | India
+Hyderabad | India
+Ahmedabad | India
+Pune | India
+Jaipur | India
+Agra | India
+Varanasi | India
+Karachi | Pakistan
+Lahore | Pakistan
+Islamabad | Pakistan
+Dhaka | Bangladesh
+Chittagong | Bangladesh
+Kathmandu | Nepal
+Thimphu | Bhutan
+Colombo | Sri Lanka
+Malé | Maldives
+
+# East Asia
+Beijing | China
+Shanghai | China
+Guangzhou | China
+Shenzhen | China
+Hong Kong | China
+Macau | China
+Chongqing | China
+Chengdu | China
+Wuhan | China
+Xi'an | China
+Nanjing | China
+Hangzhou | China
+Tianjin | China
+Qingdao | China
+Harbin | China
+Kunming | China
+Lhasa | China
+Ürümqi | China
+Taipei | Taiwan
+Seoul | South Korea
+Busan | South Korea
+Pyongyang | North Korea
+Tokyo | Japan
+Yokohama | Japan
+Osaka | Japan
+Kyoto | Japan
+Nagoya | Japan
+Kobe | Japan
+Hiroshima | Japan
+Fukuoka | Japan
+Sapporo | Japan
+
+# Southeast Asia
+Bangkok | Thailand
+Chiang Mai | Thailand
+Hanoi | Vietnam
+Da Nang | Vietnam
+Ho Chi Minh City | Vietnam
+Phnom Penh | Cambodia
+Vientiane | Laos
+Yangon | Myanmar
+Mandalay | Myanmar
+Kuala Lumpur | Malaysia
+Singapore | Singapore
+Jakarta | Indonesia
+Surabaya | Indonesia
+Denpasar | Indonesia
+Manila | Philippines
+Cebu City | Philippines
+Dili | Timor-Leste
+Bandar Seri Begawan | Brunei
+
+# North Africa
+Cairo | Egypt
+Alexandria | Egypt
+Luxor | Egypt
+Khartoum | Sudan
+Tripoli | Libya
+Tunis | Tunisia
+Algiers | Algeria
+Casablanca | Morocco
+Rabat | Morocco
+Marrakech | Morocco
+Fez | Morocco
+
+# Sub-Saharan Africa
+Dakar | Senegal
+Bamako | Mali
+Timbuktu | Mali
+Ouagadougou | Burkina Faso
+Niamey | Niger
+Abidjan | Ivory Coast
+Conakry | Guinea
+Freetown | Sierra Leone
+Monrovia | Liberia
+Accra | Ghana
+Lomé | Togo
+Lagos | Nigeria
+Abuja | Nigeria
+Douala | Cameroon
+Yaoundé | Cameroon
+Libreville | Gabon
+Kinshasa | Democratic Republic of the Congo
+Brazzaville | Republic of the Congo
+Luanda | Angola
+Addis Ababa | Ethiopia
+Asmara | Eritrea
+Djibouti | Djibouti
+Mogadishu | Somalia
+Nairobi | Kenya
+Mombasa | Kenya
+Kampala | Uganda
+Kigali | Rwanda
+Dar es Salaam | Tanzania
+Zanzibar City | Tanzania
+Lusaka | Zambia
+Harare | Zimbabwe
+Maputo | Mozambique
+Antananarivo | Madagascar
+Port Louis | Mauritius
+Windhoek | Namibia
+Gaborone | Botswana
+Johannesburg | South Africa
+Pretoria | South Africa
+Durban | South Africa
+Cape Town | South Africa
+
+# Canada & Greenland
+Toronto | Canada
+Montreal | Canada
+Vancouver | Canada
+Calgary | Canada
+Edmonton | Canada
+Ottawa | Canada
+Quebec City | Canada
+Winnipeg | Canada
+Nuuk | Greenland
+
+# United States
+New York City | United States
+Los Angeles | United States
+Chicago | United States
+Houston | United States
+Phoenix | United States
+Philadelphia | United States
+San Antonio | United States | Q975
+San Diego | United States
+Dallas | United States
+Austin | United States
+San Francisco | United States
+Seattle | United States
+Portland | United States
+Las Vegas | United States
+Salt Lake City | United States
+Denver | United States
+Minneapolis | United States
+Kansas City | United States
+St. Louis | United States
+Nashville | United States
+New Orleans | United States
+Atlanta | United States
+Miami | United States
+Washington, D.C. | United States
+Boston | United States
+Pittsburgh | United States
+Detroit | United States
+Anchorage | United States
+Honolulu | United States
+San Juan | United States
+
+# Mexico, Central America & Caribbean
+Mexico City | Mexico
+Guadalajara | Mexico
+Monterrey | Mexico
+Tijuana | Mexico
+Cancun | Mexico
+Guatemala City | Guatemala
+San Salvador | El Salvador
+Tegucigalpa | Honduras
+Managua | Nicaragua
+San José | Costa Rica
+Panama City | Panama
+Havana | Cuba
+Kingston | Jamaica
+Port-au-Prince | Haiti
+Santo Domingo | Dominican Republic
+Nassau | The Bahamas
+
+# South America
+Bogotá | Colombia
+Medellín | Colombia
+Cali | Colombia
+Cartagena | Colombia
+Caracas | Venezuela
+Quito | Ecuador
+Guayaquil | Ecuador
+Lima | Peru
+Cusco | Peru
+Arequipa | Peru
+La Paz | Bolivia
+Georgetown | Guyana
+Paramaribo | Suriname
+Cayenne | France
+Manaus | Brazil
+Belém | Brazil
+Fortaleza | Brazil
+Recife | Brazil
+Salvador | Brazil
+Brasília | Brazil
+Belo Horizonte | Brazil
+Rio de Janeiro | Brazil
+São Paulo | Brazil
+Curitiba | Brazil
+Porto Alegre | Brazil
+Asunción | Paraguay
+Montevideo | Uruguay
+Buenos Aires | Argentina
+Rosario | Argentina
+Mendoza | Argentina
+Ushuaia | Argentina
+Santiago | Chile
+Valparaíso | Chile
+
+# Oceania
+Sydney | Australia
+Melbourne | Australia
+Brisbane | Australia
+Perth | Australia
+Adelaide | Australia
+Canberra | Australia
+Darwin | Australia
+Hobart | Australia
+Auckland | New Zealand
+Wellington | New Zealand
+Christchurch | New Zealand
+Port Moresby | Papua New Guinea
+Suva | Fiji
+Papeete | France

@@ -1,0 +1,3 @@
+# Keep text files with Unix line endings everywhere (matches the GitHub Actions build).
+* text=auto eol=lf
+*.webp binary

@@ -1,0 +1,26 @@
+// A small, fixed set of cities for the tests (the game uses public/data/cities.json).
+// Coordinates only, so only the position categories have data.
+export const sampleCities = [
+  { name: 'Paris', region: 'Île-de-France', country: 'France', lat: 48.8566, lng: 2.3522 },
+  { name: 'London', region: 'England', country: 'United Kingdom', lat: 51.5074, lng: -0.1278 },
+  { name: 'New York City', region: 'New York', country: 'United States', lat: 40.7128, lng: -74.006 },
+  { name: 'Tokyo', region: 'Tokyo', country: 'Japan', lat: 35.6762, lng: 139.6503 },
+  { name: 'Nairobi', region: 'Nairobi County', country: 'Kenya', lat: -1.2921, lng: 36.8219 },
+  { name: 'Lima', region: 'Lima', country: 'Peru', lat: -12.0464, lng: -77.0428 },
+  { name: 'Reykjavík', region: 'Capital Region', country: 'Iceland', lat: 64.1466, lng: -21.9426 },
+  { name: 'Perth', region: 'Western Australia', country: 'Australia', lat: -31.9523, lng: 115.8613 },
+  { name: 'Cairo', region: 'Cairo Governorate', country: 'Egypt', lat: 30.0444, lng: 31.2357 },
+  { name: 'Mumbai', region: 'Maharashtra', country: 'India', lat: 19.076, lng: 72.8777 },
+  { name: 'Singapore', region: 'Central Region', country: 'Singapore', lat: 1.3521, lng: 103.8198 },
+  { name: 'Buenos Aires', region: 'Autonomous City of Buenos Aires', country: 'Argentina', lat: -34.6037, lng: -58.3816 },
+  { name: 'Moscow', region: 'Moscow', country: 'Russia', lat: 55.7558, lng: 37.6173 },
+  { name: 'Cape Town', region: 'Western Cape', country: 'South Africa', lat: -33.9249, lng: 18.4241 },
+  { name: 'Vancouver', region: 'British Columbia', country: 'Canada', lat: 49.2827, lng: -123.1207 },
+  { name: 'Mexico City', region: 'Mexico City', country: 'Mexico', lat: 19.4326, lng: -99.1332 },
+  { name: 'Bangkok', region: 'Bangkok', country: 'Thailand', lat: 13.7563, lng: 100.5018 },
+  { name: 'Auckland', region: 'Auckland', country: 'New Zealand', lat: -36.8485, lng: 174.7633 },
+  { name: 'Istanbul', region: 'Istanbul', country: 'Türkiye', lat: 41.0082, lng: 28.9784 },
+  { name: 'Anchorage', region: 'Alaska', country: 'United States', lat: 61.2181, lng: -149.9003 },
+  { name: 'Quito', region: 'Pichincha', country: 'Ecuador', lat: -0.1807, lng: -78.4678 },
+  { name: 'Honolulu', region: 'Hawaii', country: 'United States', lat: 21.3069, lng: -157.8583 },
+];
