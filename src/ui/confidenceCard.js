@@ -1,12 +1,11 @@
-import { CONFIDENCE_LEVELS, hitRadiusKm } from '../game/scoring.js';
+import { CONFIDENCE_LEVELS } from '../game/scoring.js';
 import { element } from './dom.js';
 
 const pts = (value) => value.toLocaleString('en');
 
-// "within 1,000 km" for a circle, "within the city (25 km)" for Pinpoint. The circles also
-// allow for the city's own size, so the hit radius is 25 km more than shown.
+// "within 500 km": a bet counts when the city is at most this far from the tap.
 export function levelRange(level) {
-  return level.radiusKm ? `within ${pts(level.radiusKm)} km` : `within the city (${pts(hitRadiusKm(level))} km)`;
+  return `within ${pts(level.radiusKm)} km`;
 }
 
 // Asks how sure the player is of placing `city`, before they tap the map.
@@ -33,7 +32,7 @@ export function showConfidenceCard(panel, city, onChoose) {
   panel.replaceChildren(
     element('p', 'eyebrow', 'Confidence'),
     title,
-    element('p', 'rules', 'Your placement scores up to 100 points by distance. Your tap is the centre of a circle: if the city touches it, those points are multiplied up; if not, they shrink. Only a Pinpoint hit reaches 150.'),
+    element('p', 'rules', 'Your placement scores up to 100 points by distance. Your tap is the centre of a circle: if the city is inside it, those points are multiplied up; if not, they shrink. Only a Pinpoint hit reaches 150.'),
     list,
   );
   panel.hidden = false;

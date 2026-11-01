@@ -7,6 +7,8 @@ import {
   choicePoints,
   confidenceLevel,
   confidencePoints,
+  isHit,
+  placementParts,
   distanceKm,
   placementPoints,
   usesConfidence,
@@ -58,22 +60,49 @@ describe('confidencePoints', () => {
   // The base placement score, out of 100.
   const base = (km) => (km <= 25 ? 100 : 100 * Math.exp(-(km - 25) / 2000));
 
-  it('has four levels: smaller circles are bigger bets', () => {
-    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 250, 75, 0]);
-    expect(CONFIDENCE_LEVELS.map((l) => l.win)).toEqual([1.1, 1.2, 1.4, 1.5]);
-    expect(CONFIDENCE_LEVELS.map((l) => l.lose)).toEqual([0.9, 0.8, 0.7, 0.5]);
+  it('has three levels: smaller circles are bigger bets', () => {
+    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 150, 25]);
+    expect(CONFIDENCE_LEVELS.map((l) => l.win)).toEqual([1.1, 1.3, 1.5]);
+    expect(CONFIDENCE_LEVELS.map((l) => l.lose)).toEqual([0.9, 0.7, 0.5]);
   });
 
-  it('multiplies the base score up when the city touches the circle, allowing 25 km for the city', () => {
-    expect(confidencePoints(level('confident'), 0)).toBe(120);
-    expect(confidencePoints(level('confident'), 275)).toBe(Math.round(base(275) * 1.2));
-    expect(confidencePoints(level('confident'), 276)).toBe(Math.round(base(276) * 0.8));
+  it('multiplies the base score up when the city is within the circle, exactly as shown', () => {
+    expect(confidencePoints(level('confident'), 0)).toBe(130);
+    expect(confidencePoints(level('confident'), 150)).toBe(Math.round(base(150) * 1.3));
+    expect(confidencePoints(level('confident'), 151)).toBe(Math.round(base(151) * 0.7));
+  });
+
+  it('keeps the betting rules at every distance', () => {
+    for (let km = 0; km <= 20000; km += 0.5) {
+      const results = CONFIDENCE_LEVELS.map((l) => ({ points: confidencePoints(l, km), hit: isHit(l, km) }));
+      const hits = results.filter((r) => r.hit);
+      const misses = results.filter((r) => !r.hit);
+      // 1. A hit always beats a miss.
+      for (const hit of hits) for (const miss of misses) expect(hit.points, `${km} km`).toBeGreaterThan(miss.points);
+      // 2. A miss costs less on a safer bet (levels go from safest to boldest).
+      for (let i = 1; i < misses.length; i++) expect(misses[i].points, `${km} km`).toBeLessThanOrEqual(misses[i - 1].points);
+      // 3. A hit pays more on a bolder bet.
+      for (let i = 1; i < hits.length; i++) expect(hits[i].points, `${km} km`).toBeGreaterThan(hits[i - 1].points);
+    }
   });
 
   it('multiplies the base score down for a miss', () => {
     expect(confidencePoints(level('safe'), 2000)).toBe(Math.round(base(2000) * 0.9));
     expect(confidencePoints(level('pinpoint'), 2000)).toBe(Math.round(base(2000) * 0.5));
     expect(confidencePoints(level('pinpoint'), 20000)).toBe(0);
+  });
+
+  it('splits a placement into accuracy and a bet bonus or malus that add up', () => {
+    for (const l of CONFIDENCE_LEVELS) {
+      for (let km = 0; km <= 20000; km += 7) {
+        const { accuracy, bet } = placementParts(l, km);
+        expect(accuracy + bet).toBe(confidencePoints(l, km));
+        expect(accuracy).toBe(Math.round(base(km)));
+        // A hit never loses points and a miss never gains any (tiny scores can round to 0).
+        if (isHit(l, km)) expect(bet).toBeGreaterThanOrEqual(0);
+        else expect(bet).toBeLessThanOrEqual(0);
+      }
+    }
   });
 
   it('reaches the maximum only with a Pinpoint hit', () => {

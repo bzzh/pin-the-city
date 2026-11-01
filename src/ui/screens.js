@@ -1,4 +1,4 @@
-import { confidenceLevel } from '../game/scoring.js';
+import { confidenceLevel, placementParts } from '../game/scoring.js';
 import { element } from './dom.js';
 
 const km = (value) => `${Math.round(value).toLocaleString('en')} km`;
@@ -57,7 +57,7 @@ const RULES = {
   distance:
     '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
   confidence:
-    '5 rounds. Pick the city that fits the category (50 pts). Then bet on how close you’ll get and place it!',
+    '5 rounds. Pick the city that fits the category. Then bet on how close you’ll get and place it!',
 };
 
 // `confidence` says whether today's challenge uses confidence levels.
@@ -76,23 +76,44 @@ export function showStartScreen(panel, { dailyNumber, confidence, onDaily, onPra
   show(panel, children, title);
 }
 
-// Shown after the map reveal; `nextLabel` is "Next round" or "See results".
-export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
+// Shown after the map reveal. `round` is e.g. { number: 2, of: 5 }; `nextLabel` is
+// "Next round" or "See results".
+export function showRoundResult(panel, result, round, maxPoints, nextLabel, onNext) {
   const next = button(nextLabel, () => {
     panel.hidden = true;
     onNext();
   });
-  // e.g. "Confident · 180 km away · ✓ inside ×1.2 +1,104", or "1,200 km away +540" without a level.
+  // The round's points, then its three parts, e.g. Question ✓ +50, Accuracy 180 km +96,
+  // Bet Confident ✓ ×1.3 +29. Rounds from before bets show the placement as accuracy.
   const level = confidenceLevel(result.level);
-  const placement = level
-    ? `${level.label} · ${km(result.km)} away · ${result.hit ? `✓ inside ×${level.win}` : `✗ outside ×${level.lose}`} +${pts(result.placePoints)}`
-    : `${km(result.km)} away +${result.placePoints}`;
+  const parts = level ? placementParts(level, result.km) : { accuracy: result.placePoints, bet: null };
+  const signed = (value) => (value === 0 ? '0' : value < 0 ? `−${pts(-value)}` : `+${pts(value)}`);
+  const breakdown = element('dl', 'round-parts');
+  const part = (label, detail, value) => {
+    const row = element('div', 'round-part');
+    const dt = element('dt');
+    dt.append(element('span', '', label), detail);
+    row.append(dt, element('dd', value < 0 ? 'minus' : '', signed(value)));
+    breakdown.append(row);
+  };
+  part('Question', mark(result.correct, 'part-detail', 'right', 'wrong'), result.choicePoints);
+  part('Accuracy', element('span', 'part-detail', `${km(result.km)} away`), parts.accuracy);
+  if (level) {
+    const bet = mark(result.hit, 'part-detail', 'inside', 'outside');
+    bet.prepend(`${level.label} `);
+    bet.append(` ×${result.hit ? level.win : level.lose}`);
+    part('Bet', bet, parts.bet);
+  }
+  const total = element('p', 'round-points', pts(result.points));
+  total.append(element('span', 'muted', ` / ${pts(maxPoints)}`));
+  // "Round 2 of 5" on the left, the round's points in the top-right corner.
+  const head = element('div', 'round-head');
+  head.append(element('p', 'eyebrow', `Round ${round.number} of ${round.of}`), total);
   show(
     panel,
     [
-      element('p', 'result-line', `${result.correct ? '✓' : '✗'} Choice +${result.choicePoints}`),
-      element('p', 'result-line', placement),
-      element('p', 'result-total', `Round: ${pts(result.points)} / ${pts(maxPoints)}`),
+      head,
+      breakdown,
       next,
     ],
     next,

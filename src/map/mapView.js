@@ -61,11 +61,9 @@ export function createMap(element, { onPick }) {
       guessCircle = circleKm > 0 ? kmCircle(guess, circleKm, guessColor) : null;
       L.circleMarker(guess, { radius: 7, color: guessColor }).addTo(layer);
     },
-    // `cityKm` draws the city's own size around the answer (0 for none).
-    showAnswer(guess, answer, cityKm = 0) {
+    showAnswer(guess, answer) {
       const answerColor = css.getPropertyValue('--answer').trim();
       L.polyline([guess, answer], { color: answerColor, dashArray: '6 6', weight: 2 }).addTo(layer);
-      if (cityKm > 0) kmCircle(answer, cityKm, answerColor);
       L.circleMarker(answer, { radius: 7, color: answerColor }).addTo(layer);
       // Show the whole confidence circle too. Extra bottom padding keeps it all clear of the result card.
       const bounds = L.latLngBounds([guess, answer]);

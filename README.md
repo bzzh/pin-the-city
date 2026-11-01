@@ -5,11 +5,10 @@ A daily geography game out of 1,000 points. Each of the 5 rounds (up to 200 pts)
 1. **Choose** (50 pts) — a category such as "Most densely populated" with three cities; pick the right one.
 2. **Bet** — say how close you'll get to the correct city. Each level is a circle around your
    tap with a multiplier for landing inside it or missing: Safe (500 km, ×1.1 / ×0.9),
-   Confident (250 km, ×1.2 / ×0.8), Certain (75 km, ×1.4 / ×0.7) or Pinpoint (within the
-   city, ×1.5 / ×0.5).
+   Confident (150 km, ×1.3 / ×0.7) or Pinpoint (25 km, ×1.5 / ×0.5).
 3. **Place** — tap the map, which has no borders or labels. The placement scores up to 100
-   pts by distance, then the multiplier applies: inside if the city (allowing 25 km for its
-   size) touches your circle. Only a Pinpoint hit reaches 150.
+   pts by distance, then the multiplier applies: inside if the city is within your circle's
+   distance. Only a Pinpoint hit reaches 150.
 
 Daily challenges before 2 November 2026 were out of 10,000: 500 pts for the choice and up to
 1,500 for a placement scored by distance only.

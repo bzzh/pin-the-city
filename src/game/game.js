@@ -1,7 +1,6 @@
 import { planRounds } from './trio.js';
 import {
   MAX_ROUND_POINTS,
-  PERFECT_RADIUS_KM,
   ROUNDS_PER_GAME,
   choicePoints,
   confidencePoints,
@@ -88,12 +87,12 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     records.push(record);
 
     map.showGuess(guess, level?.radiusKm ?? 0);
-    map.showAnswer(guess, round.winner, level ? PERFECT_RADIUS_KM : 0);
+    map.showAnswer(guess, round.winner);
     const { name, region, country } = round.winner;
     setHud(name, [region, country].filter(Boolean).join(', '), status(records.length));
 
     const isLast = records.length === rounds.length;
-    showRoundResult(panel, record, maxRoundPoints(confidence), isLast ? 'See results →' : 'Next round →', () => {
+    showRoundResult(panel, record, { number: records.length, of: rounds.length }, maxRoundPoints(confidence), isLast ? 'See results →' : 'Next round →', () => {
       if (!isLast) {
         playRound(records.length);
         return;

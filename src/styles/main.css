@@ -196,14 +196,63 @@ body {
   filter: blur(14px) brightness(0.7);
 }
 
-#panel .rules,
-#panel .result-line {
+#panel .rules {
   margin: 0;
 }
 
-#panel .result-total {
-  margin: 4px 0 0;
+/* Round recap: the round's points, then one line with the choice, pin and distance. */
+#panel .round-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 12px;
+}
+
+#panel .round-points {
+  margin: 0;
+  font-size: 1.8rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+#panel .round-points .muted {
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+.round-parts {
+  display: grid;
+  gap: 6px;
+  margin: 10px 0 0;
+}
+
+.round-part {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding-bottom: 6px;
+  border-bottom: 1px solid var(--line);
+}
+
+.round-part dt {
+  display: flex;
+  gap: 8px;
+  align-items: baseline;
+}
+
+.round-part .part-detail {
   color: var(--muted);
+  font-size: 0.9rem;
+}
+
+.round-part dd {
+  margin: 0;
+  font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
+
+.round-part dd.minus {
+  color: var(--guess);
 }
 
 .muted {

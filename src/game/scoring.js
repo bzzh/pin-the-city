@@ -51,30 +51,40 @@ export function placementPoints(km) {
 
 // Before placing, the player bets on how close they'll get. The placement first earns a base
 // score out of BASE_PLACE_POINTS by distance. Each level is a circle around the tap: if the
-// city (with its PERFECT_RADIUS_KM margin) touches it, the base is multiplied by `win`,
-// otherwise by `lose`. Smaller circles are bigger bets, and only a Pinpoint hit reaches
-// MAX_PLACE_POINTS.
+// city is within `radiusKm` (exactly the distance the player is shown), the base is
+// multiplied by `win`, otherwise by `lose`. Smaller circles are bigger bets, and only a
+// Pinpoint hit reaches MAX_PLACE_POINTS.
 export const BASE_PLACE_POINTS = 100;
+//
+// Each step up shrinks the circle and moves both multipliers 0.2 further from 1, which keeps
+// three rules true at every distance (checked in tests): a hit always beats a miss, a miss
+// costs less on a safer bet, and a hit pays more on a bolder bet.
 export const CONFIDENCE_LEVELS = [
   { id: 'safe', label: 'Safe', radiusKm: 500, win: 1.1, lose: 0.9 },
-  { id: 'confident', label: 'Confident', radiusKm: 250, win: 1.2, lose: 0.8 },
-  { id: 'certain', label: 'Certain', radiusKm: 75, win: 1.4, lose: 0.7 },
-  { id: 'pinpoint', label: 'Pinpoint', radiusKm: 0, win: 1.5, lose: 0.5 },
+  { id: 'confident', label: 'Confident', radiusKm: 150, win: 1.3, lose: 0.7 },
+  { id: 'pinpoint', label: 'Pinpoint', radiusKm: PERFECT_RADIUS_KM, win: 1.5, lose: 0.5 },
 ];
+
+// Bets no longer offered, still scored for leaderboard submissions sent shortly after a change.
+const RETIRED_LEVELS = [{ id: 'certain', label: 'Certain', radiusKm: 75, win: 1.4, lose: 0.7 }];
 
 // The first daily challenge played with confidence levels (practice games always use them).
 export const CONFIDENCE_START = '2026-11-02';
 export const usesConfidence = (dateKey) => dateKey >= CONFIDENCE_START;
 
-export const confidenceLevel = (id) => CONFIDENCE_LEVELS.find((level) => level.id === id);
+export const confidenceLevel = (id) => [...CONFIDENCE_LEVELS, ...RETIRED_LEVELS].find((level) => level.id === id);
 
-// How far from the tap the city may be for this level to count, e.g. 275 km for Confident.
-export const hitRadiusKm = (level) => level.radiusKm + PERFECT_RADIUS_KM;
-
-export const isHit = (level, km) => km <= hitRadiusKm(level);
+export const isHit = (level, km) => km <= level.radiusKm;
 
 export const multiplier = (level, km) => (isHit(level, km) ? level.win : level.lose);
 
 export function confidencePoints(level, km) {
   return Math.round(BASE_PLACE_POINTS * distanceShare(km) * multiplier(level, km));
+}
+
+// A placement split for the round recap: the accuracy score (out of BASE_PLACE_POINTS, before
+// the bet) and the bet's bonus or malus. They always add up to confidencePoints.
+export function placementParts(level, km) {
+  const accuracy = Math.round(BASE_PLACE_POINTS * distanceShare(km));
+  return { accuracy, bet: confidencePoints(level, km) - accuracy };
 }
