@@ -346,11 +346,7 @@ body {
   white-space: nowrap;
 }
 
-.results .good {
-  color: var(--answer);
-}
-
-.results .bad {
+.results .minus {
   color: var(--guess);
 }
 

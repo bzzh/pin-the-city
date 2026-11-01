@@ -87,7 +87,6 @@ export function showRoundResult(panel, result, round, maxPoints, nextLabel, onNe
   // Bet Confident ✓ ×1.3 +29. Rounds from before bets show the placement as accuracy.
   const level = confidenceLevel(result.level);
   const parts = level ? placementParts(level, result.km) : { accuracy: result.placePoints, bet: null };
-  const signed = (value) => (value === 0 ? '0' : value < 0 ? `−${pts(-value)}` : `+${pts(value)}`);
   const breakdown = element('dl', 'round-parts');
   const part = (label, detail, value) => {
     const row = element('div', 'round-part');
@@ -120,6 +119,9 @@ export function showRoundResult(panel, result, round, maxPoints, nextLabel, onNe
   );
 }
 
+// Points with their sign: "+50", "−12" or "0".
+const signed = (value) => (value === 0 ? '0' : value < 0 ? `−${pts(-value)}` : `+${pts(value)}`);
+
 // ✓ or ✗ on screen; screen readers hear the word instead (e.g. "right", "outside").
 function mark(ok, className, yes, no) {
   const span = element('span', className);
@@ -129,17 +131,20 @@ function mark(ok, className, yes, no) {
   return span;
 }
 
-// One results row: [column, text or elements, extra class]. Rounds from before confidence
-// levels have no bet.
-function resultCells({ city, category, correct, km: distance, choicePoints, points, level, hit }) {
+// One results row, split like the round recap: [column, text or elements, extra class].
+// Rounds from before confidence levels have no bet, so their placement counts as accuracy.
+function resultCells({ city, category, km: distance, choicePoints, placePoints, points, level, hit }) {
   const bet = confidenceLevel(level);
-  const betResult = bet && mark(hit, `cell-sub ${hit ? 'good' : 'bad'}`, 'inside', 'outside');
-  betResult?.append(` ×${hit ? bet.win : bet.lose}`);
+  const parts = bet ? placementParts(bet, distance) : { accuracy: placePoints, bet: null };
+  // The multiplier shows whether the city was inside the bet's circle (above 1) or not.
+  const betCell = bet
+    ? [element('span', parts.bet < 0 ? 'minus' : '', signed(parts.bet)), element('span', 'muted cell-sub', `${bet.label} ×${hit ? bet.win : bet.lose}`)]
+    : '—';
   return [
     ['City', [element('strong', '', city), element('span', 'muted cell-sub', category)]],
-    ['Choice', [mark(correct, correct ? 'good' : 'bad', 'right', 'wrong'), element('span', 'muted cell-sub', `+${pts(choicePoints)}`)]],
-    ['Bet', bet ? [element('span', '', bet.label), betResult] : '—'],
-    ['Distance', km(distance), 'num'],
+    ['Question', signed(choicePoints), 'num'],
+    ['Accuracy', [element('span', '', signed(parts.accuracy)), element('span', 'muted cell-sub', km(distance))], 'num'],
+    ['Bet', betCell, 'num'],
     ['Round', pts(points), 'num strong'],
   ];
 }
@@ -154,7 +159,7 @@ export function showSummary(panel, records, maxRoundPoints, { heading: title, sh
   const table = element('table', 'results');
   table.append(element('caption', 'visually-hidden', `Results by round, ${pts(total)} points in total`));
   const head = element('tr');
-  for (const [text, className] of [['#', 'num'], ['City', ''], ['Choice', ''], ['Bet', ''], ['Distance', 'num'], ['Round', 'num']]) {
+  for (const [text, className] of [['#', 'num'], ['City', ''], ['Question', 'num'], ['Accuracy', 'num'], ['Bet', 'num'], ['Round', 'num']]) {
     const th = element('th', className, text);
     th.scope = 'col';
     head.append(th);
