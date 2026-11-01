@@ -244,24 +244,6 @@ body {
   font-size: 1rem;
 }
 
-.results-legend {
-  display: grid;
-  grid-template-columns: max-content 1fr;
-  gap: 6px 16px;
-  margin: 0;
-  color: var(--muted);
-  font-size: 0.95rem;
-}
-
-.results-legend dt {
-  color: var(--text);
-  font-weight: 600;
-}
-
-.results-legend dd {
-  margin: 0;
-}
-
 .sheet-actions {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -295,7 +277,7 @@ body {
   }
 
   .results tbody th {
-    grid-row: span 6;
+    grid-row: span 5;
     padding: 0;
     border: 0;
     font-size: 1.1rem;
@@ -339,14 +321,6 @@ body {
   .results tfoot tr {
     display: flex;
     justify-content: space-between;
-  }
-
-  .results-legend {
-    grid-template-columns: 1fr;
-  }
-
-  .results-legend dd {
-    margin-bottom: 6px;
   }
 }
 
@@ -691,3 +665,24 @@ input:focus-visible {
   width: 4.5rem;
   text-align: left;
 }
+
+/* Sharing: the block near the top of the results */
+.share-block {
+  margin-top: 16px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.share-title {
+  margin: 0 0 10px;
+  font-size: 1rem;
+}
+
+.share-block .share-preview {
+  margin-top: 10px;
+  word-break: normal;
+  overflow-wrap: anywhere;
+}
+

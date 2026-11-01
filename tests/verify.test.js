@@ -30,29 +30,29 @@ describe('scoreSubmission', () => {
   const { rounds, winners, answers: perfect } = perfectAnswers('2026-11-05');
 
   it('gives full marks for the right cities pinpointed exactly', () => {
-    expect(scoreSubmission(perfect).total).toBe(10_000);
+    expect(scoreSubmission(perfect).total).toBe(1_000);
   });
 
   it('gives no choice points for a wrong pick', () => {
     const wrongFirst = rounds[0].cities.find((city) => city !== rounds[0].winner);
     const result = scoreSubmission({ ...perfect, picks: replaceFirst(perfect.picks, wrongFirst.id) });
     expect(result.records[0].correct).toBe(false);
-    expect(result.total).toBe(9_500);
+    expect(result.total).toBe(950);
   });
 
   it('multiplies the placement up inside the bet circle and down outside it', () => {
-    const base = (km) => 1000 * Math.exp(-(km - 25) / 2000);
+    const base = (km) => 100 * Math.exp(-(km - 25) / 2000);
     // About 200 km north of the city: inside Confident (250 km), outside Certain (75 km).
     const nearby = { lat: winners[0].lat + 1.8, lng: winners[0].lng };
     const confident = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, nearby), levels: replaceFirst(perfect.levels, 'confident') });
-    expect(confident.records[0].points).toBe(500 + Math.round(base(confident.records[0].km) * 1.2));
+    expect(confident.records[0].points).toBe(50 + Math.round(base(confident.records[0].km) * 1.2));
     const certain = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, nearby), levels: replaceFirst(perfect.levels, 'certain') });
-    expect(certain.records[0].points).toBe(500 + Math.round(base(certain.records[0].km) * 0.7));
+    expect(certain.records[0].points).toBe(50 + Math.round(base(certain.records[0].km) * 0.7));
   });
 
   it('scores nothing for a far-off placement', () => {
     const result = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, antipode(winners[0])), levels: replaceFirst(perfect.levels, 'safe') });
-    expect(result.records[0].points).toBe(500);
+    expect(result.records[0].points).toBe(50);
   });
 
   it('rejects a city that was not offered', () => {

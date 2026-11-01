@@ -2,7 +2,7 @@ import './styles/main.css';
 import { createMap } from './map/mapView.js';
 import { categories } from './categories/categories.js';
 import { MAX_ROUND_POINTS, startGame } from './game/game.js';
-import { usesConfidence } from './game/scoring.js';
+import { maxRoundPoints, usesConfidence } from './game/scoring.js';
 import { dailyRandom, dateKey, dayNumber, weekKeys, weekStartKey } from './game/daily.js';
 import { buildShareText } from './game/share.js';
 import { loadDaily, saveDaily } from './game/storage.js';
@@ -31,6 +31,7 @@ const cities = await fetch('data/cities.json').then((response) => response.json(
 const today = dateKey();
 const dailyNumber = dayNumber(today);
 const gameUrl = location.origin + location.pathname;
+const dailyMaxRound = maxRoundPoints(usesConfidence(today));
 
 // "2–8 November" for the week containing today.
 function weekLabel() {
@@ -121,14 +122,9 @@ function showDailyResult(daily, notice) {
     }
   }
   actions.push({ label: 'Practice game', onClick: playPractice });
-  showSummary(panel, records, MAX_ROUND_POINTS, {
+  showSummary(panel, records, dailyMaxRound, {
     heading: `Today's challenge #${dailyNumber}`,
-    shareText: buildShareText({
-      number: dailyNumber,
-      records,
-      maxPoints: MAX_ROUND_POINTS * records.length,
-      url: gameUrl,
-    }),
+    shareText: buildShareText({ number: dailyNumber, records, maxPoints: dailyMaxRound * records.length, url: gameUrl }),
     notice,
     actions,
   });

@@ -51,7 +51,7 @@ export function scoreSubmission({ cities, categories, dateKey, picks, guesses, l
     const correct = picked === round.winner;
     const km = distanceKm(roundGuess(guesses[i]), round.winner);
     const place = level ? confidencePoints(level, km) : placementPoints(km);
-    return { correct, km, points: choicePoints(correct) + place };
+    return { correct, km, points: choicePoints(correct, !confidence) + place };
   });
 
   return { total: records.reduce((sum, record) => sum + record.points, 0), records };

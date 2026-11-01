@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import {
   CHOICE_POINTS,
   CONFIDENCE_LEVELS,
+  LEGACY_MAX_PLACE_POINTS,
   MAX_PLACE_POINTS,
   choicePoints,
   confidenceLevel,
@@ -33,8 +34,8 @@ describe('distanceKm', () => {
 
 describe('placementPoints', () => {
   it('gives full points within the perfect radius', () => {
-    expect(placementPoints(0)).toBe(MAX_PLACE_POINTS);
-    expect(placementPoints(25)).toBe(MAX_PLACE_POINTS);
+    expect(placementPoints(0)).toBe(LEGACY_MAX_PLACE_POINTS);
+    expect(placementPoints(25)).toBe(LEGACY_MAX_PLACE_POINTS);
   });
 
   it('drops as the guess gets further away', () => {
@@ -44,16 +45,18 @@ describe('placementPoints', () => {
 });
 
 describe('choicePoints', () => {
-  it('rewards only a correct pick', () => {
+  it('rewards only a correct pick: 50 points, or 500 in old daily challenges', () => {
     expect(choicePoints(true)).toBe(CHOICE_POINTS);
+    expect(CHOICE_POINTS).toBe(50);
+    expect(choicePoints(true, true)).toBe(500);
     expect(choicePoints(false)).toBe(0);
   });
 });
 
 describe('confidencePoints', () => {
   const level = (id) => confidenceLevel(id);
-  // The base placement score, out of 1,000.
-  const base = (km) => (km <= 25 ? 1000 : 1000 * Math.exp(-(km - 25) / 2000));
+  // The base placement score, out of 100.
+  const base = (km) => (km <= 25 ? 100 : 100 * Math.exp(-(km - 25) / 2000));
 
   it('has four levels: smaller circles are bigger bets', () => {
     expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 250, 75, 0]);
@@ -62,7 +65,7 @@ describe('confidencePoints', () => {
   });
 
   it('multiplies the base score up when the city touches the circle, allowing 25 km for the city', () => {
-    expect(confidencePoints(level('confident'), 0)).toBe(1200);
+    expect(confidencePoints(level('confident'), 0)).toBe(120);
     expect(confidencePoints(level('confident'), 275)).toBe(Math.round(base(275) * 1.2));
     expect(confidencePoints(level('confident'), 276)).toBe(Math.round(base(276) * 0.8));
   });

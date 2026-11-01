@@ -32,7 +32,7 @@ export function showConfidenceCard(panel, city, onChoose) {
   panel.replaceChildren(
     element('p', 'eyebrow', 'Confidence'),
     title,
-    element('p', 'rules', 'Your placement scores up to 1,000 points by distance. Your tap is the centre of a circle: if the city touches it, those points are multiplied up; if not, they shrink. Only a Pinpoint hit reaches 1,500.'),
+    element('p', 'rules', 'Your placement scores up to 100 points by distance. Your tap is the centre of a circle: if the city touches it, those points are multiplied up; if not, they shrink. Only a Pinpoint hit reaches 150.'),
     list,
   );
   panel.hidden = false;

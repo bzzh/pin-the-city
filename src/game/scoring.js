@@ -1,9 +1,16 @@
 const EARTH_RADIUS_KM = 6371;
 
 export const ROUNDS_PER_GAME = 5;
-export const CHOICE_POINTS = 500;
-export const MAX_PLACE_POINTS = 1500;
+// A game is out of 1,000: each round is up to 50 for the choice and 150 for the placement.
+export const CHOICE_POINTS = 50;
+export const MAX_PLACE_POINTS = 150;
 export const MAX_ROUND_POINTS = CHOICE_POINTS + MAX_PLACE_POINTS;
+
+// Daily challenges before CONFIDENCE_START were scored 10 times bigger, with placements by
+// distance only. Kept so those results and leaderboard submissions still add up.
+const LEGACY_CHOICE_POINTS = 500;
+export const LEGACY_MAX_PLACE_POINTS = 1500;
+const LEGACY_MAX_ROUND_POINTS = LEGACY_CHOICE_POINTS + LEGACY_MAX_PLACE_POINTS;
 
 // Guesses this close count as perfect, so a city's sprawl doesn't cost points.
 export const PERFECT_RADIUS_KM = 25;
@@ -22,9 +29,14 @@ export function distanceKm(a, b) {
   return 2 * EARTH_RADIUS_KM * Math.asin(Math.sqrt(h));
 }
 
-export function choicePoints(isCorrect) {
-  return isCorrect ? CHOICE_POINTS : 0;
+// `legacy` scores a daily challenge from before CONFIDENCE_START.
+export function choicePoints(isCorrect, legacy = false) {
+  if (!isCorrect) return 0;
+  return legacy ? LEGACY_CHOICE_POINTS : CHOICE_POINTS;
 }
+
+// Most points one round can score: 200, or 2,000 for daily challenges from before confidence levels.
+export const maxRoundPoints = (confidence) => (confidence ? MAX_ROUND_POINTS : LEGACY_MAX_ROUND_POINTS);
 
 // Share of the placement points a guess this far off earns: 1 within PERFECT_RADIUS_KM, then
 // falling smoothly towards 0.
@@ -32,9 +44,9 @@ function distanceShare(km) {
   return km <= PERFECT_RADIUS_KM ? 1 : Math.exp(-(km - PERFECT_RADIUS_KM) / FALLOFF_KM);
 }
 
-// The original distance score. Still used for daily challenges played before CONFIDENCE_START.
+// The original distance score, out of 1,500. Only for daily challenges before CONFIDENCE_START.
 export function placementPoints(km) {
-  return Math.round(MAX_PLACE_POINTS * distanceShare(km));
+  return Math.round(LEGACY_MAX_PLACE_POINTS * distanceShare(km));
 }
 
 // Before placing, the player bets on how close they'll get. The placement first earns a base
@@ -42,7 +54,7 @@ export function placementPoints(km) {
 // city (with its PERFECT_RADIUS_KM margin) touches it, the base is multiplied by `win`,
 // otherwise by `lose`. Smaller circles are bigger bets, and only a Pinpoint hit reaches
 // MAX_PLACE_POINTS.
-export const BASE_PLACE_POINTS = 1000;
+export const BASE_PLACE_POINTS = 100;
 export const CONFIDENCE_LEVELS = [
   { id: 'safe', label: 'Safe', radiusKm: 500, win: 1.1, lose: 0.9 },
   { id: 'confident', label: 'Confident', radiusKm: 250, win: 1.2, lose: 0.8 },

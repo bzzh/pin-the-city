@@ -1,47 +1,27 @@
 import { describe, expect, it } from 'vitest';
-import { buildShareText, placementSquare, roundSquare } from '../src/game/share.js';
+import { buildShareText } from '../src/game/share.js';
 
-const record = (correct, placePoints) => ({ correct, placePoints, points: (correct ? 500 : 0) + placePoints });
-const bet = (correct, level, hit, placePoints) => ({ ...record(correct, hit ? placePoints : 0), level, hit });
-
-describe('placementSquare', () => {
-  it('colours placements from green to red', () => {
-    expect(placementSquare(1500)).toBe('🟩');
-    expect(placementSquare(1200)).toBe('🟩');
-    expect(placementSquare(800)).toBe('🟨');
-    expect(placementSquare(400)).toBe('🟧');
-    expect(placementSquare(50)).toBe('🟥');
-  });
-});
-
-describe('roundSquare', () => {
-  it('shows the confidence level that was hit, or a miss', () => {
-    expect(roundSquare(bet(true, 'safe', true, 500))).toBe('🟧');
-    expect(roundSquare(bet(true, 'certain', true, 1000))).toBe('🟩');
-    expect(roundSquare(bet(true, 'pinpoint', true, 1500))).toBe('🟦');
-    expect(roundSquare(bet(true, 'pinpoint', false))).toBe('⬛');
-  });
-
-  it('falls back to distance colours for rounds without a level', () => {
-    expect(roundSquare(record(true, 800))).toBe('🟨');
-  });
-});
+const URL_BASE = 'https://example.com/pin-the-city/';
+// A round with a bet: placement points are out of 150.
+const round = (correct, placePoints) => ({ correct, placePoints, level: 'safe', points: (correct ? 50 : 0) + placePoints });
 
 describe('buildShareText', () => {
-  it('shows the challenge number, total and one mark per round', () => {
-    const text = buildShareText({
-      number: 12,
-      records: [bet(true, 'pinpoint', true, 1500), bet(false, 'confident', true, 750), bet(true, 'safe', false)],
-      maxPoints: 6000,
-      url: 'https://example.com/pin-the-city/',
-    });
-    expect(text).toBe(
-      'Pin the City #12 · 3,250 / 6,000\n✅🟦 ❌🟨 ✅⬛\nhttps://example.com/pin-the-city/',
-    );
+  const records = [round(true, 132), round(false, 86), round(true, 150)];
+
+  it('shows the total, then each choice and placement out of 150, then the address', () => {
+    const text = buildShareText({ number: 12, records, maxPoints: 600, url: URL_BASE });
+    expect(text).toBe(['📍 Pin the City #12 · 468 / 600', '✅ 132 · ❌ 86 · ✅ 150', URL_BASE].join('\n'));
   });
 
-  it('never reveals the cities', () => {
-    const text = buildShareText({ number: 1, records: [{ ...record(true, 1500), city: 'Cairo' }], maxPoints: 2000 });
+  it('scales rounds from before confidence levels down to 150', () => {
+    const old = [{ correct: true, placePoints: 1234, points: 1734 }];
+    expect(buildShareText({ number: 1, records: old, maxPoints: 2000 }).split('\n')[1]).toBe('✅ 123');
+  });
+
+  it('never reveals the cities or the questions', () => {
+    const named = records.map((r) => ({ ...r, city: 'Cairo', category: 'Most populous' }));
+    const text = buildShareText({ number: 1, records: named, maxPoints: 600, url: URL_BASE });
     expect(text).not.toContain('Cairo');
+    expect(text).not.toContain('populous');
   });
 });

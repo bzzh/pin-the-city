@@ -7,6 +7,7 @@ import {
   confidencePoints,
   isHit,
   distanceKm,
+  maxRoundPoints,
   placementPoints,
 } from './scoring.js';
 import { roundGuess } from '../leaderboard/verify.js';
@@ -43,7 +44,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     const nextLabel = confidence ? 'Continue →' : `Place ${round.winner.name} on the map →`;
     showChoiceCard(panel, round, nextLabel, (picked) => {
       const correct = picked === round.winner;
-      const choiceLine = `${correct ? '✓ Right choice' : '✗ Wrong choice'} +${choicePoints(correct)}`;
+      const choiceLine = `${correct ? '✓ Right choice' : '✗ Wrong choice'} +${choicePoints(correct, !confidence)}`;
       const startPlacing = (level) => {
         placing = { round, picked, correct, level };
         const bet = level ? `${level.label} bet: ${levelRange(level)}, ×${level.win} or ×${level.lose} · ` : '';
@@ -63,7 +64,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     // Rounded the same way the leaderboard server rounds it, so both get the same score.
     const guess = roundGuess(tap);
     const km = distanceKm(guess, round.winner);
-    const choice = choicePoints(correct);
+    const choice = choicePoints(correct, !confidence);
     const place = level ? confidencePoints(level, km) : placementPoints(km);
     const record = {
       city: round.winner.name,
@@ -86,7 +87,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     setHud(name, [region, country].filter(Boolean).join(', '), status(records.length));
 
     const isLast = records.length === rounds.length;
-    showRoundResult(panel, record, MAX_ROUND_POINTS, isLast ? 'See results →' : 'Next round →', () => {
+    showRoundResult(panel, record, maxRoundPoints(confidence), isLast ? 'See results →' : 'Next round →', () => {
       if (!isLast) {
         playRound(records.length);
         return;

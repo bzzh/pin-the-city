@@ -45,11 +45,18 @@ function shareButton(text) {
   return b;
 }
 
+// The share preview and its button.
+function shareBlock(text) {
+  const block = element('div', 'share-block');
+  block.append(element('h3', 'share-title', 'Share your result'), element('pre', 'share-preview', text), shareButton(text));
+  return block;
+}
+
 const RULES = {
   distance:
     '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
   confidence:
-    '5 rounds. Pick the city that fits the category (500 pts). Then bet on how close you’ll get and place it: up to 1,000 pts by distance, multiplied up if the city lands in your circle and down if not. Only a Pinpoint hit reaches 1,500.',
+    '5 rounds. Pick the city that fits the category (50 pts). Then bet on how close you’ll get and place it: up to 100 pts by distance, multiplied up if the city lands in your circle and down if not. Only a Pinpoint hit reaches 150.',
 };
 
 // `confidence` says whether today's challenge uses confidence levels.
@@ -91,37 +98,32 @@ export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
   );
 }
 
-// What each results column means, shown under the table.
-const RESULT_COLUMNS = [
-  ['Choice', '500 points if you picked the right city of the three, otherwise 0.'],
-  ['Bet', 'How sure you said you were. Inside means the city touched your circle, so your placement was multiplied up; outside means it was multiplied down.'],
-  ['Distance', 'How far your pin landed from the city.'],
-  ['Placement', 'Up to 1,000 points for distance, times your bet. Only a Pinpoint hit reaches 1,500.'],
-  ['Round', 'Choice plus placement, out of 2,000.'],
-];
+// ✓ or ✗ on screen; screen readers hear the word instead (e.g. "right", "outside").
+function mark(ok, className, yes, no) {
+  const span = element('span', className);
+  const symbol = element('span', '', ok ? '✓' : '✗');
+  symbol.setAttribute('aria-hidden', 'true');
+  span.append(symbol, element('span', 'visually-hidden', ok ? yes : no));
+  return span;
+}
 
 // One results row: [column, text or elements, extra class]. Rounds from before confidence
 // levels have no bet.
-function resultCells({ city, category, correct, km: distance, choicePoints, placePoints, points, level, hit }) {
+function resultCells({ city, category, correct, km: distance, choicePoints, points, level, hit }) {
   const bet = confidenceLevel(level);
+  const betResult = bet && mark(hit, `cell-sub ${hit ? 'good' : 'bad'}`, 'inside', 'outside');
+  betResult?.append(` ×${hit ? bet.win : bet.lose}`);
   return [
     ['City', [element('strong', '', city), element('span', 'muted cell-sub', category)]],
-    ['Choice', [element('span', correct ? 'good' : 'bad', correct ? '✓ Right' : '✗ Wrong'), element('span', 'muted cell-sub', `+${pts(choicePoints)}`)]],
-    [
-      'Bet',
-      bet
-        ? [element('span', '', bet.label), element('span', `cell-sub ${hit ? 'good' : 'bad'}`, hit ? `✓ inside ×${bet.win}` : `✗ outside ×${bet.lose}`)]
-        : '—',
-    ],
+    ['Choice', [mark(correct, correct ? 'good' : 'bad', 'right', 'wrong'), element('span', 'muted cell-sub', `+${pts(choicePoints)}`)]],
+    ['Bet', bet ? [element('span', '', bet.label), betResult] : '—'],
     ['Distance', km(distance), 'num'],
-    ['Placement', `+${pts(placePoints)}`, 'num'],
     ['Round', pts(points), 'num strong'],
   ];
 }
 
-// End-of-game results: a full-width sheet with a table of the rounds and what each column
-// means. `shareText` adds a preview and a share button (daily challenge only); `notice` is a
-// status line (e.g. the leaderboard result); `actions` are the buttons underneath, e.g.
+// End-of-game results: a full-width sheet with the score, sharing and buttons first, then a
+// table of the rounds. `shareText` adds the share block (daily challenge only); `notice` is a status line (e.g. the leaderboard result); `actions` are buttons, e.g.
 // [{ label: 'Practice game', onClick }].
 export function showSummary(panel, records, maxRoundPoints, { heading: title, shareText, notice, actions }) {
   const total = records.reduce((sum, record) => sum + record.points, 0);
@@ -130,7 +132,7 @@ export function showSummary(panel, records, maxRoundPoints, { heading: title, sh
   const table = element('table', 'results');
   table.append(element('caption', 'visually-hidden', `Results by round, ${pts(total)} points in total`));
   const head = element('tr');
-  for (const [text, className] of [['#', 'num'], ['City', ''], ['Choice', ''], ['Bet', ''], ['Distance', 'num'], ['Placement', 'num'], ['Round', 'num']]) {
+  for (const [text, className] of [['#', 'num'], ['City', ''], ['Choice', ''], ['Bet', ''], ['Distance', 'num'], ['Round', 'num']]) {
     const th = element('th', className, text);
     th.scope = 'col';
     head.append(th);
@@ -157,29 +159,20 @@ export function showSummary(panel, records, maxRoundPoints, { heading: title, sh
   const foot = element('tr');
   const totalLabel = element('th', '', 'Total');
   totalLabel.scope = 'row';
-  totalLabel.colSpan = 6;
+  totalLabel.colSpan = 5;
   foot.append(totalLabel, element('td', 'num strong', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`));
   const tfoot = element('tfoot');
   tfoot.append(foot);
   table.append(thead, tbody, tfoot);
 
-  const legend = element('dl', 'results-legend');
-  for (const [term, meaning] of RESULT_COLUMNS) legend.append(element('dt', '', term), element('dd', '', meaning));
-
-  const children = [
-    top,
-    element('p', 'score-big', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`),
-    table,
-    element('h3', 'legend-title', 'How to read this'),
-    legend,
-  ];
+  const children = [top, element('p', 'score-big', `${pts(total)} / ${pts(maxRoundPoints * records.length)}`)];
   if (notice) children.push(element('p', 'notice', notice));
-  if (shareText) children.push(element('pre', 'share-preview', shareText), shareButton(shareText));
+  if (shareText) children.push(shareBlock(shareText));
   const buttons = element('div', 'sheet-actions');
   for (const { label, onClick } of actions) {
     buttons.append(button(label, onClick, shareText ? 'continue secondary' : 'continue'));
   }
-  children.push(buttons);
+  children.push(buttons, element('h3', 'legend-title', 'Round by round'), table);
 
   const inner = element('div', 'sheet-inner');
   inner.append(...children);
