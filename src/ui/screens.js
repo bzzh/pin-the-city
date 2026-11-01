@@ -1,3 +1,4 @@
+import { confidenceLevel } from '../game/scoring.js';
 import { element } from './dom.js';
 
 const km = (value) => `${Math.round(value).toLocaleString('en')} km`;
@@ -42,8 +43,16 @@ function shareButton(text) {
   return b;
 }
 
-// `onLeaderboard` is omitted when the leaderboard is turned off.
-export function showStartScreen(panel, { dailyNumber, onDaily, onPractice, onLeaderboard }) {
+const RULES = {
+  distance:
+    '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
+  confidence:
+    '5 rounds. Pick the city that fits the category (500 pts). Then say how sure you are and place it: the smaller your circle, the more it pays (250 to 1,500 pts), but a miss scores 0.',
+};
+
+// `onLeaderboard` is omitted when the leaderboard is turned off. `confidence` says whether
+// today's challenge uses confidence levels.
+export function showStartScreen(panel, { dailyNumber, confidence, onDaily, onPractice, onLeaderboard }) {
   const startWith = (play) => () => {
     panel.hidden = true;
     play();
@@ -51,7 +60,7 @@ export function showStartScreen(panel, { dailyNumber, onDaily, onPractice, onLea
   const title = heading('h2', 'category', 'Pin the City');
   const children = [
     title,
-    element('p', 'rules', '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts).'),
+    element('p', 'rules', RULES[confidence ? 'confidence' : 'distance']),
     button(`Play today's challenge #${dailyNumber}`, startWith(onDaily)),
     button('Practice game', startWith(onPractice), 'continue secondary'),
   ];
@@ -65,10 +74,16 @@ export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
     panel.hidden = true;
     onNext();
   });
+  // e.g. "Confident · 180 km away · ✓ inside +750", or "1,200 km away +540" without a level.
+  const level = confidenceLevel(result.level);
+  const placement = level
+    ? `${level.label} · ${km(result.km)} away · ${result.hit ? '✓ inside' : '✗ outside'} +${result.placePoints}`
+    : `${km(result.km)} away +${result.placePoints}`;
   show(
     panel,
     [
-      element('p', 'result-line', `${result.correct ? '✓' : '✗'} Choice +${result.choicePoints} · ${km(result.km)} away +${result.placePoints}`),
+      element('p', 'result-line', `${result.correct ? '✓' : '✗'} Choice +${result.choicePoints}`),
+      element('p', 'result-line', placement),
       element('p', 'result-total', `Round: ${pts(result.points)} / ${pts(maxPoints)}`),
       next,
     ],
@@ -82,11 +97,12 @@ export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
 export function showSummary(panel, records, maxRoundPoints, { heading: title, shareText, notice, actions }) {
   const total = records.reduce((sum, record) => sum + record.points, 0);
   const list = element('ol', 'summary');
-  for (const { city, category, correct, km: distance, points } of records) {
+  for (const { city, category, correct, km: distance, points, level, hit } of records) {
     const row = element('li');
     const what = element('span', 'what');
     what.append(element('strong', '', city), element('span', 'muted', ` · ${category}`));
-    row.append(what, element('span', 'muted', `${correct ? '✓' : '✗'} ${km(distance)} · ${pts(points)}`));
+    const bet = level ? ` · ${confidenceLevel(level).label} ${hit ? '✓' : '✗'}` : '';
+    row.append(what, element('span', 'muted', `${correct ? '✓' : '✗'}${bet} · ${km(distance)} · ${pts(points)}`));
     list.append(row);
   }
   const top = heading('h2', 'eyebrow', title);

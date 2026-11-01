@@ -1,10 +1,11 @@
 // Leaderboard server function (Supabase Edge Function, runs on Deno).
 //
 //   POST { action: 'register', nickname }                              → { playerId, token, nickname }
-//   POST { action: 'submit', playerId, token, dateKey, picks, guesses } → { points }
+//   POST { action: 'submit', playerId, token, dateKey, picks, guesses, levels } → { points }
 //
 // Scores are never taken from the browser: the function rebuilds that day's rounds from the
-// game's own code and city data and recalculates the score from the raw picks and map taps.
+// game's own code and city data and recalculates the score from the raw picks, confidence
+// levels and map taps.
 // The shared game code is copied into ../_shared by `npm run sync:server` before deploying.
 import { createClient } from 'jsr:@supabase/supabase-js@2';
 import { categories } from '../_shared/categories/categories.js';
@@ -60,7 +61,7 @@ async function register(body: Record<string, unknown>) {
 }
 
 async function submit(body: Record<string, unknown>) {
-  const { playerId, token, dateKey, picks, guesses } = body;
+  const { playerId, token, dateKey, picks, guesses, levels } = body;
   if (typeof playerId !== 'string' || typeof token !== 'string') return reply(401, { error: 'Unknown player.' });
 
   const { data: player } = await db.from('players').select('id, token_hash').eq('id', playerId).maybeSingle();
@@ -70,7 +71,7 @@ async function submit(body: Record<string, unknown>) {
 
   let points: number;
   try {
-    ({ total: points } = scoreSubmission({ cities: await loadCities(), categories, dateKey, picks, guesses }));
+    ({ total: points } = scoreSubmission({ cities: await loadCities(), categories, dateKey, picks, guesses, levels }));
   } catch (problem) {
     return reply(400, { error: (problem as Error).message });
   }

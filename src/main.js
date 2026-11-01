@@ -2,6 +2,7 @@ import './styles/main.css';
 import { createMap } from './map/mapView.js';
 import { categories } from './categories/categories.js';
 import { MAX_ROUND_POINTS, startGame } from './game/game.js';
+import { usesConfidence } from './game/scoring.js';
 import { dailyRandom, dateKey, dayNumber, weekKeys, weekStartKey } from './game/daily.js';
 import { buildShareText } from './game/share.js';
 import { loadDaily, saveDaily } from './game/storage.js';
@@ -121,6 +122,7 @@ function playDaily() {
     cities,
     categories,
     label: `Daily #${dailyNumber}`,
+    confidence: usesConfidence(today),
     random: dailyRandom(today),
     onFinished: finishDaily,
   });
@@ -160,6 +162,7 @@ async function home() {
   setHud('Pin the City', 'A geography game in 5 rounds.');
   showStartScreen(panel, {
     dailyNumber,
+    confidence: usesConfidence(today),
     onDaily: playDaily,
     onPractice: playPractice,
     onLeaderboard: leaderboardEnabled ? () => openLeaderboard(home) : undefined,

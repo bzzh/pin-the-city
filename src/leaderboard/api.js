@@ -25,7 +25,7 @@ async function post(path, body) {
 // → { playerId, token, nickname }; throws with status 409 if the nickname is taken.
 export const register = (nickname) => post('/functions/v1/submit-score', { action: 'register', nickname });
 
-// Sends a finished daily's raw answers; the server re-scores them. → { points }
+// Sends a finished daily's raw answers (and confidence levels); the server re-scores them. → { points }
 export const submitDaily = (player, dateKey, records) =>
   post('/functions/v1/submit-score', {
     action: 'submit',
@@ -34,6 +34,7 @@ export const submitDaily = (player, dateKey, records) =>
     dateKey,
     picks: records.map((record) => record.pick),
     guesses: records.map((record) => record.guess),
+    levels: records.map((record) => record.level ?? null),
   });
 
 // → [{ rank, nickname, days_played, total }] for the week starting on that Monday.

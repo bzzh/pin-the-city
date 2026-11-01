@@ -2,8 +2,8 @@ import { formatStat } from '../categories/categories.js';
 import { element } from './dom.js';
 
 // Shows the category and three city buttons. After a pick, reveals every city's value and
-// offers a button to go place the correct city; `onDone(pickedCity)` runs when it's pressed.
-export function showChoiceCard(panel, round, onDone) {
+// offers a button labelled `nextLabel` to move on; `onDone(pickedCity)` runs when it's pressed.
+export function showChoiceCard(panel, round, nextLabel, onDone) {
   const { category, cities, winner } = round;
   const title = element('h2', 'category', category.label);
   title.tabIndex = -1;
@@ -27,7 +27,7 @@ export function showChoiceCard(panel, round, onDone) {
   // Says whether the pick was right in words, not just colours (read out by screen readers).
   const verdict = element('p', 'verdict');
   verdict.setAttribute('role', 'status');
-  const next = element('button', 'continue', `Place ${winner.name} on the map →`);
+  const next = element('button', 'continue', nextLabel);
   next.type = 'button';
   next.hidden = true;
   panel.append(list, verdict, next);

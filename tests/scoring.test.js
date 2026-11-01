@@ -1,10 +1,14 @@
 import { describe, expect, it } from 'vitest';
 import {
   CHOICE_POINTS,
+  CONFIDENCE_LEVELS,
   MAX_PLACE_POINTS,
   choicePoints,
+  confidenceLevel,
+  confidencePoints,
   distanceKm,
   placementPoints,
+  usesConfidence,
 } from '../src/game/scoring.js';
 
 const paris = { lat: 48.8566, lng: 2.3522 };
@@ -43,5 +47,30 @@ describe('choicePoints', () => {
   it('rewards only a correct pick', () => {
     expect(choicePoints(true)).toBe(CHOICE_POINTS);
     expect(choicePoints(false)).toBe(0);
+  });
+});
+
+describe('confidencePoints', () => {
+  const level = (id) => confidenceLevel(id);
+
+  it('has five levels whose circles shrink as the points grow', () => {
+    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([1000, 500, 250, 125, 0]);
+    expect(CONFIDENCE_LEVELS.map((l) => l.points)).toEqual([250, 500, 750, 1000, 1500]);
+  });
+
+  it('pays the level when the city touches the circle, allowing 25 km for the city', () => {
+    expect(confidencePoints(level('confident'), 0)).toBe(750);
+    expect(confidencePoints(level('confident'), 275)).toBe(750);
+    expect(confidencePoints(level('confident'), 276)).toBe(0);
+  });
+
+  it('pays Pinpoint only within the city itself', () => {
+    expect(confidencePoints(level('pinpoint'), 25)).toBe(MAX_PLACE_POINTS);
+    expect(confidencePoints(level('pinpoint'), 26)).toBe(0);
+  });
+
+  it('starts with the daily challenge of 2 November 2026', () => {
+    expect(usesConfidence('2026-11-01')).toBe(false);
+    expect(usesConfidence('2026-11-02')).toBe(true);
   });
 });

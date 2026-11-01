@@ -39,17 +39,29 @@ export function createMap(element, { onPick }) {
   const css = getComputedStyle(document.documentElement);
   const layer = L.layerGroup().addTo(map);
 
+  // Real-size circles (radius in km), e.g. the player's confidence circle.
+  const kmCircle = (center, km, color) =>
+    L.circle(center, { radius: km * 1000, color, weight: 2, fillOpacity: 0.1, interactive: false }).addTo(layer);
+  let guessCircle = null;
+
   return {
-    showGuess(guess) {
+    // `circleKm` draws the player's confidence circle around the tap (0 for none).
+    showGuess(guess, circleKm = 0) {
       layer.clearLayers();
-      L.circleMarker(guess, { radius: 7, color: css.getPropertyValue('--guess').trim() }).addTo(layer);
+      const guessColor = css.getPropertyValue('--guess').trim();
+      guessCircle = circleKm > 0 ? kmCircle(guess, circleKm, guessColor) : null;
+      L.circleMarker(guess, { radius: 7, color: guessColor }).addTo(layer);
     },
-    showAnswer(guess, answer) {
+    // `cityKm` draws the city's own size around the answer (0 for none).
+    showAnswer(guess, answer, cityKm = 0) {
       const answerColor = css.getPropertyValue('--answer').trim();
       L.polyline([guess, answer], { color: answerColor, dashArray: '6 6', weight: 2 }).addTo(layer);
+      if (cityKm > 0) kmCircle(answer, cityKm, answerColor);
       L.circleMarker(answer, { radius: 7, color: answerColor }).addTo(layer);
-      // Extra bottom padding keeps both markers clear of the result card.
-      map.fitBounds(L.latLngBounds([guess, answer]), {
+      // Show the whole confidence circle too. Extra bottom padding keeps it all clear of the result card.
+      const bounds = L.latLngBounds([guess, answer]);
+      if (guessCircle) bounds.extend(guessCircle.getBounds());
+      map.fitBounds(bounds, {
         paddingTopLeft: [50, 50],
         paddingBottomRight: [50, 180],
         maxZoom: MAX_TILE_ZOOM,
