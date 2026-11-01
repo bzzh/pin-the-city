@@ -47,7 +47,7 @@ const RULES = {
   distance:
     '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
   confidence:
-    '5 rounds. Pick the city that fits the category (500 pts). Then say how sure you are and place it: the smaller your circle, the more it pays (500 to 1,500 pts), and a miss still earns a little for being close.',
+    '5 rounds. Pick the city that fits the category (500 pts). Then bet on how close you’ll get and place it: up to 1,000 pts by distance, multiplied up if the city lands in your circle and down if not. Only a Pinpoint hit reaches 1,500.',
 };
 
 // `onLeaderboard` is omitted when the leaderboard is turned off. `confidence` says whether
@@ -74,10 +74,10 @@ export function showRoundResult(panel, result, maxPoints, nextLabel, onNext) {
     panel.hidden = true;
     onNext();
   });
-  // e.g. "Confident · 180 km away · ✓ inside +750", or "1,200 km away +540" without a level.
+  // e.g. "Confident · 180 km away · ✓ inside ×1.2 +1,104", or "1,200 km away +540" without a level.
   const level = confidenceLevel(result.level);
   const placement = level
-    ? `${level.label} · ${km(result.km)} away · ${result.hit ? '✓ inside' : '✗ outside'} +${result.placePoints}`
+    ? `${level.label} · ${km(result.km)} away · ${result.hit ? `✓ inside ×${level.win}` : `✗ outside ×${level.lose}`} +${pts(result.placePoints)}`
     : `${km(result.km)} away +${result.placePoints}`;
   show(
     panel,

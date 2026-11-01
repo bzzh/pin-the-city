@@ -20,7 +20,9 @@ export function showConfidenceCard(panel, city, onChoose) {
     button.type = 'button';
     const label = element('span', 'label');
     label.append(element('span', 'name', level.label), element('span', 'visually-hidden', ', '), element('span', 'place', levelRange(level)));
-    button.append(label, element('span', 'value', `${pts(level.points)} pts`));
+    const odds = element('span', 'value', `×${level.win} / ×${level.lose}`);
+    odds.setAttribute('aria-label', `times ${level.win} if inside, times ${level.lose} if not`);
+    button.append(label, odds);
     button.addEventListener('click', () => {
       panel.hidden = true;
       onChoose(level);
@@ -30,7 +32,7 @@ export function showConfidenceCard(panel, city, onChoose) {
   panel.replaceChildren(
     element('p', 'eyebrow', 'Confidence'),
     title,
-    element('p', 'rules', 'Your tap is the centre of a circle. If the city touches it, you win its points. If not, you still get a few points for being close.'),
+    element('p', 'rules', 'Your placement scores up to 1,000 points by distance. Your tap is the centre of a circle: if the city touches it, those points are multiplied up; if not, they shrink. Only a Pinpoint hit reaches 1,500.'),
     list,
   );
   panel.hidden = false;

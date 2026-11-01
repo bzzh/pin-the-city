@@ -26,28 +26,33 @@ export function choicePoints(isCorrect) {
   return isCorrect ? CHOICE_POINTS : 0;
 }
 
-// The original distance curve. Still scores daily challenges played before CONFIDENCE_START.
-export function placementPoints(km) {
-  if (km <= PERFECT_RADIUS_KM) return MAX_PLACE_POINTS;
-  return Math.round(MAX_PLACE_POINTS * Math.exp(-(km - PERFECT_RADIUS_KM) / FALLOFF_KM));
+// Share of the placement points a guess this far off earns: 1 within PERFECT_RADIUS_KM, then
+// falling smoothly towards 0.
+function distanceShare(km) {
+  return km <= PERFECT_RADIUS_KM ? 1 : Math.exp(-(km - PERFECT_RADIUS_KM) / FALLOFF_KM);
 }
 
-// Before placing, the player says how sure they are. Each level is a circle around their tap:
-// if the city (with its PERFECT_RADIUS_KM margin) touches it, they win the level's points.
-// Smaller circles pay more; Pinpoint means landing within the city itself. A miss still earns
-// MISS_SHARE of the distance score, the same at every level, so it always pays less than a hit.
+// The original distance score. Still used for daily challenges played before CONFIDENCE_START.
+export function placementPoints(km) {
+  return Math.round(MAX_PLACE_POINTS * distanceShare(km));
+}
+
+// Before placing, the player bets on how close they'll get. The placement first earns a base
+// score out of BASE_PLACE_POINTS by distance. Each level is a circle around the tap: if the
+// city (with its PERFECT_RADIUS_KM margin) touches it, the base is multiplied by `win`,
+// otherwise by `lose`. Smaller circles are bigger bets, and only a Pinpoint hit reaches
+// MAX_PLACE_POINTS.
+export const BASE_PLACE_POINTS = 1000;
 export const CONFIDENCE_LEVELS = [
-  { id: 'safe', label: 'Safe', radiusKm: 500, points: 500 },
-  { id: 'confident', label: 'Confident', radiusKm: 250, points: 750 },
-  { id: 'certain', label: 'Certain', radiusKm: 125, points: 1000 },
-  { id: 'pinpoint', label: 'Pinpoint', radiusKm: 0, points: MAX_PLACE_POINTS },
+  { id: 'safe', label: 'Safe', radiusKm: 500, win: 1.1, lose: 0.9 },
+  { id: 'confident', label: 'Confident', radiusKm: 250, win: 1.2, lose: 0.8 },
+  { id: 'certain', label: 'Certain', radiusKm: 125, win: 1.3, lose: 0.7 },
+  { id: 'pinpoint', label: 'Pinpoint', radiusKm: 0, win: 1.5, lose: 0.5 },
 ];
 
 // The first daily challenge played with confidence levels (practice games always use them).
 export const CONFIDENCE_START = '2026-11-02';
 export const usesConfidence = (dateKey) => dateKey >= CONFIDENCE_START;
-
-export const MISS_SHARE = 0.25;
 
 export const confidenceLevel = (id) => CONFIDENCE_LEVELS.find((level) => level.id === id);
 
@@ -56,6 +61,8 @@ export const hitRadiusKm = (level) => level.radiusKm + PERFECT_RADIUS_KM;
 
 export const isHit = (level, km) => km <= hitRadiusKm(level);
 
+export const multiplier = (level, km) => (isHit(level, km) ? level.win : level.lose);
+
 export function confidencePoints(level, km) {
-  return isHit(level, km) ? level.points : Math.round(placementPoints(km) * MISS_SHARE);
+  return Math.round(BASE_PLACE_POINTS * distanceShare(km) * multiplier(level, km));
 }

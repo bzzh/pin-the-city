@@ -46,7 +46,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
       const choiceLine = `${correct ? '✓ Right choice' : '✗ Wrong choice'} +${choicePoints(correct)}`;
       const startPlacing = (level) => {
         placing = { round, picked, correct, level };
-        const bet = level ? `${level.label}: ${levelRange(level)} for ${level.points.toLocaleString('en')} pts · ` : '';
+        const bet = level ? `${level.label} bet: ${levelRange(level)}, ×${level.win} or ×${level.lose} · ` : '';
         setHud(`Place: ${placeName(round.winner)}`, `${choiceLine} · ${bet}Tap the map where it is.`, status(index + 1));
       };
       if (!confidence) return startPlacing(null);
