@@ -27,6 +27,12 @@ const MAX_AREA_KM2 = 5000;
 const MIN_DENSITY = 200;
 const MAX_DENSITY = 50_000;
 
+// Cities whose Wikidata elevation is wrong (e.g. the highest point of the municipality
+// instead of the city itself). They sit out elevation questions.
+const BAD_ELEVATION = new Set([
+  'Q23482', // Marseille: 648 m listed, but the city is near sea level
+]);
+
 const chunks = (items, size) =>
   Array.from({ length: Math.ceil(items.length / size) }, (_, i) => items.slice(i * size, (i + 1) * size));
 const literal = (text) => `${JSON.stringify(text)}@en`;
@@ -185,7 +191,7 @@ const cities = resolved.map(({ id, name, country }) => {
       droppedAreas.push(`${name} (${areaKm2.toLocaleString('en')} km², ${Math.round(density).toLocaleString('en')}/km²)`);
     }
   }
-  if (elevation.has(id)) city.elevationM = Math.round(elevation.get(id));
+  if (elevation.has(id) && !BAD_ELEVATION.has(id)) city.elevationM = Math.round(elevation.get(id));
   return city;
 });
 

@@ -7,5 +7,5 @@ Run with Node when the data needs rebuilding; they are not part of the game itse
   city it could not find and any area it dropped as implausible.
 - `city-list.txt` — the cities in the game, one `City | Country` per line
 - `wikidata.js` — shared helper for Wikidata queries
-
-Milestone 7: `fetch-climate.js` will add temperature, rainfall and sunshine from Open-Meteo.
+- `build-climate.js` — adds yearly average temperature and rainfall from WorldClim to
+  `public/data/cities.json`. Run it after `build-cities.js`, which rewrites the file without them.

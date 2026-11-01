@@ -22,11 +22,10 @@ export const categories = [
   { id: 'largest-area', family: 'size', label: 'Largest area', stat: 'areaKm2', wins: 'highest', margin: RELATIVE_10_TO_20, unit: 'km²' },
   { id: 'highest-elevation', family: 'elevation', label: 'Highest elevation', stat: 'elevationM', wins: 'highest', margin: { min: 200, max: 550 }, unit: 'm' },
 
-  // Climate: from Open-Meteo (milestone 7).
+  // Climate: 1970–2000 averages from WorldClim (scripts/build-climate.js).
   { id: 'hottest', family: 'climate', label: 'Hottest on average', stat: 'avgTempC', wins: 'highest', margin: { min: 1, max: 3 }, format: (v) => `${v.toFixed(1)} °C` },
   { id: 'coldest', family: 'climate', label: 'Coldest on average', stat: 'avgTempC', wins: 'lowest', margin: { min: 1, max: 3 }, format: (v) => `${v.toFixed(1)} °C` },
   { id: 'rainiest', family: 'climate', label: 'Rainiest', stat: 'rainMmYear', wins: 'highest', margin: RELATIVE_10_TO_20, unit: 'mm/year' },
-  { id: 'sunniest', family: 'climate', label: 'Most sunshine', stat: 'sunHoursYear', wins: 'highest', margin: RELATIVE_10_TO_20, unit: 'h/year' },
 ];
 
 export function statValue(category, city) {

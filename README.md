@@ -71,7 +71,7 @@ at `https://<your-username>.github.io/<repository-name>/`.
 4. Full loop: 5 rounds of choose → place, summary screen
 5. Real data: ~300 cities with position and population stats
 6. Daily challenge, share text, deploy to GitHub Pages
-7. Climate categories, streaks, free play
+7. Climate categories (done), streaks, free play
 
 ## Credits
 
@@ -81,4 +81,9 @@ Copernicus Sentinel data 2024), loaded from EOX's tile service. It is licensed
 use with the credit shown on the map; commercial use needs a licence from EOX.
 
 City data: [Wikidata](https://www.wikidata.org/) (CC0). To change the cities, edit
-`scripts/city-list.txt` and run `node scripts/build-cities.js`.
+`scripts/city-list.txt` and run `node scripts/build-cities.js`, then `node scripts/build-climate.js`
+(see that file for the WorldClim files it needs).
+
+Climate: [WorldClim 2.1](https://www.worldclim.org/data/worldclim21.html) 1970–2000 averages
+(Fick, S.E. and R.J. Hijmans, 2017. WorldClim 2: new 1km spatial resolution climate surfaces for
+global land areas. International Journal of Climatology 37: 4302–4315).

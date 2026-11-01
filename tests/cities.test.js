@@ -14,9 +14,17 @@ describe('cities.json', () => {
     }
   });
 
-  it('can make a fair trio for every category it has data for', () => {
-    const climate = ['hottest', 'coldest', 'rainiest', 'sunniest']; // milestone 7
-    for (const category of categories.filter((c) => !climate.includes(c.id))) {
+  it('has plausible climate averages for every city', () => {
+    for (const city of cities) {
+      expect(city.avgTempC, city.name).toBeGreaterThan(-20);
+      expect(city.avgTempC, city.name).toBeLessThan(35);
+      expect(city.rainMmYear, city.name).toBeGreaterThanOrEqual(0);
+      expect(city.rainMmYear, city.name).toBeLessThan(6000);
+    }
+  });
+
+  it('can make a fair trio for every category', () => {
+    for (const category of categories) {
       expect(pickTrio(cities, category), category.id).not.toBeNull();
     }
   });
