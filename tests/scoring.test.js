@@ -53,20 +53,31 @@ describe('choicePoints', () => {
 describe('confidencePoints', () => {
   const level = (id) => confidenceLevel(id);
 
-  it('has five levels whose circles shrink as the points grow', () => {
-    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([1000, 500, 250, 125, 0]);
-    expect(CONFIDENCE_LEVELS.map((l) => l.points)).toEqual([250, 500, 750, 1000, 1500]);
+  it('has four levels whose circles shrink as the points grow', () => {
+    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 250, 125, 0]);
+    expect(CONFIDENCE_LEVELS.map((l) => l.points)).toEqual([500, 750, 1000, 1500]);
   });
 
   it('pays the level when the city touches the circle, allowing 25 km for the city', () => {
     expect(confidencePoints(level('confident'), 0)).toBe(750);
     expect(confidencePoints(level('confident'), 275)).toBe(750);
-    expect(confidencePoints(level('confident'), 276)).toBe(0);
+    expect(confidencePoints(level('confident'), 276)).toBeLessThan(750);
+  });
+
+  it('pays a quarter of the distance score for a miss, the same at every level', () => {
+    expect(confidencePoints(level('confident'), 1000)).toBe(Math.round(placementPoints(1000) / 4));
+    expect(confidencePoints(level('pinpoint'), 1000)).toBe(confidencePoints(level('safe'), 1000));
+    expect(confidencePoints(level('pinpoint'), 20000)).toBe(0);
+  });
+
+  it('never pays more for a miss than for any hit', () => {
+    const smallestHit = Math.min(...CONFIDENCE_LEVELS.map((l) => l.points));
+    expect(confidencePoints(level('pinpoint'), 26)).toBeLessThan(smallestHit);
   });
 
   it('pays Pinpoint only within the city itself', () => {
     expect(confidencePoints(level('pinpoint'), 25)).toBe(MAX_PLACE_POINTS);
-    expect(confidencePoints(level('pinpoint'), 26)).toBe(0);
+    expect(confidencePoints(level('pinpoint'), 26)).toBeLessThan(400);
   });
 
   it('starts with the daily challenge of 2 November 2026', () => {

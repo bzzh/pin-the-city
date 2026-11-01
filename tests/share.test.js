@@ -16,7 +16,7 @@ describe('placementSquare', () => {
 
 describe('roundSquare', () => {
   it('shows the confidence level that was hit, or a miss', () => {
-    expect(roundSquare(bet(true, 'uncertain', true, 250))).toBe('🟥');
+    expect(roundSquare(bet(true, 'safe', true, 500))).toBe('🟧');
     expect(roundSquare(bet(true, 'certain', true, 1000))).toBe('🟩');
     expect(roundSquare(bet(true, 'pinpoint', true, 1500))).toBe('🟦');
     expect(roundSquare(bet(true, 'pinpoint', false))).toBe('⬛');

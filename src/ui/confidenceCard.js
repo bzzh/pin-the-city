@@ -30,7 +30,7 @@ export function showConfidenceCard(panel, city, onChoose) {
   panel.replaceChildren(
     element('p', 'eyebrow', 'Confidence'),
     title,
-    element('p', 'rules', 'Your tap is the centre of a circle. If the city touches it, you win its points; if not, 0.'),
+    element('p', 'rules', 'Your tap is the centre of a circle. If the city touches it, you win its points. If not, you still get a few points for being close.'),
     list,
   );
   panel.hidden = false;

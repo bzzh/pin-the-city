@@ -9,8 +9,8 @@ const SQUARES = [
   [0, '🟥'],
 ];
 
-// With confidence levels: the level that was hit, from Uncertain to Pinpoint, or a miss.
-const LEVEL_SQUARES = { uncertain: '🟥', safe: '🟧', confident: '🟨', certain: '🟩', pinpoint: '🟦' };
+// With confidence levels: the level that was hit, from Safe to Pinpoint, or a miss.
+const LEVEL_SQUARES = { safe: '🟧', confident: '🟨', certain: '🟩', pinpoint: '🟦' };
 const MISS_SQUARE = '⬛';
 
 export function placementSquare(placePoints) {

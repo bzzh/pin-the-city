@@ -5,6 +5,7 @@ import {
   ROUNDS_PER_GAME,
   choicePoints,
   confidencePoints,
+  isHit,
   distanceKm,
   placementPoints,
 } from './scoring.js';
@@ -76,7 +77,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
       pick: picked.id,
       guess,
     };
-    if (level) Object.assign(record, { level: level.id, hit: place > 0 });
+    if (level) Object.assign(record, { level: level.id, hit: isHit(level, km) });
     records.push(record);
 
     map.showGuess(guess, level?.radiusKm ?? 0);

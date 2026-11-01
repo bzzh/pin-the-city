@@ -47,7 +47,7 @@ const RULES = {
   distance:
     '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
   confidence:
-    '5 rounds. Pick the city that fits the category (500 pts). Then say how sure you are and place it: the smaller your circle, the more it pays (250 to 1,500 pts), but a miss scores 0.',
+    '5 rounds. Pick the city that fits the category (500 pts). Then say how sure you are and place it: the smaller your circle, the more it pays (500 to 1,500 pts), and a miss still earns a little for being close.',
 };
 
 // `onLeaderboard` is omitted when the leaderboard is turned off. `confidence` says whether

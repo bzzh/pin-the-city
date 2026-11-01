@@ -2,6 +2,7 @@ import { describe, expect, it } from 'vitest';
 import cities from '../public/data/cities.json';
 import { categories } from '../src/categories/categories.js';
 import { dailyRandom } from '../src/game/daily.js';
+import { placementPoints } from '../src/game/scoring.js';
 import { planRounds } from '../src/game/trio.js';
 import { roundGuess, scoreSubmission } from '../src/leaderboard/verify.js';
 
@@ -40,17 +41,17 @@ describe('scoreSubmission', () => {
     expect(result.total).toBe(9_500);
   });
 
-  it('pays a confidence level only when the city is inside its circle', () => {
+  it('pays a confidence level when the city is inside its circle, a quarter of the distance score otherwise', () => {
     // About 200 km north of the city: inside Confident (250 km), outside Certain (125 km).
     const nearby = { lat: winners[0].lat + 1.8, lng: winners[0].lng };
     const confident = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, nearby), levels: replaceFirst(perfect.levels, 'confident') });
     expect(confident.records[0].points).toBe(500 + 750);
     const certain = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, nearby), levels: replaceFirst(perfect.levels, 'certain') });
-    expect(certain.records[0].points).toBe(500);
+    expect(certain.records[0].points).toBe(500 + Math.round(placementPoints(certain.records[0].km) / 4));
   });
 
   it('scores nothing for a far-off placement', () => {
-    const result = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, antipode(winners[0])), levels: replaceFirst(perfect.levels, 'uncertain') });
+    const result = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, antipode(winners[0])), levels: replaceFirst(perfect.levels, 'safe') });
     expect(result.records[0].points).toBe(500);
   });
 

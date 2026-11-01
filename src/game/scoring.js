@@ -33,10 +33,10 @@ export function placementPoints(km) {
 }
 
 // Before placing, the player says how sure they are. Each level is a circle around their tap:
-// if the city (with its PERFECT_RADIUS_KM margin) touches it, they win the level's points,
-// otherwise nothing. Smaller circles pay more; Pinpoint means landing within the city itself.
+// if the city (with its PERFECT_RADIUS_KM margin) touches it, they win the level's points.
+// Smaller circles pay more; Pinpoint means landing within the city itself. A miss still earns
+// MISS_SHARE of the distance score, the same at every level, so it always pays less than a hit.
 export const CONFIDENCE_LEVELS = [
-  { id: 'uncertain', label: 'Uncertain', radiusKm: 1000, points: 250 },
   { id: 'safe', label: 'Safe', radiusKm: 500, points: 500 },
   { id: 'confident', label: 'Confident', radiusKm: 250, points: 750 },
   { id: 'certain', label: 'Certain', radiusKm: 125, points: 1000 },
@@ -47,11 +47,15 @@ export const CONFIDENCE_LEVELS = [
 export const CONFIDENCE_START = '2026-11-02';
 export const usesConfidence = (dateKey) => dateKey >= CONFIDENCE_START;
 
+export const MISS_SHARE = 0.25;
+
 export const confidenceLevel = (id) => CONFIDENCE_LEVELS.find((level) => level.id === id);
 
 // How far from the tap the city may be for this level to count, e.g. 275 km for Confident.
 export const hitRadiusKm = (level) => level.radiusKm + PERFECT_RADIUS_KM;
 
+export const isHit = (level, km) => km <= hitRadiusKm(level);
+
 export function confidencePoints(level, km) {
-  return km <= hitRadiusKm(level) ? level.points : 0;
+  return isHit(level, km) ? level.points : Math.round(placementPoints(km) * MISS_SHARE);
 }
