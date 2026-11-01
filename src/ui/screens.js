@@ -57,7 +57,7 @@ const RULES = {
   distance:
     '5 rounds. Pick the city that fits the category (500 pts), then place it on the map (up to 1,500 pts). Practice games already try the new confidence levels, coming to the daily challenge tomorrow.',
   confidence:
-    '5 rounds. Pick the city that fits the category (50 pts). Then bet on how close you’ll get and place it: up to 100 pts by distance, multiplied up if the city lands in your circle and down if not. Only a Pinpoint hit reaches 150.',
+    '5 rounds. Pick the city that fits the category (50 pts). Then bet on how close you’ll get and place it!',
 };
 
 // `confidence` says whether today's challenge uses confidence levels.

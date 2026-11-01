@@ -18,6 +18,9 @@ import { showRoundResult } from '../ui/screens.js';
 
 export { MAX_ROUND_POINTS, ROUNDS_PER_GAME };
 
+// Pins are placed with a press and hold (see mapView.js).
+const PLACE_HINT = matchMedia('(pointer: coarse)').matches ? 'Press and hold on the map where it is.' : 'Click and hold on the map where it is.';
+
 // "Kyoto, Japan" when there is no separate region; otherwise "Kansas City, Missouri, United States".
 const placeName = ({ name, region, country }) => [name, region, country].filter(Boolean).join(', ');
 
@@ -51,7 +54,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
         map.setBlurred(false);
         placing = { round, picked, correct, level };
         const bet = level ? `${level.label} bet: ${levelRange(level)}, ×${level.win} or ×${level.lose} · ` : '';
-        setHud(`Place: ${placeName(round.winner)}`, `${choiceLine} · ${bet}Tap the map where it is.`, status(index + 1));
+        setHud(`Place: ${placeName(round.winner)}`, `${choiceLine} · ${bet}${PLACE_HINT}`, status(index + 1));
       };
       if (!confidence) return startPlacing(null);
       setHud(`Next: ${placeName(round.winner)}`, choiceLine, status(index + 1));

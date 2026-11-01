@@ -153,6 +153,45 @@ body {
   font-size: 1.1rem;
 }
 
+/* Press-and-hold feedback: a ring that fills up under the pointer. */
+#map {
+  -webkit-touch-callout: none;
+  user-select: none;
+}
+
+.hold-ring {
+  position: absolute;
+  z-index: 800;
+  width: 56px;
+  height: 56px;
+  margin: -28px 0 0 -28px;
+  border-radius: 50%;
+  pointer-events: none;
+  background: conic-gradient(var(--guess) calc(var(--fill) * 1turn), rgb(255 255 255 / 0.25) 0);
+  -webkit-mask: radial-gradient(circle, transparent 20px, #000 21px);
+  mask: radial-gradient(circle, transparent 20px, #000 21px);
+}
+
+.hold-ring[hidden] {
+  display: none;
+}
+
+@property --fill {
+  syntax: '<number>';
+  inherits: false;
+  initial-value: 0;
+}
+
+.hold-ring.filling {
+  animation: hold-fill var(--hold-ms, 500ms) linear forwards;
+}
+
+@keyframes hold-fill {
+  to {
+    --fill: 1;
+  }
+}
+
 #map.blurred {
   filter: blur(14px) brightness(0.7);
 }
