@@ -207,3 +207,118 @@ body {
 #map.leaflet-container {
   background: var(--ocean);
 }
+
+/* Leaderboard, nickname form and status lines */
+.notice {
+  margin: 12px 0 0;
+  font-size: 0.95rem;
+}
+
+.nickname-form {
+  display: grid;
+  gap: 6px;
+  margin-top: 12px;
+}
+
+.nickname-form label {
+  font-weight: 600;
+}
+
+.nickname-form input {
+  padding: 10px 12px;
+  font: inherit;
+  color: var(--text);
+  border: 1px solid #8a96a3;
+  border-radius: 8px;
+}
+
+.nickname-form input[aria-invalid='true'] {
+  border-color: #c92a2a;
+}
+
+.nickname-form .hint,
+.nickname-form .error {
+  margin: 0;
+  font-size: 0.9rem;
+}
+
+.nickname-form .error {
+  color: #c92a2a;
+}
+
+.nickname-form .error:empty {
+  display: none;
+}
+
+.leaderboard {
+  width: 100%;
+  margin-top: 8px;
+  border-collapse: collapse;
+  font-size: 0.95rem;
+}
+
+.leaderboard th,
+.leaderboard td {
+  padding: 8px 6px;
+  text-align: left;
+  border-bottom: 1px solid #eef1f4;
+}
+
+.leaderboard thead th {
+  color: var(--muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.leaderboard tbody th {
+  font-weight: 600;
+  overflow-wrap: anywhere;
+}
+
+.leaderboard .num {
+  text-align: right;
+  white-space: nowrap;
+  font-variant-numeric: tabular-nums;
+}
+
+.leaderboard tr.me {
+  background: #ebfbee;
+}
+
+.leaderboard .you {
+  color: var(--answer);
+  font-weight: 400;
+}
+
+.leaderboard-status {
+  margin: 4px 0 0;
+}
+
+/* Visible keyboard focus everywhere; headings that receive focus programmatically don't need a ring. */
+button:focus-visible,
+input:focus-visible {
+  outline: 3px solid #1c7ed6;
+  outline-offset: 2px;
+}
+
+[tabindex='-1']:focus {
+  outline: none;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.verdict {
+  margin: 10px 0 0;
+  font-weight: 600;
+}
+
+.verdict:empty {
+  display: none;
+}

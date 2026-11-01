@@ -1,11 +1,11 @@
 import { planRounds } from './trio.js';
-import { CHOICE_POINTS, MAX_PLACE_POINTS, choicePoints, distanceKm, placementPoints } from './scoring.js';
+import { MAX_ROUND_POINTS, ROUNDS_PER_GAME, choicePoints, distanceKm, placementPoints } from './scoring.js';
+import { roundGuess } from '../leaderboard/verify.js';
 import { showChoiceCard } from '../ui/choiceCard.js';
 import { setHud } from '../ui/hud.js';
 import { showRoundResult } from '../ui/screens.js';
 
-export const ROUNDS_PER_GAME = 5;
-export const MAX_ROUND_POINTS = CHOICE_POINTS + MAX_PLACE_POINTS;
+export { MAX_ROUND_POINTS, ROUNDS_PER_GAME };
 
 // "Kyoto, Japan" when there is no separate region; otherwise "Kansas City, Missouri, United States".
 const placeName = ({ name, region, country }) => [name, region, country].filter(Boolean).join(', ');
@@ -30,7 +30,7 @@ export function startGame({ map, panel, cities, categories, label, random = Math
     setHud('Choose a city', 'Pick the one that fits the category.', status(index + 1));
     showChoiceCard(panel, round, (picked) => {
       const correct = picked === round.winner;
-      placing = { round, correct, choicePoints: choicePoints(correct) };
+      placing = { round, picked, correct, choicePoints: choicePoints(correct) };
       setHud(
         `Place: ${placeName(round.winner)}`,
         `${correct ? '✓ Right choice' : '✗ Wrong choice'} +${placing.choicePoints} · Tap the map where it is.`,
@@ -39,11 +39,13 @@ export function startGame({ map, panel, cities, categories, label, random = Math
     });
   }
 
-  function handlePick(guess) {
+  function handlePick(tap) {
     if (!placing) return;
-    const { round, correct, choicePoints: choice } = placing;
+    const { round, picked, correct, choicePoints: choice } = placing;
     placing = null;
 
+    // Rounded the same way the leaderboard server rounds it, so both get the same score.
+    const guess = roundGuess(tap);
     const km = distanceKm(guess, round.winner);
     const place = placementPoints(km);
     const record = {
@@ -54,6 +56,9 @@ export function startGame({ map, panel, cities, categories, label, random = Math
       choicePoints: choice,
       placePoints: place,
       points: choice + place,
+      // What the leaderboard server needs to re-check the score.
+      pick: picked.id,
+      guess,
     };
     records.push(record);
 

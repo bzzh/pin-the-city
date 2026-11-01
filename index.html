@@ -7,9 +7,10 @@
     <link rel="icon" href="data:," />
   </head>
   <body>
-    <header id="hud"></header>
-    <main id="map"></main>
-    <section id="panel" hidden></section>
+    <!-- aria-live: screen readers announce each new prompt ("Place: Cairo, Egypt") -->
+    <header id="hud" aria-live="polite"></header>
+    <main id="map" aria-label="World map"></main>
+    <section id="panel" aria-label="Game" hidden></section>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

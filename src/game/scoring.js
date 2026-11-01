@@ -1,7 +1,9 @@
 const EARTH_RADIUS_KM = 6371;
 
+export const ROUNDS_PER_GAME = 5;
 export const CHOICE_POINTS = 500;
 export const MAX_PLACE_POINTS = 1500;
+export const MAX_ROUND_POINTS = CHOICE_POINTS + MAX_PLACE_POINTS;
 
 // Guesses this close count as perfect, so a city's sprawl doesn't cost points.
 const PERFECT_RADIUS_KM = 25;

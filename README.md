@@ -16,6 +16,23 @@ npm test         # run the tests
 npm run build    # production build into dist/
 ```
 
+On Windows PowerShell, if `npm` is blocked ("running scripts is disabled on this system"),
+use `npm.cmd` instead, e.g. `npm.cmd run dev`.
+
+## Weekly leaderboard
+
+Players who finish the daily challenge can join a public weekly leaderboard with a nickname:
+the top 10 by the sum of their daily scores, Monday to Sunday. It runs on
+[Supabase](https://supabase.com) (project settings in `src/leaderboard/config.js`):
+
+- `supabase/migrations/` — the database tables and the `weekly_leaderboard` query. Run the SQL
+  once in the Supabase dashboard's SQL Editor.
+- `supabase/functions/submit-score/` — the server function that registers nicknames and
+  accepts scores. It never trusts the browser's score: it rebuilds that day's rounds with the
+  game's own code (`src/leaderboard/verify.js`) and re-scores the player's picks and map taps.
+- Deploy the function after changing it or the game rules it reuses (scoring, categories,
+  round picking): `npx supabase login` once, then `npm run deploy:server`.
+
 ## Publishing
 
 `.github/workflows/deploy.yml` builds, tests and publishes the game to GitHub Pages on every
@@ -32,7 +49,9 @@ at `https://<your-username>.github.io/<repository-name>/`.
 | `public/tiles/` | Physical map tiles (relief, land cover, rivers), made by `scripts/build-tiles.js` |
 | `src/game/` | Game rules: flow, scoring, picking city trios, daily seed, share text |
 | `src/categories/categories.js` | Category definitions (stat, highest/lowest wins, unit) |
-| `src/ui/` | Choice card, HUD, start and summary screens |
+| `src/ui/` | Choice card, HUD, start, summary, nickname and leaderboard screens |
+| `src/leaderboard/` | Leaderboard client, nickname rules and score verification (shared with the server) |
+| `supabase/` | Leaderboard database setup and server function |
 | `public/data/cities.json` | The ~350 cities and their stats, made by `scripts/build-cities.js` |
 | `scripts/` | Node scripts that build the map tiles and the city data |
 | `tests/` | Vitest tests (`tests/fixtures/` holds a small fixed city set) |

@@ -1,7 +1,15 @@
 import { describe, expect, it } from 'vitest';
 import cities from '../public/data/cities.json';
 import { categories } from '../src/categories/categories.js';
-import { dailyRandom, dateKey, dayNumber, seededRandom } from '../src/game/daily.js';
+import {
+  dailyRandom,
+  dateKey,
+  dayNumber,
+  isCurrentDateKey,
+  seededRandom,
+  weekKeys,
+  weekStartKey,
+} from '../src/game/daily.js';
 import { planRounds } from '../src/game/trio.js';
 
 const describeRounds = (rounds) =>
@@ -37,6 +45,44 @@ describe('daily challenge', () => {
       const value = random();
       expect(value).toBeGreaterThanOrEqual(0);
       expect(value).toBeLessThan(1);
+    }
+  });
+});
+
+describe('weeks', () => {
+  it('starts each week on Monday', () => {
+    expect(weekStartKey('2026-11-02')).toBe('2026-11-02'); // Monday
+    expect(weekStartKey('2026-11-05')).toBe('2026-11-02');
+    expect(weekStartKey('2026-11-08')).toBe('2026-11-02'); // Sunday
+    expect(weekStartKey('2026-11-09')).toBe('2026-11-09');
+    expect(weekStartKey('2026-11-01')).toBe('2026-10-26');
+    expect(weekStartKey('2027-01-01')).toBe('2026-12-28'); // across the new year
+  });
+
+  it('lists the seven days of a week', () => {
+    expect(weekKeys('2026-11-02')).toEqual([
+      '2026-11-02', '2026-11-03', '2026-11-04', '2026-11-05', '2026-11-06', '2026-11-07', '2026-11-08',
+    ]);
+  });
+});
+
+describe('isCurrentDateKey', () => {
+  const noonUtc = new Date(Date.UTC(2026, 10, 5, 12));
+
+  it('accepts dates that are today somewhere on Earth', () => {
+    expect(isCurrentDateKey('2026-11-04', noonUtc)).toBe(true);
+    expect(isCurrentDateKey('2026-11-05', noonUtc)).toBe(true);
+    expect(isCurrentDateKey('2026-11-06', noonUtc)).toBe(true);
+  });
+
+  it('rejects older and future dates', () => {
+    expect(isCurrentDateKey('2026-11-03', noonUtc)).toBe(false);
+    expect(isCurrentDateKey('2026-11-07', noonUtc)).toBe(false);
+  });
+
+  it('rejects malformed dates', () => {
+    for (const bad of ['2026-11-5', '2026-02-30', 'yesterday', '', null, 20261105]) {
+      expect(isCurrentDateKey(bad, noonUtc)).toBe(false);
     }
   });
 });

@@ -10,10 +10,35 @@ export function dateKey(date = new Date()) {
   return `${date.getFullYear()}-${pad(date.getMonth() + 1)}-${pad(date.getDate())}`;
 }
 
+const DATE_KEY = /^\d{4}-\d{2}-\d{2}$/;
+const keyToUtc = (key) => {
+  const [year, month, day] = key.split('-').map(Number);
+  return Date.UTC(year, month - 1, day);
+};
+const utcToKey = (ms) => new Date(ms).toISOString().slice(0, 10);
+
 // Challenge number shown in the share text: #1 on the first day, #2 the next...
 export function dayNumber(key) {
-  const [year, month, day] = key.split('-').map(Number);
-  return Math.round((Date.UTC(year, month - 1, day) - FIRST_DAY) / DAY_MS) + 1;
+  return Math.round((keyToUtc(key) - FIRST_DAY) / DAY_MS) + 1;
+}
+
+// The Monday that starts the week containing this date ("2026-11-04" → "2026-11-02").
+export function weekStartKey(key) {
+  const ms = keyToUtc(key);
+  const daysSinceMonday = (new Date(ms).getUTCDay() + 6) % 7;
+  return utcToKey(ms - daysSinceMonday * DAY_MS);
+}
+
+// The seven date keys of the week starting on this Monday.
+export const weekKeys = (mondayKey) =>
+  Array.from({ length: 7 }, (_, i) => utcToKey(keyToUtc(mondayKey) + i * DAY_MS));
+
+// True if this date is "today" somewhere on Earth (time zones run from UTC−12 to UTC+14),
+// i.e. a player could legitimately be playing that day's challenge right now.
+export function isCurrentDateKey(key, now = new Date()) {
+  if (typeof key !== 'string' || !DATE_KEY.test(key) || utcToKey(keyToUtc(key)) !== key) return false;
+  const todayUtc = Date.UTC(now.getUTCFullYear(), now.getUTCMonth(), now.getUTCDate());
+  return Math.abs(keyToUtc(key) - todayUtc) <= DAY_MS;
 }
 
 // A small, fast seeded random generator (mulberry32): same seed, same sequence, on every device.
