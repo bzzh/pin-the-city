@@ -13,8 +13,12 @@ import { setHud } from './ui/hud.js';
 import { showLeaderboard, showNicknameForm, showStartScreen, showSummary } from './ui/screens.js';
 
 const panel = document.getElementById('panel');
+const page = document.getElementById('page');
+const topbar = document.getElementById('topbar');
+const mapElement = document.getElementById('map');
+const leaderboardButton = document.getElementById('leaderboard-button');
 let game = null;
-const map = createMap(document.getElementById('map'), { onPick: (guess) => game?.handlePick(guess) });
+const map = createMap(mapElement, { onPick: (guess) => game?.handlePick(guess) });
 
 setHud('Pin the City', 'Loading cities…');
 // Built by scripts/build-cities.js; a relative URL so it also works on GitHub Pages.
@@ -54,15 +58,36 @@ async function submitToday(daily) {
   }
 }
 
-function openLeaderboard(onBack) {
-  game = null;
-  setHud('Weekly leaderboard', 'Top 10 players, Monday to Sunday.');
-  const view = { weekLabel: weekLabel(), me: loadPlayer()?.nickname, onBack };
-  showLeaderboard(panel, { ...view, rows: null });
+// The leaderboard is its own page covering the game, which stays as it was underneath (even
+// mid-round). It gets a browser history entry, so the phone's back gesture closes it too.
+let closeLeaderboardPage = null;
+
+function openLeaderboard() {
+  if (closeLeaderboardPage) return;
+  const behind = [topbar, mapElement, panel];
+  behind.forEach((element) => (element.inert = true)); // keep Tab and screen readers on the page
+  page.hidden = false;
+  let open = true;
+  closeLeaderboardPage = () => {
+    open = false;
+    closeLeaderboardPage = null;
+    page.hidden = true;
+    page.replaceChildren();
+    behind.forEach((element) => (element.inert = false));
+    leaderboardButton.focus();
+  };
+  history.pushState({ leaderboard: true }, '', '#leaderboard');
+
+  const view = { weekLabel: weekLabel(), me: loadPlayer()?.nickname, onBack: () => history.back() };
+  // Ignores a reply that arrives after the page was closed.
+  const render = (state) => open && showLeaderboard(page, { ...view, ...state });
+  render({ rows: null });
   fetchWeekly(weekStartKey(today))
-    .then((rows) => showLeaderboard(panel, { ...view, rows }))
-    .catch((error) => showLeaderboard(panel, { ...view, error: error.message }));
+    .then((rows) => render({ rows }))
+    .catch((error) => render({ error: error.message }));
 }
+
+addEventListener('popstate', () => closeLeaderboardPage?.());
 
 function askNickname(daily) {
   setHud('Join the leaderboard', 'Pick a nickname to count your daily scores.');
@@ -87,7 +112,6 @@ function showDailyResult(daily, notice) {
   setHud(`Challenge #${dailyNumber} done`, 'A new challenge every day at midnight.');
   const actions = [];
   if (leaderboardEnabled) {
-    actions.push({ label: 'Weekly leaderboard', onClick: () => openLeaderboard(() => showDailyResult(loadDaily(today))) });
     if (!loadPlayer() && canSubmit(records)) {
       actions.push({ label: 'Join the leaderboard', onClick: () => askNickname(loadDaily(today) ?? daily) });
     }
@@ -165,8 +189,16 @@ async function home() {
     confidence: usesConfidence(today),
     onDaily: playDaily,
     onPractice: playPractice,
-    onLeaderboard: leaderboardEnabled ? () => openLeaderboard(home) : undefined,
   });
 }
 
+if (leaderboardEnabled) {
+  leaderboardButton.hidden = false;
+  leaderboardButton.addEventListener('click', openLeaderboard);
+  // A shared or reloaded #leaderboard link opens the page on top of the start screen.
+  if (location.hash === '#leaderboard') {
+    history.replaceState(null, '', location.pathname + location.search);
+    openLeaderboard();
+  }
+}
 home();

@@ -50,9 +50,8 @@ const RULES = {
     '5 rounds. Pick the city that fits the category (500 pts). Then bet on how close you’ll get and place it: up to 1,000 pts by distance, multiplied up if the city lands in your circle and down if not. Only a Pinpoint hit reaches 1,500.',
 };
 
-// `onLeaderboard` is omitted when the leaderboard is turned off. `confidence` says whether
-// today's challenge uses confidence levels.
-export function showStartScreen(panel, { dailyNumber, confidence, onDaily, onPractice, onLeaderboard }) {
+// `confidence` says whether today's challenge uses confidence levels.
+export function showStartScreen(panel, { dailyNumber, confidence, onDaily, onPractice }) {
   const startWith = (play) => () => {
     panel.hidden = true;
     play();
@@ -64,7 +63,6 @@ export function showStartScreen(panel, { dailyNumber, confidence, onDaily, onPra
     button(`Play today's challenge #${dailyNumber}`, startWith(onDaily)),
     button('Practice game', startWith(onPractice), 'continue secondary'),
   ];
-  if (onLeaderboard) children.push(button('Weekly leaderboard', onLeaderboard, 'continue secondary'));
   show(panel, children, title);
 }
 
@@ -166,13 +164,20 @@ export function showNicknameForm(panel, { check, onJoin, onSkip }) {
   );
 }
 
-// The weekly top 10 as an accessible table. Call with `rows: null` while loading and
-// `error` if it failed; `me` is the player's nickname, highlighted in the table.
-export function showLeaderboard(panel, { weekLabel, rows, error, me, onBack }) {
-  const title = heading('h2', 'category', 'Weekly leaderboard');
+// The weekly top 10 as a full page with an accessible table. Call with `rows: null` while
+// loading and `error` if it failed; `me` is the player's nickname, highlighted in the table.
+export function showLeaderboard(page, { weekLabel, rows, error, me, onBack }) {
+  const back = button('← Back to the game', onBack, 'page-back');
+  const title = heading('h1', 'page-title', 'Weekly leaderboard');
   const status = element('p', 'muted leaderboard-status');
   status.setAttribute('role', 'status'); // read out by screen readers when it changes
-  const children = [title, element('p', 'muted', `${weekLabel} · daily scores added up`), status];
+  const children = [
+    back,
+    title,
+    element('p', 'page-week', weekLabel),
+    element('p', 'muted', "Each player's daily scores add up from Monday to Sunday. The board resets with Monday's challenge."),
+    status,
+  ];
 
   if (error) {
     status.textContent = `Could not load the leaderboard: ${error}`;
@@ -208,6 +213,9 @@ export function showLeaderboard(panel, { weekLabel, rows, error, me, onBack }) {
     children.push(table);
   }
 
-  children.push(button('Back', onBack, 'continue secondary'));
-  show(panel, children, title);
+  const inner = element('div', 'page-inner');
+  inner.append(...children);
+  // Keep keyboard focus where it is when the table arrives after loading.
+  const focused = page.contains(document.activeElement) ? document.activeElement.className : null;
+  show(page, [inner], focused === 'page-back' ? back : title);
 }

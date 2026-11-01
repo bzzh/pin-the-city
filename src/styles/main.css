@@ -1,10 +1,21 @@
+/* Dark navy theme that sits with the satellite ocean. Every text colour is at least 4.5:1
+   against the surfaces it appears on (body text 13:1, muted 6.8:1). */
 :root {
+  color-scheme: dark;
   --ocean: #101e37; /* matches the satellite ocean, shown around the map edges */
-  --text: #1f2a33;
-  --muted: #5b6b78;
-  --panel: #ffffff;
-  --guess: #d9480f;
-  --answer: #2b8a3e;
+  --text: #e8edf3;
+  --muted: #a9b7c8;
+  --panel: #172338; /* top bar and cards */
+  --raised: #1f2d45; /* buttons and rows inside cards */
+  --sunken: #0f1a2c; /* inputs and the share preview */
+  --line: #33445f;
+  --line-strong: #5c6f8a;
+  --guess: #ff8a4c;
+  --answer: #69db7c;
+  --correct-bg: #173d2a;
+  --wrong-bg: #4a2a17;
+  --error: #ff8787;
+  --focus: #74c0fc;
 }
 
 * {
@@ -25,15 +36,59 @@ body {
   background: var(--ocean);
 }
 
-#hud {
+/* Top bar: the prompt and score (#hud), then the leaderboard button in the top-right corner. */
+#topbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   gap: 12px;
   padding: 12px 16px;
   background: var(--panel);
-  box-shadow: 0 1px 4px rgb(0 0 0 / 0.1);
+  border-bottom: 1px solid var(--line);
   z-index: 1000;
+}
+
+#hud {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+#leaderboard-button {
+  flex: none;
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--text);
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+#leaderboard-button:hover:not(:disabled) {
+  border-color: var(--line-strong);
+}
+
+#leaderboard-button:disabled {
+  color: var(--muted);
+  cursor: default;
+}
+
+/* Phones: the round and score go under the prompt, leaving room for the button. */
+@media (max-width: 600px) {
+  #topbar {
+    align-items: flex-start;
+  }
+
+  #hud {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
 }
 
 #hud .status {
@@ -68,7 +123,8 @@ body {
   padding: 16px;
   background: var(--panel);
   border-radius: 12px;
-  box-shadow: 0 4px 16px rgb(0 0 0 / 0.18);
+  border: 1px solid var(--line);
+  box-shadow: 0 4px 16px rgb(0 0 0 / 0.4);
   z-index: 1000;
   max-height: calc(100% - 120px);
   overflow-y: auto;
@@ -107,7 +163,7 @@ body {
   justify-content: space-between;
   gap: 12px;
   padding-bottom: 8px;
-  border-bottom: 1px solid #eef1f4;
+  border-bottom: 1px solid var(--line);
   font-size: 0.95rem;
 }
 
@@ -143,8 +199,8 @@ body {
   font: inherit;
   color: var(--text);
   text-align: left;
-  background: var(--panel);
-  border: 1px solid #d0d7de;
+  background: var(--raised);
+  border: 1px solid var(--line);
   border-radius: 8px;
   cursor: pointer;
 }
@@ -163,12 +219,12 @@ body {
 
 .choice.correct {
   border-color: var(--answer);
-  background: #ebfbee;
+  background: var(--correct-bg);
 }
 
 .choice.wrong {
   border-color: var(--guess);
-  background: #fff4e6;
+  background: var(--wrong-bg);
 }
 
 .continue {
@@ -177,7 +233,7 @@ body {
   padding: 12px;
   font: inherit;
   font-weight: 600;
-  color: #fff;
+  color: var(--panel);
   background: var(--text);
   border: 0;
   border-radius: 8px;
@@ -187,8 +243,12 @@ body {
 .continue.secondary {
   margin-top: 8px;
   color: var(--text);
-  background: var(--panel);
-  border: 1px solid #d0d7de;
+  background: var(--raised);
+  border: 1px solid var(--line);
+}
+
+.continue.secondary:hover {
+  border-color: var(--line-strong);
 }
 
 .share-preview {
@@ -198,7 +258,7 @@ body {
   font-size: 0.9rem;
   white-space: pre-wrap;
   word-break: break-all;
-  background: #f4f6f8;
+  background: var(--sunken);
   border-radius: 8px;
   user-select: all;
 }
@@ -206,6 +266,31 @@ body {
 /* Ocean colour around the map edges. The id beats Leaflet's own default grey. */
 #map.leaflet-container {
   background: var(--ocean);
+}
+
+/* Leaflet's zoom buttons and credit line, in the dark theme */
+#map .leaflet-bar a {
+  color: var(--text);
+  background: var(--panel);
+  border-bottom-color: var(--line);
+}
+
+#map .leaflet-bar a:hover {
+  background: var(--raised);
+}
+
+#map .leaflet-bar a.leaflet-disabled {
+  color: var(--line-strong);
+  background: var(--panel);
+}
+
+#map .leaflet-control-attribution {
+  color: var(--muted);
+  background: rgb(23 35 56 / 0.85);
+}
+
+#map .leaflet-control-attribution a {
+  color: var(--focus);
 }
 
 /* Leaderboard, nickname form and status lines */
@@ -228,12 +313,13 @@ body {
   padding: 10px 12px;
   font: inherit;
   color: var(--text);
-  border: 1px solid #8a96a3;
+  background: var(--sunken);
+  border: 1px solid var(--line-strong);
   border-radius: 8px;
 }
 
 .nickname-form input[aria-invalid='true'] {
-  border-color: #c92a2a;
+  border-color: var(--error);
 }
 
 .nickname-form .hint,
@@ -243,7 +329,7 @@ body {
 }
 
 .nickname-form .error {
-  color: #c92a2a;
+  color: var(--error);
 }
 
 .nickname-form .error:empty {
@@ -261,7 +347,7 @@ body {
 .leaderboard td {
   padding: 8px 6px;
   text-align: left;
-  border-bottom: 1px solid #eef1f4;
+  border-bottom: 1px solid var(--line);
 }
 
 .leaderboard thead th {
@@ -282,7 +368,7 @@ body {
 }
 
 .leaderboard tr.me {
-  background: #ebfbee;
+  background: var(--correct-bg);
 }
 
 .leaderboard .you {
@@ -291,13 +377,87 @@ body {
 }
 
 .leaderboard-status {
-  margin: 4px 0 0;
+  margin: 12px 0 0;
+}
+
+/* Separate pages (the weekly leaderboard): cover the whole game, scroll on their own. */
+#page {
+  position: fixed;
+  inset: 0;
+  z-index: 2000;
+  overflow-y: auto;
+  background: var(--ocean);
+}
+
+#page[hidden] {
+  display: none;
+}
+
+.page-inner {
+  width: min(760px, 100%);
+  margin: 0 auto;
+  padding: 24px 16px 48px;
+}
+
+.page-back {
+  padding: 8px 12px;
+  font: inherit;
+  font-size: 0.95rem;
+  color: var(--text);
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.page-back:hover {
+  border-color: var(--line-strong);
+}
+
+.page-title {
+  margin: 28px 0 4px;
+  font-size: 2rem;
+}
+
+.page-week {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 600;
+  color: var(--muted);
+}
+
+#page .muted {
+  margin: 0;
+}
+
+#page .leaderboard {
+  margin-top: 20px;
+  font-size: 1.05rem;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+}
+
+#page .leaderboard th,
+#page .leaderboard td {
+  padding: 14px 16px;
+}
+
+#page .leaderboard tbody tr:last-child > * {
+  border-bottom: 0;
+}
+
+#page .leaderboard thead th {
+  background: var(--raised);
 }
 
 /* Visible keyboard focus everywhere; headings that receive focus programmatically don't need a ring. */
 button:focus-visible,
 input:focus-visible {
-  outline: 3px solid #1c7ed6;
+  outline: 3px solid var(--focus);
   outline-offset: 2px;
 }
 
@@ -346,4 +506,13 @@ input:focus-visible {
 .choice .value {
   text-align: right;
   white-space: nowrap;
+}
+
+#page .leaderboard-status {
+  margin-top: 16px;
+}
+
+#page .leaderboard .num:first-child {
+  width: 4.5rem;
+  text-align: left;
 }

@@ -7,10 +7,14 @@
     <link rel="icon" href="data:," />
   </head>
   <body>
-    <!-- aria-live: screen readers announce each new prompt ("Place: Cairo, Egypt") -->
-    <header id="hud" aria-live="polite"></header>
+    <header id="topbar">
+      <!-- aria-live: screen readers announce each new prompt ("Place: Cairo, Egypt") -->
+      <div id="hud" aria-live="polite"></div>
+      <button id="leaderboard-button" type="button" hidden>Leaderboard</button>
+    </header>
     <main id="map" aria-label="World map"></main>
     <section id="panel" aria-label="Game" hidden></section>
+    <section id="page" aria-label="Weekly leaderboard" hidden></section>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>
