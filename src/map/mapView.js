@@ -77,5 +77,11 @@ export function createMap(element, { onPick }) {
       layer.clearLayers();
       map.fitBounds(WORLD);
     },
+    // Blurs the map and stops it being moved or zoomed, so it can't help answer the
+    // multiple-choice question (e.g. "Furthest north").
+    setBlurred(blurred) {
+      element.classList.toggle('blurred', blurred);
+      element.inert = blurred;
+    },
   };
 }

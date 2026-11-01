@@ -130,6 +130,33 @@ body {
   overflow-y: auto;
 }
 
+/* The multiple-choice question and the bet: larger and centred, over a blurred map (see setBlurred). */
+#panel.question {
+  top: 50%;
+  bottom: auto;
+  transform: translate(-50%, -50%);
+  width: min(600px, calc(100% - 32px));
+  padding: 24px;
+  max-height: calc(100% - 140px);
+}
+
+#panel.question .category {
+  font-size: 1.6rem;
+}
+
+#panel.question .rules {
+  margin-bottom: 14px;
+}
+
+#panel.question .choice {
+  padding: 16px 18px;
+  font-size: 1.1rem;
+}
+
+#map.blurred {
+  filter: blur(14px) brightness(0.7);
+}
+
 #panel .rules,
 #panel .result-line {
   margin: 0;

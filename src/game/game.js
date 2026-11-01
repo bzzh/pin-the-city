@@ -40,12 +40,15 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
   function playRound(index) {
     const round = rounds[index];
     map.reset();
+    map.setBlurred(true);
     setHud('Choose a city', 'Pick the one that fits the category.', status(index + 1));
     const nextLabel = confidence ? 'Continue →' : `Place ${round.winner.name} on the map →`;
     showChoiceCard(panel, round, nextLabel, (picked) => {
       const correct = picked === round.winner;
       const choiceLine = `${correct ? '✓ Right choice' : '✗ Wrong choice'} +${choicePoints(correct, !confidence)}`;
+      // The map stays blurred through the choice and the bet, and clears only for placing.
       const startPlacing = (level) => {
+        map.setBlurred(false);
         placing = { round, picked, correct, level };
         const bet = level ? `${level.label} bet: ${levelRange(level)}, ×${level.win} or ×${level.lose} · ` : '';
         setHud(`Place: ${placeName(round.winner)}`, `${choiceLine} · ${bet}Tap the map where it is.`, status(index + 1));

@@ -58,7 +58,7 @@ export const BASE_PLACE_POINTS = 100;
 export const CONFIDENCE_LEVELS = [
   { id: 'safe', label: 'Safe', radiusKm: 500, win: 1.1, lose: 0.9 },
   { id: 'confident', label: 'Confident', radiusKm: 250, win: 1.2, lose: 0.8 },
-  { id: 'certain', label: 'Certain', radiusKm: 75, win: 1.3, lose: 0.7 },
+  { id: 'certain', label: 'Certain', radiusKm: 75, win: 1.4, lose: 0.7 },
   { id: 'pinpoint', label: 'Pinpoint', radiusKm: 0, win: 1.5, lose: 0.5 },
 ];
 

@@ -29,6 +29,7 @@ export function showConfidenceCard(panel, city, onChoose) {
     });
     list.append(button);
   }
+  panel.classList.add('question'); // larger and centred while the map behind is blurred
   panel.replaceChildren(
     element('p', 'eyebrow', 'Confidence'),
     title,

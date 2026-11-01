@@ -8,6 +8,7 @@ export function showChoiceCard(panel, round, nextLabel, onDone) {
   const title = element('h2', 'category', category.label);
   title.tabIndex = -1;
   panel.classList.remove('sheet'); // a new game starts from the end-of-game results sheet
+  panel.classList.add('question'); // larger and centred while the map behind is blurred (until the bet is placed)
   panel.replaceChildren(element('p', 'eyebrow', 'Which city is…'), title);
 
   const list = element('div', 'choices');

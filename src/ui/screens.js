@@ -16,6 +16,7 @@ function button(label, onClick, className = 'continue') {
 // `sheet` makes the panel fill the screen under the top bar (the end-of-game results).
 function show(panel, children, focus, { sheet = false } = {}) {
   panel.classList.toggle('sheet', sheet);
+  panel.classList.remove('question');
   panel.replaceChildren(...children);
   panel.hidden = false;
   focus?.focus();
