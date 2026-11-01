@@ -2,25 +2,30 @@ import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 
 const WORLD = L.latLngBounds([-90, -180], [90, 180]);
-// Highest zoom with real tiles (see scripts/build-tiles.js); beyond it Leaflet enlarges them.
-const MAX_TILE_ZOOM = 5;
+// Deepest zoom the player may reach; at this level cities show as grey patches.
+const MAX_ZOOM = 7;
+// Zoom used to frame the answer after a placement.
+const ANSWER_ZOOM = 5;
 
-// A physical world map with no borders or labels: Natural Earth II relief, land cover and
-// rivers, on a flat latitude/longitude grid.
+// Cloud-free satellite imagery with no borders or labels (EOX Sentinel-2 cloudless), on a flat
+// latitude/longitude grid. EOX's "WGS84" tile grid is the same as Leaflet's EPSG:4326 one.
+const SATELLITE_TILES = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024/default/WGS84/{z}/{y}/{x}.jpg';
+const SATELLITE_CREDIT =
+  '<a href="https://cloudless.eox.at">EOxCloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024)';
+
 export function createMap(element, { onPick }) {
   const map = L.map(element, {
     crs: L.CRS.EPSG4326,
     maxBounds: WORLD,
     maxBoundsViscosity: 1,
-    maxZoom: MAX_TILE_ZOOM + 2,
+    maxZoom: MAX_ZOOM,
     zoomSnap: 0.25,
   });
 
-  L.tileLayer('tiles/{z}/{x}/{y}.webp', {
+  L.tileLayer(SATELLITE_TILES, {
     bounds: WORLD,
     noWrap: true,
-    maxNativeZoom: MAX_TILE_ZOOM,
-    attribution: 'Map: <a href="https://www.naturalearthdata.com/">Natural Earth</a>',
+    attribution: SATELLITE_CREDIT,
   }).addTo(map);
 
   // Never let the player zoom out further than the whole world.
@@ -64,7 +69,7 @@ export function createMap(element, { onPick }) {
       map.fitBounds(bounds, {
         paddingTopLeft: [50, 50],
         paddingBottomRight: [50, 180],
-        maxZoom: MAX_TILE_ZOOM,
+        maxZoom: ANSWER_ZOOM,
       });
     },
     // Removes the markers and zooms back out to the whole world for the next round.

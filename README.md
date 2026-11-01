@@ -53,15 +53,14 @@ at `https://<your-username>.github.io/<repository-name>/`.
 | Path | What it is |
 |---|---|
 | `src/main.js` | Entry point |
-| `src/map/mapView.js` | Leaflet map on a flat lat/long grid, tap to place, reveal line |
-| `public/tiles/` | Physical map tiles (relief, land cover, rivers), made by `scripts/build-tiles.js` |
+| `src/map/mapView.js` | Satellite map on a flat lat/long grid, tap to place, reveal line |
 | `src/game/` | Game rules: flow, scoring, picking city trios, daily seed, share text |
 | `src/categories/categories.js` | Category definitions (stat, highest/lowest wins, unit) |
 | `src/ui/` | Choice card, HUD, start, summary, nickname and leaderboard screens |
 | `src/leaderboard/` | Leaderboard client, nickname rules and score verification (shared with the server) |
 | `supabase/` | Leaderboard database setup and server function |
 | `public/data/cities.json` | The ~350 cities and their stats, made by `scripts/build-cities.js` |
-| `scripts/` | Node scripts that build the map tiles and the city data |
+| `scripts/` | Node scripts that build the city data |
 | `tests/` | Vitest tests (`tests/fixtures/` holds a small fixed city set) |
 
 ## Milestones
@@ -76,10 +75,10 @@ at `https://<your-username>.github.io/<repository-name>/`.
 
 ## Credits
 
-Map: [Natural Earth II](https://www.naturalearthdata.com/downloads/10m-raster-data/10m-natural-earth-2/) with shaded relief, water and drainages (public domain).
+Map: [EOxCloudless](https://cloudless.eox.at) by EOX IT Services GmbH (Contains modified
+Copernicus Sentinel data 2024), loaded from EOX's tile service. It is licensed
+[CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): free for non-commercial
+use with the credit shown on the map; commercial use needs a licence from EOX.
 
 City data: [Wikidata](https://www.wikidata.org/) (CC0). To change the cities, edit
 `scripts/city-list.txt` and run `node scripts/build-cities.js`.
-
-To rebuild the tiles, download `NE2_HR_LC_SR_W_DR.zip` (311 MB), unzip it, and run
-`node scripts/build-tiles.js path/to/NE2_HR_LC_SR_W_DR.tif`.

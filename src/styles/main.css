@@ -1,5 +1,5 @@
 :root {
-  --ocean: #5f93ba; /* matches the Natural Earth II ocean, shown around the map edges */
+  --ocean: #101e37; /* matches the satellite ocean, shown around the map edges */
   --text: #1f2a33;
   --muted: #5b6b78;
   --panel: #ffffff;
