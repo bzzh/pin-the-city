@@ -56,7 +56,7 @@ describe('confidencePoints', () => {
   const base = (km) => (km <= 25 ? 1000 : 1000 * Math.exp(-(km - 25) / 2000));
 
   it('has four levels: smaller circles are bigger bets', () => {
-    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 250, 125, 0]);
+    expect(CONFIDENCE_LEVELS.map((l) => l.radiusKm)).toEqual([500, 250, 75, 0]);
     expect(CONFIDENCE_LEVELS.map((l) => l.win)).toEqual([1.1, 1.2, 1.3, 1.5]);
     expect(CONFIDENCE_LEVELS.map((l) => l.lose)).toEqual([0.9, 0.8, 0.7, 0.5]);
   });

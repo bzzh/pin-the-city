@@ -42,7 +42,7 @@ describe('scoreSubmission', () => {
 
   it('multiplies the placement up inside the bet circle and down outside it', () => {
     const base = (km) => 1000 * Math.exp(-(km - 25) / 2000);
-    // About 200 km north of the city: inside Confident (250 km), outside Certain (125 km).
+    // About 200 km north of the city: inside Confident (250 km), outside Certain (75 km).
     const nearby = { lat: winners[0].lat + 1.8, lng: winners[0].lng };
     const confident = scoreSubmission({ ...perfect, guesses: replaceFirst(perfect.guesses, nearby), levels: replaceFirst(perfect.levels, 'confident') });
     expect(confident.records[0].points).toBe(500 + Math.round(base(confident.records[0].km) * 1.2));
