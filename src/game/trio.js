@@ -40,22 +40,26 @@ export function pickRound(cities, categories, random = Math.random) {
   return null;
 }
 
-// Picks all the rounds of a game up front. Each round prefers cities not seen yet in this game
-// and a category not asked yet, falling back to repeats only when the data runs out.
+// Most questions a game may ask from one family of categories (e.g. two "position" questions).
+export const MAX_PER_FAMILY = 2;
+
+// Picks all the rounds of a game up front. A category is never asked twice and a family at most
+// MAX_PER_FAMILY times; each round also prefers cities not seen yet in this game.
 export function planRounds(cities, categories, count, random = Math.random) {
   const rounds = [];
   const usedCities = new Set();
   const usedCategories = new Set();
+  const familyCounts = new Map();
   while (rounds.length < count) {
     const freshCities = cities.filter((city) => !usedCities.has(city));
-    const freshCategories = categories.filter((category) => !usedCategories.has(category));
-    const round =
-      pickRound(freshCities, freshCategories, random) ??
-      pickRound(freshCities, categories, random) ??
-      pickRound(cities, categories, random);
+    const allowed = categories.filter(
+      (category) => !usedCategories.has(category) && (familyCounts.get(category.family) ?? 0) < MAX_PER_FAMILY,
+    );
+    const round = pickRound(freshCities, allowed, random) ?? pickRound(cities, allowed, random);
     if (!round) throw new Error('Not enough city data to plan a game.');
     round.cities.forEach((city) => usedCities.add(city));
     usedCategories.add(round.category);
+    familyCounts.set(round.category.family, (familyCounts.get(round.category.family) ?? 0) + 1);
     rounds.push(round);
   }
   return rounds;

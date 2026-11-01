@@ -13,7 +13,12 @@ export function showChoiceCard(panel, round, onDone) {
   const buttons = cities.map((city) => {
     const button = element('button', 'choice');
     button.type = 'button';
-    button.append(element('span', 'name', city.name), element('span', 'value'));
+    // City name with its region and country underneath, e.g. "Perth / Western Australia, Australia".
+    const label = element('span', 'label');
+    const place = [city.region, city.country].filter(Boolean).join(', ');
+    // The hidden comma makes screen readers pause between the name and the place.
+    label.append(element('span', 'name', city.name), element('span', 'visually-hidden', ', '), element('span', 'place', place));
+    button.append(label, element('span', 'value'));
     button.addEventListener('click', () => reveal(city));
     list.append(button);
     return button;

@@ -1,7 +1,8 @@
 import { describe, expect, it } from 'vitest';
 import { advantage, categories, statValue } from '../src/categories/categories.js';
+import cities from '../public/data/cities.json';
 import { sampleCities } from './fixtures/sampleCities.js';
-import { pickRound, pickTrio, planRounds } from '../src/game/trio.js';
+import { MAX_PER_FAMILY, pickRound, pickTrio, planRounds } from '../src/game/trio.js';
 
 const byId = (id) => categories.find((category) => category.id === id);
 
@@ -81,21 +82,24 @@ describe('pickRound', () => {
 });
 
 describe('planRounds', () => {
-  it('plans five rounds without reusing a city', () => {
-    for (let seed = 1; seed <= 50; seed++) {
-      const rounds = planRounds(sampleCities, categories, 5, seededRandom(seed));
+  it('plans five varied rounds: no city or category twice, at most 2 per family', () => {
+    for (let seed = 1; seed <= 200; seed++) {
+      const rounds = planRounds(cities, categories, 5, seededRandom(seed));
       expect(rounds).toHaveLength(5);
-      const allCities = rounds.flatMap((round) => round.cities);
-      expect(new Set(allCities).size).toBe(15);
+      expect(new Set(rounds.flatMap((round) => round.cities)).size).toBe(15);
+      expect(new Set(rounds.map((round) => round.category)).size).toBe(5);
+
+      const perFamily = {};
+      for (const { category } of rounds) perFamily[category.family] = (perFamily[category.family] ?? 0) + 1;
+      expect(Math.max(...Object.values(perFamily)), JSON.stringify(perFamily)).toBeLessThanOrEqual(MAX_PER_FAMILY);
     }
   });
 
-  it('asks every playable category before repeating one', () => {
-    // Evenly spread cities, so every position category has plenty of fair trios.
-    const grid = Array.from({ length: 60 }, (_, i) => ({ name: `C${i}`, lat: -59 + i * 2, lng: -177 + i * 4 }));
-    const rounds = planRounds(grid, categories, 5, seededRandom(3));
-    const firstFour = rounds.slice(0, 4).map((round) => round.category.id);
-    expect(new Set(firstFour).size).toBe(4);
+  it('stops at the family limit rather than repeating a family', () => {
+    // The fixture only has coordinates, so only the "position" family is playable.
+    const rounds = planRounds(sampleCities, categories, MAX_PER_FAMILY, seededRandom(1));
+    expect(rounds.every((round) => round.category.family === 'position')).toBe(true);
+    expect(() => planRounds(sampleCities, categories, MAX_PER_FAMILY + 1, seededRandom(1))).toThrow();
   });
 
   it('fails clearly when no category has data', () => {

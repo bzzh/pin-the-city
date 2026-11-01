@@ -322,3 +322,28 @@ input:focus-visible {
 .verdict:empty {
   display: none;
 }
+
+/* Choice buttons: city name with region and country underneath */
+.choice {
+  align-items: center;
+}
+
+.choice .label {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.choice .name {
+  font-weight: 600;
+}
+
+.choice .place {
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.choice .value {
+  text-align: right;
+  white-space: nowrap;
+}
