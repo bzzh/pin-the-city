@@ -87,7 +87,6 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     records.push(record);
 
     map.showGuess(guess, level?.radiusKm ?? 0);
-    map.showAnswer(guess, round.winner);
     const { name, region, country } = round.winner;
     setHud(name, [region, country].filter(Boolean).join(', '), status(records.length));
 
@@ -100,6 +99,8 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
       map.reset();
       onFinished(records);
     });
+    // Framed once the result card is showing, so the answer is never hidden behind it.
+    map.showAnswer(guess, round.winner, { bottom: panel.getBoundingClientRect().height + 32 });
   }
 
   playRound(0);

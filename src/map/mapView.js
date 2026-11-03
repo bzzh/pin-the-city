@@ -108,15 +108,15 @@ export function createMap(element, { onPick }) {
       if (guessRing) setData('circle', feature({ type: 'Polygon', coordinates: [guessRing.map(lngLat)] }));
       setData('guess', feature({ type: 'Point', coordinates: lngLat(guess) }));
     },
-    showAnswer(guess, answer) {
+    // `bottom` is the space to keep clear at the bottom, e.g. for the result card.
+    showAnswer(guess, answer, { bottom = 200 } = {}) {
       const path = unwrap(greatCircle(guess, answer));
       setData('line', feature({ type: 'LineString', coordinates: path.map(lngLat) }));
       setData('answer', feature({ type: 'Point', coordinates: lngLat(path.at(-1)) }));
-      // Frame the pin, the city and the whole bet circle. Extra bottom padding keeps them clear
-      // of the result card.
+      // Frame the pin, the city and the whole bet circle above the bottom space.
       const bounds = new maplibregl.LngLatBounds();
       for (const point of [...path, ...(guessRing ?? [])]) bounds.extend(lngLat(point));
-      map.fitBounds(bounds, { padding: { top: 50, left: 50, right: 50, bottom: 200 }, maxZoom: ANSWER_ZOOM, duration: 800 });
+      map.fitBounds(bounds, { padding: { top: 50, left: 50, right: 50, bottom: Math.min(bottom, element.clientHeight * 0.6) }, maxZoom: ANSWER_ZOOM, duration: 800 });
     },
     // Removes the markers and turns back to the whole globe for the next round.
     reset() {
