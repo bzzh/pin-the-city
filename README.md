@@ -56,7 +56,7 @@ at `https://<your-username>.github.io/<repository-name>/`.
 | Path | What it is |
 |---|---|
 | `src/main.js` | Entry point |
-| `src/map/mapView.js` | Satellite map on a flat lat/long grid, tap to place, reveal line |
+| `src/map/` | Satellite globe ([MapLibre GL](https://maplibre.org/)), press-and-hold placing, bet circles and the line to the answer |
 | `src/game/` | Game rules: flow, scoring, picking city trios, daily seed, share text |
 | `src/categories/categories.js` | Category definitions (stat, highest/lowest wins, unit) |
 | `src/ui/` | Choice card, HUD, start, summary, nickname and leaderboard screens |
@@ -79,7 +79,8 @@ at `https://<your-username>.github.io/<repository-name>/`.
 ## Credits
 
 Map: [EOxCloudless](https://cloudless.eox.at) by EOX IT Services GmbH (Contains modified
-Copernicus Sentinel data 2024), loaded from EOX's tile service. It is licensed
+Copernicus Sentinel data 2024), loaded from EOX's tile service and shown on a
+[MapLibre GL](https://maplibre.org/) globe so northern regions keep their true size. It is licensed
 [CC BY-NC-SA 4.0](https://creativecommons.org/licenses/by-nc-sa/4.0/): free for non-commercial
 use with the credit shown on the map; commercial use needs a licence from EOX.
 

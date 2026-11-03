@@ -1,83 +1,128 @@
-import L from 'leaflet';
-import 'leaflet/dist/leaflet.css';
+import maplibregl from 'maplibre-gl';
+import 'maplibre-gl/dist/maplibre-gl.css';
+import { circle, greatCircle, unwrap } from './geo.js';
 
-const WORLD = L.latLngBounds([-90, -180], [90, 180]);
 // Deepest zoom the player may reach; at this level cities show as grey patches.
-const MAX_ZOOM = 7;
-// Zoom used to frame the answer after a placement.
-const ANSWER_ZOOM = 5;
+const MAX_ZOOM = 8;
+// Deepest zoom used to frame the answer after a placement.
+const ANSWER_ZOOM = 6;
 // A pin needs a press and hold (mouse, finger or pen), so a click, tap or scroll can't place it
 // by mistake.
 const HOLD_MS = 500;
 const HOLD_SLOP_PX = 10; // a pointer moving further than this is panning, not holding
 
-// Cloud-free satellite imagery with no borders or labels (EOX Sentinel-2 cloudless), on a flat
-// latitude/longitude grid. EOX's "WGS84" tile grid is the same as Leaflet's EPSG:4326 one.
-const SATELLITE_TILES = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024/default/WGS84/{z}/{y}/{x}.jpg';
+// Cloud-free satellite imagery with no borders or labels (EOX Sentinel-2 cloudless), wrapped
+// on a globe so northern regions keep their true size.
+const SATELLITE_TILES = 'https://tiles.maps.eox.at/wmts/1.0.0/s2cloudless-2024_3857/default/g/{z}/{y}/{x}.jpg';
 const SATELLITE_CREDIT =
   '<a href="https://cloudless.eox.at">EOxCloudless</a> by EOX IT Services GmbH (Contains modified Copernicus Sentinel data 2024)';
 
+const EMPTY = { type: 'FeatureCollection', features: [] };
+const lngLat = ({ lat, lng }) => [lng, lat];
+const feature = (geometry) => ({ type: 'Feature', properties: {}, geometry });
+
+// The zoom at which the whole globe fits the container with a small margin. At zoom z the globe
+// is 512·2^z / π pixels across.
+const globeZoom = (element) => Math.log2((Math.min(element.clientWidth, element.clientHeight) * 0.9 * Math.PI) / 512);
+
 export function createMap(element, { onPick }) {
-  const map = L.map(element, {
-    crs: L.CRS.EPSG4326,
-    maxBounds: WORLD,
-    maxBoundsViscosity: 1,
+  const css = getComputedStyle(document.documentElement);
+  const color = (name) => css.getPropertyValue(name).trim();
+
+  const map = new maplibregl.Map({
+    container: element,
+    style: {
+      version: 8,
+      projection: { type: 'globe' },
+      // A soft atmosphere around the globe while zoomed out.
+      sky: { 'atmosphere-blend': ['interpolate', ['linear'], ['zoom'], 0, 1, 4, 0.6, 6, 0] },
+      sources: {
+        satellite: { type: 'raster', tiles: [SATELLITE_TILES], tileSize: 256, maxzoom: 14, attribution: SATELLITE_CREDIT },
+        circle: { type: 'geojson', data: EMPTY },
+        line: { type: 'geojson', data: EMPTY },
+        guess: { type: 'geojson', data: EMPTY },
+        answer: { type: 'geojson', data: EMPTY },
+      },
+      layers: [
+        { id: 'satellite', type: 'raster', source: 'satellite' },
+        { id: 'circle-fill', type: 'fill', source: 'circle', paint: { 'fill-color': color('--guess'), 'fill-opacity': 0.12 } },
+        { id: 'circle-edge', type: 'line', source: 'circle', paint: { 'line-color': color('--guess'), 'line-width': 2 } },
+        { id: 'line', type: 'line', source: 'line', paint: { 'line-color': color('--answer'), 'line-width': 2, 'line-dasharray': [3, 3] } },
+        ...['guess', 'answer'].map((id) => ({
+          id,
+          type: 'circle',
+          source: id,
+          paint: {
+            'circle-radius': 7,
+            'circle-color': color(id === 'guess' ? '--guess' : '--answer'),
+            'circle-stroke-color': '#ffffff',
+            'circle-stroke-width': 2,
+          },
+        })),
+      ],
+    },
+    center: [10, 25],
+    zoom: globeZoom(element),
     maxZoom: MAX_ZOOM,
-    zoomSnap: 0.25,
+    maxPitch: 0,
+    dragRotate: false,
+    pitchWithRotate: false,
+    attributionControl: { compact: true },
   });
+  map.touchZoomRotate.disableRotation();
+  map.keyboard.disableRotation();
+  map.addControl(new maplibregl.NavigationControl({ showCompass: false }), 'top-left');
 
-  L.tileLayer(SATELLITE_TILES, {
-    bounds: WORLD,
-    noWrap: true,
-    attribution: SATELLITE_CREDIT,
-  }).addTo(map);
+  // Never let the player zoom out further than the whole globe.
+  const fitGlobe = () => map.setMinZoom(globeZoom(element));
+  fitGlobe();
 
-  // Never let the player zoom out further than the whole world.
-  const fitWorld = () => map.setMinZoom(map.getBoundsZoom(WORLD));
-  fitWorld();
-  map.fitBounds(WORLD);
+  // Sources exist once the style has loaded; draw calls before that wait for it.
+  const ready = new Promise((resolve) => map.once('load', resolve));
+  // Keep the imagery credit folded behind its ⓘ button so it doesn't cover the map on phones.
+  ready.then(() => element.querySelector('.maplibregl-ctrl-attrib')?.classList.remove('maplibregl-compact-show'));
+  const setData = (id, data) => ready.then(() => map.getSource(id).setData(data));
+  const clear = () => ['circle', 'line', 'guess', 'answer'].forEach((id) => setData(id, EMPTY));
 
-  watchHolds(element, (point) => onPick(map.containerPointToLatLng(point)));
+  watchHolds(element, (point) => {
+    const at = map.unproject(point);
+    // A point in space beside the globe has no place on Earth: projecting it back misses.
+    const back = map.project(at);
+    if (Math.hypot(back.x - point[0], back.y - point[1]) > 2) return;
+    onPick({ lat: at.lat, lng: at.lng });
+  });
 
   // Redraw when the container changes size (phone address bar, rotated screen, resized panel).
   new ResizeObserver(() => {
-    map.invalidateSize();
-    fitWorld();
+    map.resize();
+    fitGlobe();
   }).observe(element);
 
-  const css = getComputedStyle(document.documentElement);
-  const layer = L.layerGroup().addTo(map);
-
-  // Real-size circles (radius in km), e.g. the player's confidence circle.
-  const kmCircle = (center, km, color) =>
-    L.circle(center, { radius: km * 1000, color, weight: 2, fillOpacity: 0.1, interactive: false }).addTo(layer);
-  let guessCircle = null;
+  let guessRing = null;
 
   return {
-    // `circleKm` draws the player's confidence circle around the tap (0 for none).
+    // `circleKm` draws the player's bet circle around the pin (0 for none).
     showGuess(guess, circleKm = 0) {
-      layer.clearLayers();
-      const guessColor = css.getPropertyValue('--guess').trim();
-      guessCircle = circleKm > 0 ? kmCircle(guess, circleKm, guessColor) : null;
-      L.circleMarker(guess, { radius: 7, color: guessColor }).addTo(layer);
+      clear();
+      guessRing = circleKm > 0 ? unwrap(circle(guess, circleKm)) : null;
+      if (guessRing) setData('circle', feature({ type: 'Polygon', coordinates: [guessRing.map(lngLat)] }));
+      setData('guess', feature({ type: 'Point', coordinates: lngLat(guess) }));
     },
     showAnswer(guess, answer) {
-      const answerColor = css.getPropertyValue('--answer').trim();
-      L.polyline([guess, answer], { color: answerColor, dashArray: '6 6', weight: 2 }).addTo(layer);
-      L.circleMarker(answer, { radius: 7, color: answerColor }).addTo(layer);
-      // Show the whole confidence circle too. Extra bottom padding keeps it all clear of the result card.
-      const bounds = L.latLngBounds([guess, answer]);
-      if (guessCircle) bounds.extend(guessCircle.getBounds());
-      map.fitBounds(bounds, {
-        paddingTopLeft: [50, 50],
-        paddingBottomRight: [50, 180],
-        maxZoom: ANSWER_ZOOM,
-      });
+      const path = unwrap(greatCircle(guess, answer));
+      setData('line', feature({ type: 'LineString', coordinates: path.map(lngLat) }));
+      setData('answer', feature({ type: 'Point', coordinates: lngLat(path.at(-1)) }));
+      // Frame the pin, the city and the whole bet circle. Extra bottom padding keeps them clear
+      // of the result card.
+      const bounds = new maplibregl.LngLatBounds();
+      for (const point of [...path, ...(guessRing ?? [])]) bounds.extend(lngLat(point));
+      map.fitBounds(bounds, { padding: { top: 50, left: 50, right: 50, bottom: 200 }, maxZoom: ANSWER_ZOOM, duration: 800 });
     },
-    // Removes the markers and zooms back out to the whole world for the next round.
+    // Removes the markers and turns back to the whole globe for the next round.
     reset() {
-      layer.clearLayers();
-      map.fitBounds(WORLD);
+      clear();
+      guessRing = null;
+      map.jumpTo({ zoom: globeZoom(element) });
     },
     // Blurs the map and stops it being moved or zoomed, so it can't help answer the
     // multiple-choice question (e.g. "Furthest north").
@@ -88,7 +133,7 @@ export function createMap(element, { onPick }) {
   };
 }
 
-// Calls onHold(point in the container) when one pointer (a mouse button, finger or pen) stays
+// Calls onHold([x, y] in the container) when one pointer (a mouse button, finger or pen) stays
 // still on the map for HOLD_MS. A ring fills up underneath meanwhile; moving, releasing or a
 // second finger cancels it.
 function watchHolds(element, onHold) {
@@ -112,7 +157,7 @@ function watchHolds(element, onHold) {
     cancel();
     if (fingers.size > 1) return; // pinch to zoom
     const box = element.getBoundingClientRect();
-    const point = L.point(event.clientX - box.left, event.clientY - box.top);
+    const point = [event.clientX - box.left, event.clientY - box.top];
     hold = {
       id: event.pointerId,
       start: [event.clientX, event.clientY],
@@ -122,8 +167,8 @@ function watchHolds(element, onHold) {
         onHold(point);
       }, HOLD_MS),
     };
-    ring.style.left = `${point.x}px`;
-    ring.style.top = `${point.y}px`;
+    ring.style.left = `${point[0]}px`;
+    ring.style.top = `${point[1]}px`;
     ring.style.setProperty('--hold-ms', `${HOLD_MS}ms`);
     ring.hidden = false;
     ring.classList.remove('filling');

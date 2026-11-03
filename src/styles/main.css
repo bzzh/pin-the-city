@@ -2,7 +2,8 @@
    against the surfaces it appears on (body text 13:1, muted 6.8:1). */
 :root {
   color-scheme: dark;
-  --ocean: #101e37; /* matches the satellite ocean, shown around the map edges */
+  --ocean: #101e37; /* matches the satellite ocean */
+  --space: #050a14; /* around the globe */
   --text: #e8edf3;
   --muted: #a9b7c8;
   --panel: #172338; /* top bar and cards */
@@ -523,34 +524,42 @@ body {
   user-select: all;
 }
 
-/* Ocean colour around the map edges. The id beats Leaflet's own default grey. */
-#map.leaflet-container {
-  background: var(--ocean);
+/* Space around the globe. */
+#map {
+  background: var(--space);
 }
 
-/* Leaflet's zoom buttons and credit line, in the dark theme */
-#map .leaflet-bar a {
-  color: var(--text);
+/* MapLibre's zoom buttons and credit line, in the dark theme */
+#map .maplibregl-ctrl-group {
   background: var(--panel);
-  border-bottom-color: var(--line);
+  border: 1px solid var(--line);
+  box-shadow: none;
 }
 
-#map .leaflet-bar a:hover {
+#map .maplibregl-ctrl-group button + button {
+  border-top-color: var(--line);
+}
+
+#map .maplibregl-ctrl-group button:not(:disabled):hover {
   background: var(--raised);
 }
 
-#map .leaflet-bar a.leaflet-disabled {
-  color: var(--line-strong);
-  background: var(--panel);
+#map .maplibregl-ctrl-icon {
+  filter: invert(1); /* MapLibre's icons are dark */
 }
 
-#map .leaflet-control-attribution {
+#map .maplibregl-ctrl-attrib {
   color: var(--muted);
   background: rgb(23 35 56 / 0.85);
 }
 
-#map .leaflet-control-attribution a {
+#map .maplibregl-ctrl-attrib a {
   color: var(--focus);
+}
+
+#map .maplibregl-ctrl-attrib-button {
+  filter: invert(1);
+  background-color: transparent;
 }
 
 /* Leaderboard, nickname form and status lines */
