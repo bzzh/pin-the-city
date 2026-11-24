@@ -22,8 +22,15 @@ const lngLat = ({ lat, lng }) => [lng, lat];
 const feature = (geometry) => ({ type: 'Feature', properties: {}, geometry });
 
 // The zoom at which the whole globe fits the container with a small margin. At zoom z the globe
-// is 512·2^z / π pixels across.
-const globeZoom = (element) => Math.log2((Math.min(element.clientWidth, element.clientHeight) * 0.9 * Math.PI) / 512);
+// is 512·2^z / π pixels across. Kept within MapLibre's allowed range (-2 to MAX_ZOOM): a container
+// with no size yet (a hidden or not-yet-laid-out page) would otherwise give -Infinity, which
+// setMinZoom rejects with an error. The resize handler refits once it has a real size.
+const MIN_ALLOWED_ZOOM = -2;
+const globeZoom = (element) => {
+  const size = Math.min(element.clientWidth, element.clientHeight);
+  const zoom = Math.log2((size * 0.9 * Math.PI) / 512);
+  return Math.min(Math.max(zoom, MIN_ALLOWED_ZOOM), MAX_ZOOM);
+};
 
 export function createMap(element, { onPick }) {
   const css = getComputedStyle(document.documentElement);
