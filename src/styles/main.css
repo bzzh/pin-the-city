@@ -806,3 +806,36 @@ input:focus-visible {
   overflow-wrap: anywhere;
 }
 
+
+/* Leaderboard page: Today / This week switch */
+.period-tabs {
+  display: inline-flex;
+  gap: 4px;
+  margin: 12px 0 16px;
+  padding: 4px;
+  background: var(--raised);
+  border: 1px solid var(--line);
+  border-radius: 10px;
+}
+
+.period-tab {
+  padding: 8px 16px;
+  font: inherit;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: 0;
+  border-radius: 7px;
+  cursor: pointer;
+}
+
+.period-tab:hover {
+  color: var(--text);
+}
+
+.period-tab[aria-pressed='true'] {
+  color: var(--text);
+  background: var(--panel);
+  box-shadow: 0 0 0 1px var(--line-strong);
+}

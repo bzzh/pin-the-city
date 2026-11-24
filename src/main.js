@@ -6,7 +6,7 @@ import { maxRoundPoints, usesConfidence } from './game/scoring.js';
 import { dailyRandom, dateKey, dayNumber, weekKeys, weekStartKey } from './game/daily.js';
 import { buildShareText } from './game/share.js';
 import { loadDaily, saveDaily } from './game/storage.js';
-import { fetchWeekly, leaderboardEnabled, register, submitDaily } from './leaderboard/api.js';
+import { fetchDaily, fetchWeekly, leaderboardEnabled, register, submitDaily } from './leaderboard/api.js';
 import { loadPlayer, savePlayer } from './leaderboard/identity.js';
 import { checkNickname } from './leaderboard/nickname.js';
 import { setHud } from './ui/hud.js';
@@ -83,14 +83,39 @@ function openLeaderboard() {
   };
   history.pushState({ leaderboard: true }, '', '#leaderboard');
 
-  const view = { weekLabel: weekLabel(), me: loadPlayer()?.nickname, onBack: () => history.back() };
+  // Both boards load at once; the tabs switch between them without another request.
+  const boards = { day: { rows: null }, week: { rows: null } };
+  let period = 'day';
+  const view = {
+    dayLabel: dayLabel(),
+    weekLabel: weekLabel(),
+    me: loadPlayer()?.nickname,
+    onBack: () => history.back(),
+    onPeriod: (next) => {
+      period = next;
+      render();
+    },
+  };
   // Ignores a reply that arrives after the page was closed.
-  const render = (state) => open && showLeaderboard(page, { ...view, ...state });
-  render({ rows: null });
-  fetchWeekly(weekStartKey(today))
-    .then((rows) => render({ rows }))
-    .catch((error) => render({ error: error.message }));
+  const render = () => open && showLeaderboard(page, { ...view, period, ...boards[period] });
+  render();
+  const load = (key, request) =>
+    request
+      .then((rows) => (boards[key] = { rows }))
+      .catch((error) => (boards[key] = { error: error.message }))
+      .then(() => key === period && render());
+  load('day', fetchDaily(today));
+  load('week', fetchWeekly(weekStartKey(today)));
 }
+
+// "Tuesday 24 November" for today.
+const dayLabel = () =>
+  new Date(`${today}T12:00:00Z`).toLocaleDateString('en-GB', {
+    timeZone: 'UTC',
+    weekday: 'long',
+    day: 'numeric',
+    month: 'long',
+  });
 
 addEventListener('popstate', () => closeLeaderboardPage?.());
 

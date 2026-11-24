@@ -257,34 +257,60 @@ export function showNicknameForm(panel, { check, onJoin, onSkip }) {
   );
 }
 
-// The weekly top 10 as a full page with an accessible table. Call with `rows: null` while
+// The leaderboard as a full page with two tabs, today's challenge (`period: 'day'`) and the
+// week so far (`'week'`), each an accessible top-10 table. Call with `rows: null` while
 // loading and `error` if it failed; `me` is the player's nickname, highlighted in the table.
-export function showLeaderboard(page, { weekLabel, rows, error, me, onBack }) {
+// `onPeriod(period)` is called when the player picks the other tab.
+export function showLeaderboard(page, { period, dayLabel, weekLabel, rows, error, me, onBack, onPeriod }) {
+  const daily = period === 'day';
   const back = button('← Back to the game', onBack, 'page-back');
-  const title = heading('h1', 'page-title', 'Weekly leaderboard');
+  const title = heading('h1', 'page-title', 'Leaderboard');
+
+  const tabs = element('div', 'period-tabs');
+  tabs.setAttribute('role', 'group');
+  tabs.setAttribute('aria-label', 'Leaderboard period');
+  for (const [key, label] of [['day', 'Today'], ['week', 'This week']]) {
+    const tab = button(label, () => key !== period && onPeriod(key), 'period-tab');
+    tab.dataset.period = key;
+    tab.setAttribute('aria-pressed', String(key === period));
+    tabs.append(tab);
+  }
+
   const status = element('p', 'muted leaderboard-status');
   status.setAttribute('role', 'status'); // read out by screen readers when it changes
+  const label = daily ? dayLabel : weekLabel;
   const children = [
     back,
     title,
-    element('p', 'page-week', weekLabel),
-    element('p', 'muted', "Each player's daily scores add up from Monday to Sunday. The board resets with Monday's challenge."),
+    tabs,
+    element('p', 'page-week', label),
+    element(
+      'p',
+      'muted',
+      daily
+        ? "Scores from today's challenge. A new board starts with each day's challenge."
+        : "Each player's daily scores add up from Monday to Sunday. The board resets with Monday's challenge.",
+    ),
     status,
   ];
+  const when = daily ? 'today' : 'this week';
 
   if (error) {
     status.textContent = `Could not load the leaderboard: ${error}`;
   } else if (!rows) {
     status.textContent = 'Loading…';
   } else if (rows.length === 0) {
-    status.textContent = "No scores yet this week. Play today's challenge to be the first!";
+    status.textContent = `No scores yet ${when}. Play today's challenge to be the first!`;
   } else {
-    status.textContent = `Top ${rows.length} this week.`;
+    status.textContent = `Top ${rows.length} ${when}.`;
     const table = element('table', 'leaderboard');
-    table.append(element('caption', 'visually-hidden', `Weekly leaderboard, ${weekLabel}`));
+    table.append(element('caption', 'visually-hidden', `${daily ? 'Daily' : 'Weekly'} leaderboard, ${label}`));
     const head = element('thead');
     const headRow = element('tr');
-    for (const [text, className] of [['Rank', 'num'], ['Player', ''], ['Days', 'num'], ['Score', 'num']]) {
+    const columns = daily
+      ? [['Rank', 'num'], ['Player', ''], ['Score', 'num']]
+      : [['Rank', 'num'], ['Player', ''], ['Days', 'num'], ['Score', 'num']];
+    for (const [text, className] of columns) {
       const th = element('th', className, text);
       th.scope = 'col';
       headRow.append(th);
@@ -297,9 +323,13 @@ export function showLeaderboard(page, { weekLabel, rows, error, me, onBack }) {
       const name = element('th', '', row.nickname);
       name.scope = 'row';
       if (row.nickname === me) name.append(element('span', 'you', ' (you)'));
-      const days = element('td', 'num', `${row.days_played}/7`);
-      days.setAttribute('aria-label', `${row.days_played} of 7 days`);
-      tr.append(element('td', 'num', `#${row.rank}`), name, days, element('td', 'num', pts(Number(row.total))));
+      tr.append(element('td', 'num', `#${row.rank}`), name);
+      if (!daily) {
+        const days = element('td', 'num', `${row.days_played}/7`);
+        days.setAttribute('aria-label', `${row.days_played} of 7 days`);
+        tr.append(days);
+      }
+      tr.append(element('td', 'num', pts(Number(row.total))));
       body.append(tr);
     }
     table.append(head, body);
@@ -308,7 +338,12 @@ export function showLeaderboard(page, { weekLabel, rows, error, me, onBack }) {
 
   const inner = element('div', 'page-inner');
   inner.append(...children);
-  // Keep keyboard focus where it is when the table arrives after loading.
-  const focused = page.contains(document.activeElement) ? document.activeElement.className : null;
-  show(page, [inner], focused === 'page-back' ? back : title);
+  // Keep keyboard focus where it is when the table arrives or the tab changes.
+  const focused = page.contains(document.activeElement) ? document.activeElement : null;
+  const keep = focused?.classList.contains('page-back')
+    ? back
+    : focused?.classList.contains('period-tab')
+      ? tabs.querySelector(`[data-period="${focused.dataset.period}"]`)
+      : title;
+  show(page, [inner], keep);
 }

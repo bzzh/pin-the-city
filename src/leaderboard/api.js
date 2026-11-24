@@ -40,3 +40,6 @@ export const submitDaily = (player, dateKey, records) =>
 // → [{ rank, nickname, days_played, total }] for the week starting on that Monday.
 export const fetchWeekly = (weekStart) =>
   post('/rest/v1/rpc/weekly_leaderboard', { week_start: weekStart, max_rows: 10 });
+
+// → [{ rank, nickname, total }] for that day's challenge.
+export const fetchDaily = (day) => post('/rest/v1/rpc/daily_leaderboard', { for_day: day, max_rows: 10 });
