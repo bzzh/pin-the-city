@@ -568,17 +568,17 @@ body {
   font-size: 0.95rem;
 }
 
-.nickname-form {
+.entry-form {
   display: grid;
   gap: 6px;
   margin-top: 12px;
 }
 
-.nickname-form label {
+.entry-form label {
   font-weight: 600;
 }
 
-.nickname-form input {
+.entry-form input {
   padding: 10px 12px;
   font: inherit;
   color: var(--text);
@@ -587,21 +587,21 @@ body {
   border-radius: 8px;
 }
 
-.nickname-form input[aria-invalid='true'] {
+.entry-form input[aria-invalid='true'] {
   border-color: var(--error);
 }
 
-.nickname-form .hint,
-.nickname-form .error {
+.entry-form .hint,
+.entry-form .error {
   margin: 0;
   font-size: 0.9rem;
 }
 
-.nickname-form .error {
+.entry-form .error {
   color: var(--error);
 }
 
-.nickname-form .error:empty {
+.entry-form .error:empty {
   display: none;
 }
 
@@ -838,4 +838,34 @@ input:focus-visible {
   color: var(--text);
   background: var(--panel);
   box-shadow: 0 0 0 1px var(--line-strong);
+}
+
+/* "Your nickname" section under the leaderboard */
+.account {
+  margin-top: 32px;
+  padding: 16px;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 12px;
+}
+
+.account-title {
+  margin: 0 0 6px;
+  font-size: 1.15rem;
+}
+
+.account-notice:empty {
+  display: none;
+}
+
+.account-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 12px;
+}
+
+.account-actions .continue {
+  width: auto;
+  margin: 0;
 }

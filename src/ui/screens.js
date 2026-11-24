@@ -206,62 +206,193 @@ export function showSummary(panel, records, maxRoundPoints, { heading: title, sh
   show(panel, [inner], top, { sheet: true });
 }
 
-// Asks for a leaderboard nickname. `check(name)` returns a problem message or null (instant
-// feedback); `onJoin(name)` resolves to an error message, or null once the player is registered.
-export function showNicknameForm(panel, { check, onJoin, onSkip }) {
-  const form = element('form', 'nickname-form');
-  const label = element('label', '', 'Nickname');
-  label.htmlFor = 'nickname';
-  const input = element('input');
-  Object.assign(input, { id: 'nickname', name: 'nickname', maxLength: 20, autocomplete: 'nickname', required: true });
-  input.setAttribute('aria-describedby', 'nickname-hint nickname-error');
-  const hint = element('p', 'muted hint', '3–20 letters or numbers. Shown publicly on the leaderboard.');
-  hint.id = 'nickname-hint';
+// A form of labelled inputs with one error line and a submit button. `fields` are
+// [{ name, label, type, autocomplete, hint, value, hidden }] (a hidden field still tells password
+// managers which nickname a password belongs to). `check(values)` returns { field, message }
+// for instant feedback, or null; `onSubmit(values)` resolves to an error message, or null once
+// done (the caller then shows the next screen).
+let formCount = 0;
+function entryForm({ fields, submitLabel, busyLabel, check, onSubmit }) {
+  const id = `form${++formCount}`;
+  const form = element('form', 'entry-form');
   const problem = element('p', 'error');
-  problem.id = 'nickname-error';
+  problem.id = `${id}-error`;
   problem.setAttribute('role', 'alert');
-  const join = element('button', 'continue', 'Join the leaderboard');
-  join.type = 'submit';
+  const inputs = {};
+  for (const { name, label, type = 'text', autocomplete, hint, value, hidden } of fields) {
+    const input = element('input');
+    Object.assign(input, { id: `${id}-${name}`, name, type, required: !hidden, hidden: Boolean(hidden) });
+    if (autocomplete) input.autocomplete = autocomplete;
+    if (value !== undefined) input.value = value;
+    if (name === 'nickname') input.maxLength = 20;
+    inputs[name] = input;
+    if (hidden) {
+      form.append(input);
+      continue;
+    }
+    const labelElement = element('label', '', label);
+    labelElement.htmlFor = input.id;
+    const described = [problem.id];
+    form.append(labelElement, input);
+    if (hint) {
+      const hintElement = element('p', 'muted hint', hint);
+      hintElement.id = `${input.id}-hint`;
+      described.unshift(hintElement.id);
+      form.append(hintElement);
+    }
+    input.setAttribute('aria-describedby', described.join(' '));
+  }
+  const submit = element('button', 'continue', submitLabel);
+  submit.type = 'submit';
+  form.append(problem, submit);
 
+  const visible = Object.values(inputs).filter((input) => !input.hidden);
+  // Shows the message and marks the field it's about; server errors (no field) mark none.
+  const fail = (message, field) => {
+    problem.textContent = message;
+    for (const input of visible) {
+      if (input === inputs[field]) input.setAttribute('aria-invalid', 'true');
+      else input.removeAttribute('aria-invalid');
+    }
+    (inputs[field] ?? visible[0]).focus();
+  };
   form.addEventListener('submit', async (event) => {
     event.preventDefault();
-    const message = check(input.value);
-    if (message) {
-      problem.textContent = message;
-      input.setAttribute('aria-invalid', 'true');
-      input.focus();
-      return;
-    }
-    join.disabled = true;
-    join.textContent = 'Joining…';
-    const error = await onJoin(input.value);
+    const values = Object.fromEntries(Object.entries(inputs).map(([name, input]) => [name, input.value]));
+    const invalid = check?.(values);
+    if (invalid) return fail(invalid.message, invalid.field);
+    submit.disabled = true;
+    submit.textContent = busyLabel;
+    const error = await onSubmit(values);
     if (error) {
-      problem.textContent = error;
-      input.setAttribute('aria-invalid', 'true');
-      join.disabled = false;
-      join.textContent = 'Join the leaderboard';
-      input.focus();
+      submit.disabled = false;
+      submit.textContent = submitLabel;
+      fail(error);
     }
   });
-  form.append(label, input, hint, problem, join);
+  return { form, first: visible[0] };
+}
 
-  show(
-    panel,
-    [
-      heading('h2', 'category', 'Join the weekly leaderboard'),
-      element('p', 'rules', 'Your daily scores add up from Monday to Sunday. Pick a nickname to appear on it.'),
-      form,
-      button('Not now', onSkip, 'continue secondary'),
-    ],
-    input,
+// A form screen, either in the game's panel or as a page (`page: true`, with a back button to
+// `onBack`). `secondary` are extra buttons under the form, e.g. [{ label: 'Not now', onClick }].
+function showFormScreen(target, { page = false, onBack, title, intro, secondary = [], ...formOptions }) {
+  const { form, first } = entryForm(formOptions);
+  const extra = secondary.map(({ label, onClick }) => button(label, onClick, 'continue secondary'));
+  const paragraphs = [intro].flat().map((text) => element('p', 'rules', text));
+  if (!page) {
+    show(target, [heading('h2', 'category', title), ...paragraphs, form, ...extra], first);
+    return;
+  }
+  const inner = element('div', 'page-inner');
+  inner.append(
+    button('← Back to the leaderboard', onBack, 'page-back'),
+    element('h1', 'page-title', title),
+    ...paragraphs,
+    form,
+    ...extra,
   );
+  show(target, [inner], first);
+}
+
+const nicknameField = { name: 'nickname', label: 'Nickname', autocomplete: 'username' };
+const required = (message) => (value) => (value.trim() ? null : message);
+// Runs each field's check in order. → { field, message } for the first problem, or null.
+const checkFields = (checks) => (values) => {
+  for (const [field, check] of Object.entries(checks)) {
+    const message = check(values[field]);
+    if (message) return { field, message };
+  }
+  return null;
+};
+
+// Asks for a new leaderboard nickname. `onJoin(name)` resolves to an error message, or null
+// once the player is registered; `onSignIn` is for players who already have one elsewhere.
+export function showNicknameForm(panel, { checkNickname, onJoin, onSignIn, onSkip }) {
+  showFormScreen(panel, {
+    title: 'Join the leaderboard',
+    intro: 'Your daily scores count on the daily and weekly leaderboards. Pick a nickname to appear on them.',
+    fields: [{ ...nicknameField, hint: '3–20 letters or numbers. Shown publicly on the leaderboard.' }],
+    submitLabel: 'Join the leaderboard',
+    busyLabel: 'Joining…',
+    check: checkFields({ nickname: checkNickname }),
+    onSubmit: ({ nickname }) => onJoin(nickname),
+    secondary: [
+      { label: 'I already have a nickname', onClick: onSignIn },
+      { label: 'Not now', onClick: onSkip },
+    ],
+  });
+}
+
+// Signs this device in to a nickname made on another device, in the game's panel (after a
+// game, with `secondary` buttons) or as a page. `onSignIn(nickname, password)` resolves to an
+// error message or null.
+export function showSignInForm(target, { page, onBack, onSignIn, secondary }) {
+  showFormScreen(target, {
+    page,
+    onBack,
+    title: 'Sign in with your nickname',
+    intro:
+      'Enter the nickname you play with on your other device, and the password you chose there with “Play on other devices”.',
+    fields: [nicknameField, { name: 'password', label: 'Password', type: 'password', autocomplete: 'current-password' }],
+    submitLabel: 'Sign in',
+    busyLabel: 'Signing in…',
+    check: checkFields({ nickname: required('Enter your nickname.'), password: required('Enter your password.') }),
+    onSubmit: ({ nickname, password }) => onSignIn(nickname, password),
+    secondary,
+  });
+}
+
+// Sets the password that lets `me` sign in on other devices. `onSave(password)` resolves to an
+// error message or null.
+export function showPasswordForm(page, { me, checkPassword, onBack, onSave }) {
+  showFormScreen(page, {
+    page: true,
+    onBack,
+    title: 'Play on other devices',
+    intro: [
+      `Choose a password for ${me}. Then, on your other phone or computer, open the leaderboard, choose “Sign in with your nickname” and enter ${me} and this password.`,
+      'A forgotten password can’t be recovered, but any device that plays as you can set a new one here. If you already chose a password, this replaces it.',
+    ],
+    fields: [
+      { name: 'nickname', value: me, autocomplete: 'username', hidden: true },
+      { name: 'password', label: 'Password', type: 'password', autocomplete: 'new-password', hint: 'At least 6 characters.' },
+    ],
+    submitLabel: 'Save password',
+    busyLabel: 'Saving…',
+    check: checkFields({ password: checkPassword }),
+    onSubmit: ({ password }) => onSave(password),
+  });
+}
+
+// Merges `me` (this device's nickname) into another nickname the player keeps.
+// `onMerge(nickname, password)` resolves to an error message or null.
+export function showMergeForm(page, { me, onBack, onMerge }) {
+  showFormScreen(page, {
+    page: true,
+    onBack,
+    title: 'Move your scores to another nickname',
+    intro: [
+      `Played under more than one nickname? Enter the nickname you want to keep and its password. All of ${me}’s scores move to it, ${me} is removed from the leaderboard, and this device plays as the nickname you keep.`,
+      'If both nicknames played the same day, the higher score counts. This can’t be undone.',
+    ],
+    fields: [
+      { ...nicknameField, label: 'Nickname to keep' },
+      { name: 'password', label: 'Its password', type: 'password', autocomplete: 'current-password' },
+    ],
+    submitLabel: `Move ${me}’s scores`,
+    busyLabel: 'Moving scores…',
+    check: checkFields({ nickname: required('Enter the nickname to keep.'), password: required('Enter its password.') }),
+    onSubmit: ({ nickname, password }) => onMerge(nickname, password),
+  });
 }
 
 // The leaderboard as a full page with two tabs, today's challenge (`period: 'day'`) and the
 // week so far (`'week'`), each an accessible top-10 table. Call with `rows: null` while
 // loading and `error` if it failed; `me` is the player's nickname, highlighted in the table.
-// `onPeriod(period)` is called when the player picks the other tab.
-export function showLeaderboard(page, { period, dayLabel, weekLabel, rows, error, me, onBack, onPeriod }) {
+// `onPeriod(period)` is called when the player picks the other tab. `account` adds the
+// "Your nickname" section: { notice, onSignIn } without a nickname, { notice, onSetPassword,
+// onMerge } with one.
+export function showLeaderboard(page, { period, dayLabel, weekLabel, rows, error, me, onBack, onPeriod, account }) {
   const daily = period === 'day';
   const back = button('← Back to the game', onBack, 'page-back');
   const title = heading('h1', 'page-title', 'Leaderboard');
@@ -336,14 +467,41 @@ export function showLeaderboard(page, { period, dayLabel, weekLabel, rows, error
     children.push(table);
   }
 
+  if (account) children.push(accountSection(me, account));
+
   const inner = element('div', 'page-inner');
   inner.append(...children);
   // Keep keyboard focus where it is when the table arrives or the tab changes.
+  back.dataset.keep = 'back';
+  for (const tab of tabs.children) tab.dataset.keep = tab.dataset.period;
   const focused = page.contains(document.activeElement) ? document.activeElement : null;
-  const keep = focused?.classList.contains('page-back')
-    ? back
-    : focused?.classList.contains('period-tab')
-      ? tabs.querySelector(`[data-period="${focused.dataset.period}"]`)
-      : title;
+  const keep = (focused?.dataset.keep && inner.querySelector(`[data-keep="${focused.dataset.keep}"]`)) || title;
   show(page, [inner], keep);
+}
+
+// Under the leaderboard: who this device plays as, and how to play on other devices.
+function accountSection(me, { notice, onSignIn, onSetPassword, onMerge }) {
+  const section = element('section', 'account');
+  const title = element('h2', 'account-title', 'Your nickname');
+  title.id = 'account-title';
+  section.setAttribute('aria-labelledby', title.id);
+  const status = element('p', 'notice account-notice', notice ?? '');
+  status.setAttribute('role', 'status');
+  const actions = element('div', 'account-actions');
+  const action = (label, onClick, keep) => {
+    const b = button(label, onClick, 'continue secondary');
+    b.dataset.keep = keep;
+    actions.append(b);
+  };
+  const intro = element('p', 'muted');
+  if (me) {
+    intro.append('This device plays as ', element('strong', '', me), '.');
+    action('Play on other devices', onSetPassword, 'password');
+    action('Move my scores to another nickname', onMerge, 'merge');
+  } else {
+    intro.textContent = 'Already on the leaderboard from another phone or computer? Sign in to play as the same nickname here.';
+    action('Sign in with your nickname', onSignIn, 'sign-in');
+  }
+  section.append(title, intro, status, actions);
+  return section;
 }

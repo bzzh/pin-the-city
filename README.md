@@ -38,9 +38,13 @@ the top 10 by the sum of their daily scores, Monday to Sunday. It runs on
 
 - `supabase/migrations/` — the database tables and the `weekly_leaderboard` query. Run the SQL
   once in the Supabase dashboard's SQL Editor.
-- `supabase/functions/submit-score/` — the server function that registers nicknames and
-  accepts scores. It never trusts the browser's score: it rebuilds that day's rounds with the
+- `supabase/functions/submit-score/` — the server function that registers nicknames,
+  signs players in on other devices, merges nicknames and accepts scores. It never trusts the browser's score: it rebuilds that day's rounds with the
   game's own code (`src/leaderboard/verify.js`) and re-scores the player's picks, confidence levels and map taps.
+- Playing on several devices: under the leaderboard, a player can set a password
+  ("Play on other devices"), sign in to their nickname on another device, or move a second
+  nickname's scores into the one they keep (the higher score counts on days both played).
+  Each device keeps its own secret key; there are no emails or accounts.
 - Deploy the function after changing it or the game rules it reuses (scoring, categories,
   round picking): `npx supabase login` once, then `npm run deploy:server`.
 

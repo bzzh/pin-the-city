@@ -43,3 +43,15 @@ export const fetchWeekly = (weekStart) =>
 
 // → [{ rank, nickname, total }] for that day's challenge.
 export const fetchDaily = (day) => post('/rest/v1/rpc/daily_leaderboard', { for_day: day, max_rows: 10 });
+
+// Lets this nickname sign in on other devices with `password` (replaces any earlier one).
+export const setPassword = (player, password) =>
+  post('/functions/v1/submit-score', { action: 'set-password', playerId: player.playerId, token: player.token, password });
+
+// Signs this device in to an existing nickname. → { playerId, token, nickname }
+export const signIn = (nickname, password) => post('/functions/v1/submit-score', { action: 'sign-in', nickname, password });
+
+// Moves `player`'s scores into the nickname being kept, deletes `player`, and signs this
+// device in to the kept nickname. → { playerId, token, nickname }
+export const mergeInto = (player, nickname, password) =>
+  post('/functions/v1/submit-score', { action: 'merge', playerId: player.playerId, token: player.token, nickname, password });

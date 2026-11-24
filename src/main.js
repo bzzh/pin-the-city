@@ -7,11 +7,29 @@ import { dailyRandom, dateKey, dayNumber, weekKeys, weekStartKey } from './game/
 import { usesFamilyFirst } from './game/trio.js';
 import { buildShareText } from './game/share.js';
 import { loadDaily, saveDaily } from './game/storage.js';
-import { fetchDaily, fetchWeekly, leaderboardEnabled, register, submitDaily } from './leaderboard/api.js';
+import {
+  fetchDaily,
+  fetchWeekly,
+  leaderboardEnabled,
+  mergeInto,
+  register,
+  setPassword,
+  signIn,
+  submitDaily,
+} from './leaderboard/api.js';
 import { loadPlayer, savePlayer } from './leaderboard/identity.js';
 import { checkNickname } from './leaderboard/nickname.js';
+import { checkPassword } from './leaderboard/password.js';
 import { setHud } from './ui/hud.js';
-import { showLeaderboard, showNicknameForm, showStartScreen, showSummary } from './ui/screens.js';
+import {
+  showLeaderboard,
+  showMergeForm,
+  showNicknameForm,
+  showPasswordForm,
+  showSignInForm,
+  showStartScreen,
+  showSummary,
+} from './ui/screens.js';
 
 const panel = document.getElementById('panel');
 const page = document.getElementById('page');
@@ -87,26 +105,91 @@ function openLeaderboard() {
   // Both boards load at once; the tabs switch between them without another request.
   const boards = { day: { rows: null }, week: { rows: null } };
   let period = 'day';
+  // 'board', or one of the "Your nickname" forms shown in its place.
+  let screen = 'board';
+  let notice = null;
+  const showScreen = (next, message = null) => {
+    screen = next;
+    notice = message;
+    render();
+  };
+  const backToBoard = () => showScreen('board');
+  // After signing in or merging, this device plays as another nickname: reload the boards
+  // (merged scores) and refresh the game underneath (e.g. send today's unsent score).
+  const playAs = (player, message) => {
+    savePlayer(player);
+    if (!game) home();
+    loadBoards();
+    showScreen('board', message);
+    return null;
+  };
+  const account = {
+    onSignIn: () => showScreen('sign-in'),
+    onSetPassword: () => showScreen('password'),
+    onMerge: () => showScreen('merge'),
+  };
   const view = {
     dayLabel: dayLabel(),
     weekLabel: weekLabel(),
-    me: loadPlayer()?.nickname,
     onBack: () => history.back(),
     onPeriod: (next) => {
       period = next;
       render();
     },
   };
-  // Ignores a reply that arrives after the page was closed.
-  const render = () => open && showLeaderboard(page, { ...view, period, ...boards[period] });
-  render();
+  // Ignores a reply that arrives after the page was closed; forms aren't redrawn by replies.
+  const render = () => {
+    if (!open) return;
+    const player = loadPlayer();
+    if (screen === 'sign-in') {
+      showSignInForm(page, {
+        page: true,
+        onBack: backToBoard,
+        onSignIn: (nickname, password) =>
+          signIn(nickname, password).then(
+            (signedIn) => playAs(signedIn, `This device now plays as ${signedIn.nickname}.`),
+            (error) => error.message,
+          ),
+      });
+    } else if (screen === 'password') {
+      showPasswordForm(page, {
+        me: player.nickname,
+        checkPassword,
+        onBack: backToBoard,
+        onSave: (password) =>
+          setPassword(player, password).then(
+            () => {
+              showScreen('board', `Password saved. On your other devices, sign in as ${player.nickname} with it.`);
+              return null;
+            },
+            (error) => error.message,
+          ),
+      });
+    } else if (screen === 'merge') {
+      showMergeForm(page, {
+        me: player.nickname,
+        onBack: backToBoard,
+        onMerge: (nickname, password) =>
+          mergeInto(player, nickname, password).then(
+            (kept) => playAs(kept, `${player.nickname}’s scores moved to ${kept.nickname}. This device now plays as ${kept.nickname}.`),
+            (error) => error.message,
+          ),
+      });
+    } else {
+      showLeaderboard(page, { ...view, me: player?.nickname, period, ...boards[period], account: { ...account, notice } });
+    }
+  };
   const load = (key, request) =>
     request
       .then((rows) => (boards[key] = { rows }))
       .catch((error) => (boards[key] = { error: error.message }))
-      .then(() => key === period && render());
-  load('day', fetchDaily(today));
-  load('week', fetchWeekly(weekStartKey(today)));
+      .then(() => key === period && screen === 'board' && render());
+  const loadBoards = () => {
+    load('day', fetchDaily(today));
+    load('week', fetchWeekly(weekStartKey(today)));
+  };
+  render();
+  loadBoards();
 }
 
 // "Tuesday 24 November" for today.
@@ -121,18 +204,25 @@ const dayLabel = () =>
 addEventListener('popstate', () => closeLeaderboardPage?.());
 
 function askNickname(daily) {
+  // Once this device has a nickname (new or signed in), today's score goes to the leaderboard.
+  const joinWith = async (request) => {
+    try {
+      savePlayer(await request());
+    } catch (error) {
+      return error.message;
+    }
+    showDailyResult(daily, await submitToday(daily));
+    return null;
+  };
   setHud('Join the leaderboard', 'Pick a nickname to count your daily scores.');
   showNicknameForm(panel, {
-    check: checkNickname,
-    onJoin: async (nickname) => {
-      try {
-        savePlayer(await register(nickname));
-      } catch (error) {
-        return error.message;
-      }
-      showDailyResult(daily, await submitToday(daily));
-      return null;
-    },
+    checkNickname,
+    onJoin: (nickname) => joinWith(() => register(nickname)),
+    onSignIn: () =>
+      showSignInForm(panel, {
+        onSignIn: (nickname, password) => joinWith(() => signIn(nickname, password)),
+        secondary: [{ label: 'Back', onClick: () => askNickname(daily) }],
+      }),
     onSkip: () => showDailyResult(daily),
   });
 }

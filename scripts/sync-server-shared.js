@@ -11,6 +11,7 @@ const FILES = [
   'game/scoring.js',
   'game/trio.js',
   'leaderboard/nickname.js',
+  'leaderboard/password.js',
   'leaderboard/verify.js',
 ];
 
