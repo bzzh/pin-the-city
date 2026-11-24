@@ -93,7 +93,7 @@ export const categories = [
   {
     id: 'country-most-populous',
     family: 'population',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: (country) => `Most populous in ${inSentence(country)}`,
     stat: 'population',
     wins: 'highest',
@@ -106,7 +106,7 @@ export const categories = [
   {
     id: 'country-northernmost',
     family: 'position',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: (country) => `Furthest north in ${inSentence(country)}`,
     stat: 'lat',
     wins: 'highest',
@@ -118,7 +118,7 @@ export const categories = [
   {
     id: 'capital',
     family: 'capital',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: (country) => `The capital of ${inSentence(country)}`,
     // 1 for the capital, 0 for the others, so the winner always "beats" them by exactly 1.
     stat: (c) => (c.capital ? 1 : 0),
@@ -139,7 +139,7 @@ export const categories = [
   {
     id: 'region-capital',
     family: 'capital',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: (country) => REGION_CAPITAL_LABEL[country] ?? 'A regional capital',
     stat: (c) => (c.regionCapital ? 1 : 0),
     wins: 'highest',
@@ -163,7 +163,7 @@ export const categories = [
   {
     id: 'closest-to',
     family: 'distance',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: (reference) => `Closest to ${placeName(reference)}`,
     stat: (c, reference) => distanceKm(c, reference),
     wins: 'lowest',
@@ -181,7 +181,7 @@ export const categories = [
   {
     id: 'clock-ahead',
     family: 'time',
-    since: '2026-11-26',
+    since: '2026-11-25',
     label: 'Furthest ahead on the clock (standard time)',
     stat: 'utcOffset',
     wins: 'highest',
@@ -191,10 +191,10 @@ export const categories = [
     // it on the clock (Madrid is ahead of London, Chongqing ahead of Jakarta).
     trap: (city, winner) => city.lng >= winner.lng + 3,
   },
-  { id: 'furthest-from-sea', family: 'sea', since: '2026-11-26', label: 'Furthest from the sea', stat: 'coastKm', wins: 'highest', margin: { min: 150, max: 450 }, format: (v) => `${Math.round(v).toLocaleString('en')} km from the sea` },
+  { id: 'furthest-from-sea', family: 'sea', since: '2026-11-25', label: 'Furthest from the sea', stat: 'coastKm', wins: 'highest', margin: { min: 150, max: 450 }, format: (v) => `${Math.round(v).toLocaleString('en')} km from the sea` },
 ];
 
-// The categories a daily challenge on this date ("2026-11-26") may ask.
+// The categories a daily challenge on this date ("2026-11-25") may ask.
 export const categoriesFor = (dateKey, list = categories) =>
   list.filter((category) => !category.since || category.since <= dateKey);
 

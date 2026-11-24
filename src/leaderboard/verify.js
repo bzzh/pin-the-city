@@ -13,7 +13,7 @@ import {
   placementPoints,
   usesConfidence,
 } from '../game/scoring.js';
-import { planRounds } from '../game/trio.js';
+import { planRounds, usesFamilyFirst } from '../game/trio.js';
 
 const round4 = (value) => Math.round(value * 10_000) / 10_000;
 
@@ -41,7 +41,9 @@ export function scoreSubmission({ cities, categories, dateKey, picks, guesses, l
     throw new Error(`Expected ${ROUNDS_PER_GAME} confidence levels.`);
   }
 
-  const rounds = planRounds(cities, categoriesFor(dateKey, categories), ROUNDS_PER_GAME, dailyRandom(dateKey));
+  const rounds = planRounds(cities, categoriesFor(dateKey, categories), ROUNDS_PER_GAME, dailyRandom(dateKey), {
+    familyFirst: usesFamilyFirst(dateKey),
+  });
   const records = rounds.map((round, i) => {
     const picked = round.cities.find((city) => city.id === picks[i]);
     if (!picked) throw new Error(`Round ${i + 1}: that city was not one of the choices.`);

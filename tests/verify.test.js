@@ -2,12 +2,12 @@ import { describe, expect, it } from 'vitest';
 import cities from '../public/data/cities.json';
 import { categories, categoriesFor } from '../src/categories/categories.js';
 import { dailyRandom } from '../src/game/daily.js';
-import { planRounds } from '../src/game/trio.js';
+import { planRounds, usesFamilyFirst } from '../src/game/trio.js';
 import { roundGuess, scoreSubmission } from '../src/leaderboard/verify.js';
 
 // Answers that would win every round of a day: right cities, placed exactly, all Pinpoint.
 function perfectAnswers(dateKey) {
-  const rounds = planRounds(cities, categoriesFor(dateKey), 5, dailyRandom(dateKey));
+  const rounds = planRounds(cities, categoriesFor(dateKey), 5, dailyRandom(dateKey), { familyFirst: usesFamilyFirst(dateKey) });
   const winners = rounds.map((round) => round.winner);
   return {
     rounds,

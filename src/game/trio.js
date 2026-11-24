@@ -49,9 +49,21 @@ export function pickTrio(cities, category, random = Math.random) {
   return null;
 }
 
-// Picks a round from a random category that has a fair trio in this city set.
-export function pickRound(cities, categories, random = Math.random) {
-  for (const category of shuffle(categories, random)) {
+// Daily challenges from this date pick a family first, then a category in it, so a family with
+// many categories (position has five) doesn't crowd out the others. Earlier challenges gave
+// every category the same chance; they keep doing so, so their rounds never change.
+export const FAMILY_FIRST_START = '2026-11-25';
+export const usesFamilyFirst = (dateKey) => dateKey >= FAMILY_FIRST_START;
+
+// Picks a round from a random category that has a fair trio in this city set. With
+// `familyFirst`, every family is equally likely, then every category within it.
+export function pickRound(cities, categories, random = Math.random, familyFirst = false) {
+  const order = familyFirst
+    ? shuffle([...new Set(categories.map((category) => category.family))], random).flatMap((family) =>
+        shuffle(categories.filter((category) => category.family === family), random),
+      )
+    : shuffle(categories, random);
+  for (const category of order) {
     const round = pickTrio(cities, category, random);
     if (round) return round;
   }
@@ -63,7 +75,8 @@ export const MAX_PER_FAMILY = 2;
 
 // Picks all the rounds of a game up front. A category is never asked twice and a family at most
 // MAX_PER_FAMILY times; each round also prefers cities not seen yet in this game.
-export function planRounds(cities, categories, count, random = Math.random) {
+// `familyFirst` is passed on to pickRound.
+export function planRounds(cities, categories, count, random = Math.random, { familyFirst = false } = {}) {
   const rounds = [];
   const usedCities = new Set();
   const usedCategories = new Set();
@@ -73,7 +86,7 @@ export function planRounds(cities, categories, count, random = Math.random) {
     const allowed = categories.filter(
       (category) => !usedCategories.has(category) && (familyCounts.get(category.family) ?? 0) < MAX_PER_FAMILY,
     );
-    const round = pickRound(freshCities, allowed, random) ?? pickRound(cities, allowed, random);
+    const round = pickRound(freshCities, allowed, random, familyFirst) ?? pickRound(cities, allowed, random, familyFirst);
     if (!round) throw new Error('Not enough city data to plan a game.');
     round.cities.forEach((city) => usedCities.add(city));
     usedCategories.add(round.category);

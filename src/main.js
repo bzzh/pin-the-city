@@ -4,6 +4,7 @@ import { categories, categoriesFor } from './categories/categories.js';
 import { MAX_ROUND_POINTS, startGame } from './game/game.js';
 import { maxRoundPoints, usesConfidence } from './game/scoring.js';
 import { dailyRandom, dateKey, dayNumber, weekKeys, weekStartKey } from './game/daily.js';
+import { usesFamilyFirst } from './game/trio.js';
 import { buildShareText } from './game/share.js';
 import { loadDaily, saveDaily } from './game/storage.js';
 import { fetchDaily, fetchWeekly, leaderboardEnabled, register, submitDaily } from './leaderboard/api.js';
@@ -172,6 +173,7 @@ function playDaily() {
     categories: categoriesFor(today),
     label: `Daily #${dailyNumber}`,
     confidence: usesConfidence(today),
+    familyFirst: usesFamilyFirst(today),
     random: dailyRandom(today),
     onFinished: finishDaily,
   });

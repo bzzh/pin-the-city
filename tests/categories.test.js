@@ -3,7 +3,7 @@ import cities from '../public/data/cities.json';
 import { advantage, categories, categoriesFor, formatStat, roundLabel, statValue } from '../src/categories/categories.js';
 import { dailyRandom, seededRandom } from '../src/game/daily.js';
 import { distanceKm } from '../src/game/scoring.js';
-import { pickTrio, planRounds } from '../src/game/trio.js';
+import { pickTrio, planRounds, usesFamilyFirst } from '../src/game/trio.js';
 
 const byId = (id) => categories.find((category) => category.id === id);
 
@@ -15,13 +15,13 @@ describe('daily categories', () => {
   it('only asks a category from its start date on', () => {
     const newIds = categories.filter((category) => category.since).map((category) => category.id);
     expect(newIds.length).toBeGreaterThan(0);
-    for (const category of categoriesFor('2026-11-25')) expect(newIds).not.toContain(category.id);
-    expect(categoriesFor('2026-11-26')).toEqual(categories);
+    for (const category of categoriesFor('2026-11-24')) expect(newIds).not.toContain(category.id);
+    expect(categoriesFor('2026-11-25')).toEqual(categories);
   });
 
   it('keeps the challenges from before new categories exactly as they were', () => {
     const describe = (key) =>
-      planRounds(cities, categoriesFor(key), 5, dailyRandom(key))
+      planRounds(cities, categoriesFor(key), 5, dailyRandom(key), { familyFirst: usesFamilyFirst(key) })
         .map((round) => `${round.category.id}:${round.cities.map((city) => city.id).join('/')}`)
         .join(' ');
     expect(describe('2026-11-24')).toBe(

@@ -29,9 +29,10 @@ const placeName = ({ name, region, country }) => [name, region, country].filter(
 // `label` names the game in the top bar ("Daily #12", "Practice").
 // `confidence` asks how sure the player is before each placement (see CONFIDENCE_LEVELS);
 // without it, placements are scored by distance as in the first daily challenges.
+// `familyFirst` picks a question family before a category (see pickRound).
 // Returns { handlePick } for the map to call with each tap.
-export function startGame({ map, panel, cities, categories, label, confidence = true, random = Math.random, onFinished }) {
-  const rounds = planRounds(cities, categories, ROUNDS_PER_GAME, random);
+export function startGame({ map, panel, cities, categories, label, confidence = true, familyFirst = true, random = Math.random, onFinished }) {
+  const rounds = planRounds(cities, categories, ROUNDS_PER_GAME, random, { familyFirst });
   const records = [];
   let placing = null; // set while waiting for the player to tap the map
 

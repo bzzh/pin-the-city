@@ -82,6 +82,21 @@ describe('pickRound', () => {
 });
 
 describe('planRounds', () => {
+  it('with familyFirst, spreads games across families instead of favouring big ones', () => {
+    const games = 300;
+    const gamesWith = (familyFirst) => {
+      let count = 0;
+      for (let seed = 1; seed <= games; seed++) {
+        const rounds = planRounds(cities, categories, 5, seededRandom(seed), { familyFirst });
+        if (rounds.some((round) => round.category.family === 'position')) count++;
+      }
+      return count / games;
+    };
+    // Position has the most categories: in most games when every category is equally likely.
+    expect(gamesWith(false)).toBeGreaterThan(0.75);
+    expect(gamesWith(true)).toBeLessThan(0.7);
+  });
+
   it('plans five varied rounds: no city or category twice, at most 2 per family', () => {
     for (let seed = 1; seed <= 200; seed++) {
       const rounds = planRounds(cities, categories, 5, seededRandom(seed));
