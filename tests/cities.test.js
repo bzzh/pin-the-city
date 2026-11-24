@@ -23,6 +23,19 @@ describe('cities.json', () => {
     }
   });
 
+  it('has time zones, distances to the sea and capitals', () => {
+    for (const city of cities) {
+      expect(city.utcOffset, city.name).toBeGreaterThanOrEqual(-12);
+      expect(city.utcOffset, city.name).toBeLessThanOrEqual(14);
+      expect(city.coastKm, city.name).toBeGreaterThanOrEqual(0);
+      expect(city.coastKm, city.name).toBeLessThan(2600);
+    }
+    const capital = (name) => cities.find((city) => city.name === name).capital;
+    expect(capital('Canberra')).toBe(true);
+    expect(capital('Sydney')).toBeUndefined();
+    expect(cities.find((city) => city.name === 'Kathmandu').utcOffset).toBe(5.75);
+  });
+
   it('can make a fair trio for every category', () => {
     for (const category of categories) {
       expect(pickTrio(cities, category), category.id).not.toBeNull();

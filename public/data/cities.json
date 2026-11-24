@@ -10,7 +10,11 @@
   "areaKm2": 1572,
   "elevationM": 4,
   "avgTempC": 10.9,
-  "rainMmYear": 641
+  "rainMmYear": 641,
+  "utcOffset": 0,
+  "coastKm": 36,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q18125",
@@ -23,7 +27,9 @@
   "areaKm2": 115.6,
   "elevationM": 38,
   "avgTempC": 10.2,
-  "rainMmYear": 850
+  "rainMmYear": 850,
+  "utcOffset": 0,
+  "coastKm": 33
  },
  {
   "id": "Q24826",
@@ -36,7 +42,9 @@
   "areaKm2": 111.8,
   "elevationM": 70,
   "avgTempC": 9.5,
-  "rainMmYear": 750
+  "rainMmYear": 750,
+  "utcOffset": 0,
+  "coastKm": 2
  },
  {
   "id": "Q2256",
@@ -49,7 +57,9 @@
   "areaKm2": 267.8,
   "elevationM": 140,
   "avgTempC": 9.4,
-  "rainMmYear": 830
+  "rainMmYear": 830,
+  "utcOffset": 0,
+  "coastKm": 85
  },
  {
   "id": "Q23436",
@@ -62,7 +72,10 @@
   "areaKm2": 259,
   "elevationM": 47,
   "avgTempC": 8.9,
-  "rainMmYear": 647
+  "rainMmYear": 647,
+  "utcOffset": 0,
+  "coastKm": 5,
+  "regionCapital": true
  },
  {
   "id": "Q4093",
@@ -73,7 +86,9 @@
   "region": "Scotland",
   "population": 626410,
   "avgTempC": 8.7,
-  "rainMmYear": 1234
+  "rainMmYear": 1234,
+  "utcOffset": 0,
+  "coastKm": 16
  },
  {
   "id": "Q10686",
@@ -86,7 +101,10 @@
   "areaKm2": 115,
   "elevationM": 3,
   "avgTempC": 9.8,
-  "rainMmYear": 934
+  "rainMmYear": 934,
+  "utcOffset": 0,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q10690",
@@ -99,7 +117,10 @@
   "areaKm2": 140.3,
   "elevationM": 41,
   "avgTempC": 10.3,
-  "rainMmYear": 1034
+  "rainMmYear": 1034,
+  "utcOffset": 0,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q1761",
@@ -112,7 +133,11 @@
   "areaKm2": 115,
   "elevationM": 20,
   "avgTempC": 9.9,
-  "rainMmYear": 723
+  "rainMmYear": 723,
+  "utcOffset": 0,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q90",
@@ -125,7 +150,11 @@
   "areaKm2": 105.4,
   "elevationM": 48,
   "avgTempC": 11.8,
-  "rainMmYear": 658
+  "rainMmYear": 658,
+  "utcOffset": 1,
+  "coastKm": 149,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q23482",
@@ -137,7 +166,10 @@
   "population": 886040,
   "areaKm2": 240.6,
   "avgTempC": 15.4,
-  "rainMmYear": 575
+  "rainMmYear": 575,
+  "utcOffset": 1,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q456",
@@ -150,7 +182,10 @@
   "areaKm2": 47.9,
   "elevationM": 312,
   "avgTempC": 11.2,
-  "rainMmYear": 836
+  "rainMmYear": 836,
+  "utcOffset": 1,
+  "coastKm": 244,
+  "regionCapital": true
  },
  {
   "id": "Q7880",
@@ -163,7 +198,10 @@
   "areaKm2": 118.3,
   "elevationM": 115,
   "avgTempC": 13.4,
-  "rainMmYear": 673
+  "rainMmYear": 673,
+  "utcOffset": 1,
+  "coastKm": 146,
+  "regionCapital": true
  },
  {
   "id": "Q33959",
@@ -176,7 +214,9 @@
   "areaKm2": 71.9,
   "elevationM": 15,
   "avgTempC": 15.6,
-  "rainMmYear": 800
+  "rainMmYear": 800,
+  "utcOffset": 1,
+  "coastKm": 1
  },
  {
   "id": "Q1479",
@@ -189,7 +229,10 @@
   "areaKm2": 49.4,
   "elevationM": 9,
   "avgTempC": 13.3,
-  "rainMmYear": 923
+  "rainMmYear": 923,
+  "utcOffset": 1,
+  "coastKm": 7,
+  "regionCapital": true
  },
  {
   "id": "Q6602",
@@ -202,7 +245,10 @@
   "areaKm2": 78.3,
   "elevationM": 151,
   "avgTempC": 10.6,
-  "rainMmYear": 770
+  "rainMmYear": 770,
+  "utcOffset": 1,
+  "coastKm": 388,
+  "regionCapital": true
  },
  {
   "id": "Q239",
@@ -215,7 +261,11 @@
   "areaKm2": 33.1,
   "elevationM": 70,
   "avgTempC": 10.5,
-  "rainMmYear": 796
+  "rainMmYear": 796,
+  "utcOffset": 1,
+  "coastKm": 47,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q12892",
@@ -228,7 +278,9 @@
   "areaKm2": 208.2,
   "elevationM": 7,
   "avgTempC": 10.6,
-  "rainMmYear": 796
+  "rainMmYear": 796,
+  "utcOffset": 1,
+  "coastKm": 8
  },
  {
   "id": "Q727",
@@ -241,7 +293,10 @@
   "areaKm2": 219,
   "elevationM": -2,
   "avgTempC": 10,
-  "rainMmYear": 852
+  "rainMmYear": 852,
+  "utcOffset": 1,
+  "coastKm": 23,
+  "capital": true
  },
  {
   "id": "Q34370",
@@ -254,7 +309,9 @@
   "areaKm2": 319.4,
   "elevationM": 10,
   "avgTempC": 9.8,
-  "rainMmYear": 871
+  "rainMmYear": 871,
+  "utcOffset": 1,
+  "coastKm": 25
  },
  {
   "id": "Q1842",
@@ -267,7 +324,11 @@
   "areaKm2": 51.7,
   "elevationM": 300,
   "avgTempC": 9.3,
-  "rainMmYear": 849
+  "rainMmYear": 849,
+  "utcOffset": 1,
+  "coastKm": 225,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q64",
@@ -279,7 +340,11 @@
   "areaKm2": 891.1,
   "elevationM": 34,
   "avgTempC": 9.8,
-  "rainMmYear": 571
+  "rainMmYear": 571,
+  "utcOffset": 1,
+  "coastKm": 143,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1055",
@@ -291,7 +356,10 @@
   "areaKm2": 755.1,
   "elevationM": 6,
   "avgTempC": 9.5,
-  "rainMmYear": 743
+  "rainMmYear": 743,
+  "utcOffset": 1,
+  "coastKm": 11,
+  "ownRegion": true
  },
  {
   "id": "Q1726",
@@ -304,7 +372,10 @@
   "areaKm2": 310.7,
   "elevationM": 519,
   "avgTempC": 9.2,
-  "rainMmYear": 963
+  "rainMmYear": 963,
+  "utcOffset": 1,
+  "coastKm": 288,
+  "regionCapital": true
  },
  {
   "id": "Q1794",
@@ -317,7 +388,9 @@
   "areaKm2": 248.3,
   "elevationM": 112,
   "avgTempC": 10.4,
-  "rainMmYear": 661
+  "rainMmYear": 661,
+  "utcOffset": 1,
+  "coastKm": 334
  },
  {
   "id": "Q365",
@@ -330,7 +403,9 @@
   "areaKm2": 405,
   "elevationM": 59,
   "avgTempC": 10.8,
-  "rainMmYear": 784
+  "rainMmYear": 784,
+  "utcOffset": 1,
+  "coastKm": 188
  },
  {
   "id": "Q1022",
@@ -343,7 +418,10 @@
   "areaKm2": 207.4,
   "elevationM": 247,
   "avgTempC": 9.9,
-  "rainMmYear": 700
+  "rainMmYear": 700,
+  "utcOffset": 1,
+  "coastKm": 434,
+  "regionCapital": true
  },
  {
   "id": "Q1731",
@@ -356,7 +434,10 @@
   "areaKm2": 328.5,
   "elevationM": 126,
   "avgTempC": 10,
-  "rainMmYear": 648
+  "rainMmYear": 648,
+  "utcOffset": 1,
+  "coastKm": 289,
+  "regionCapital": true
  },
  {
   "id": "Q2079",
@@ -369,7 +450,9 @@
   "areaKm2": 297.8,
   "elevationM": 110,
   "avgTempC": 9.6,
-  "rainMmYear": 537
+  "rainMmYear": 537,
+  "utcOffset": 1,
+  "coastKm": 291
  },
  {
   "id": "Q72",
@@ -382,7 +465,10 @@
   "areaKm2": 87.9,
   "elevationM": 408,
   "avgTempC": 9.9,
-  "rainMmYear": 1107
+  "rainMmYear": 1107,
+  "utcOffset": 1,
+  "coastKm": 328,
+  "regionCapital": true
  },
  {
   "id": "Q71",
@@ -394,7 +480,10 @@
   "population": 211152,
   "areaKm2": 15.9,
   "avgTempC": 10.2,
-  "rainMmYear": 971
+  "rainMmYear": 971,
+  "utcOffset": 1,
+  "coastKm": 278,
+  "regionCapital": true
  },
  {
   "id": "Q70",
@@ -407,7 +496,11 @@
   "areaKm2": 51.6,
   "elevationM": 542,
   "avgTempC": 9.1,
-  "rainMmYear": 1045
+  "rainMmYear": 1045,
+  "utcOffset": 1,
+  "coastKm": 297,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1741",
@@ -419,7 +512,11 @@
   "areaKm2": 414.8,
   "elevationM": 198,
   "avgTempC": 10.3,
-  "rainMmYear": 582
+  "rainMmYear": 582,
+  "utcOffset": 1,
+  "coastKm": 342,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q34713",
@@ -431,7 +528,10 @@
   "areaKm2": 65.7,
   "elevationM": 424,
   "avgTempC": 9.1,
-  "rainMmYear": 1222
+  "rainMmYear": 1222,
+  "utcOffset": 1,
+  "coastKm": 225,
+  "regionCapital": true
  },
  {
   "id": "Q2807",
@@ -444,7 +544,11 @@
   "areaKm2": 604.5,
   "elevationM": 663,
   "avgTempC": 14.3,
-  "rainMmYear": 416
+  "rainMmYear": 416,
+  "utcOffset": 1,
+  "coastKm": 305,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1492",
@@ -457,7 +561,10 @@
   "areaKm2": 101.3,
   "elevationM": 9,
   "avgTempC": 16,
-  "rainMmYear": 617
+  "rainMmYear": 617,
+  "utcOffset": 1,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q8818",
@@ -470,7 +577,10 @@
   "areaKm2": 134.7,
   "elevationM": 15,
   "avgTempC": 17.6,
-  "rainMmYear": 440
+  "rainMmYear": 440,
+  "utcOffset": 1,
+  "coastKm": 4,
+  "regionCapital": true
  },
  {
   "id": "Q8717",
@@ -483,7 +593,10 @@
   "areaKm2": 140.8,
   "elevationM": 18,
   "avgTempC": 18.6,
-  "rainMmYear": 540
+  "rainMmYear": 540,
+  "utcOffset": 1,
+  "coastKm": 54,
+  "regionCapital": true
  },
  {
   "id": "Q8851",
@@ -496,7 +609,9 @@
   "areaKm2": 395,
   "elevationM": 18,
   "avgTempC": 18.2,
-  "rainMmYear": 532
+  "rainMmYear": 532,
+  "utcOffset": 1,
+  "coastKm": 0
  },
  {
   "id": "Q597",
@@ -508,7 +623,11 @@
   "areaKm2": 100.1,
   "elevationM": 100,
   "avgTempC": 16.6,
-  "rainMmYear": 708
+  "rainMmYear": 708,
+  "utcOffset": 0,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q36433",
@@ -521,7 +640,9 @@
   "areaKm2": 41.4,
   "elevationM": 104,
   "avgTempC": 14.4,
-  "rainMmYear": 1237
+  "rainMmYear": 1237,
+  "utcOffset": 0,
+  "coastKm": 3
  },
  {
   "id": "Q220",
@@ -534,7 +655,11 @@
   "areaKm2": 1287.4,
   "elevationM": 21,
   "avgTempC": 15.8,
-  "rainMmYear": 689
+  "rainMmYear": 689,
+  "utcOffset": 1,
+  "coastKm": 24,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q490",
@@ -547,7 +672,10 @@
   "areaKm2": 181.7,
   "elevationM": 138,
   "avgTempC": 12.9,
-  "rainMmYear": 973
+  "rainMmYear": 973,
+  "utcOffset": 1,
+  "coastKm": 119,
+  "regionCapital": true
  },
  {
   "id": "Q2634",
@@ -560,7 +688,10 @@
   "areaKm2": 119,
   "elevationM": 17,
   "avgTempC": 16.3,
-  "rainMmYear": 952
+  "rainMmYear": 952,
+  "utcOffset": 1,
+  "coastKm": 0,
+  "regionCapital": true
  },
  {
   "id": "Q495",
@@ -573,7 +704,10 @@
   "areaKm2": 130,
   "elevationM": 239,
   "avgTempC": 13.2,
-  "rainMmYear": 817
+  "rainMmYear": 817,
+  "utcOffset": 1,
+  "coastKm": 106,
+  "regionCapital": true
  },
  {
   "id": "Q2044",
@@ -586,7 +720,10 @@
   "areaKm2": 102.3,
   "elevationM": 50,
   "avgTempC": 15.2,
-  "rainMmYear": 917
+  "rainMmYear": 917,
+  "utcOffset": 1,
+  "coastKm": 78,
+  "regionCapital": true
  },
  {
   "id": "Q641",
@@ -599,7 +736,10 @@
   "areaKm2": 415.9,
   "elevationM": 2,
   "avgTempC": 13.2,
-  "rainMmYear": 760
+  "rainMmYear": 760,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q1891",
@@ -612,7 +752,10 @@
   "areaKm2": 140.9,
   "elevationM": 54,
   "avgTempC": 14,
-  "rainMmYear": 754
+  "rainMmYear": 754,
+  "utcOffset": 1,
+  "coastKm": 74,
+  "regionCapital": true
  },
  {
   "id": "Q2656",
@@ -625,7 +768,10 @@
   "areaKm2": 160.6,
   "elevationM": 14,
   "avgTempC": 18.6,
-  "rainMmYear": 469
+  "rainMmYear": 469,
+  "utcOffset": 1,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q23800",
@@ -638,7 +784,10 @@
   "areaKm2": 0.8,
   "elevationM": 56,
   "avgTempC": 19,
-  "rainMmYear": 529
+  "rainMmYear": 529,
+  "utcOffset": 1,
+  "coastKm": 0,
+  "capital": true
  },
  {
   "id": "Q1748",
@@ -651,7 +800,10 @@
   "areaKm2": 90.9,
   "elevationM": 14,
   "avgTempC": 8.6,
-  "rainMmYear": 619
+  "rainMmYear": 619,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "capital": true
  },
  {
   "id": "Q1754",
@@ -663,7 +815,11 @@
   "population": 984748,
   "areaKm2": 187.2,
   "avgTempC": 6.4,
-  "rainMmYear": 574
+  "rainMmYear": 574,
+  "utcOffset": 1,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q25287",
@@ -676,7 +832,10 @@
   "areaKm2": 271.6,
   "elevationM": 12,
   "avgTempC": 7.9,
-  "rainMmYear": 809
+  "rainMmYear": 809,
+  "utcOffset": 1,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q585",
@@ -689,7 +848,11 @@
   "areaKm2": 454.1,
   "elevationM": 23,
   "avgTempC": 6.5,
-  "rainMmYear": 703
+  "rainMmYear": 703,
+  "utcOffset": 1,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q26793",
@@ -702,7 +865,10 @@
   "areaKm2": 87.2,
   "elevationM": 5,
   "avgTempC": 7.9,
-  "rainMmYear": 2275
+  "rainMmYear": 2275,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q42328401",
@@ -715,7 +881,10 @@
   "areaKm2": 21.3,
   "elevationM": 6,
   "avgTempC": 4.1,
-  "rainMmYear": 973
+  "rainMmYear": 973,
+  "utcOffset": 1,
+  "coastKm": 4,
+  "regionCapital": true
  },
  {
   "id": "Q1757",
@@ -728,7 +897,11 @@
   "areaKm2": 214.4,
   "elevationM": 17,
   "avgTempC": 5.3,
-  "rainMmYear": 646
+  "rainMmYear": 646,
+  "utcOffset": 2,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1764",
@@ -741,7 +914,11 @@
   "areaKm2": 244,
   "elevationM": 8,
   "avgTempC": 4.6,
-  "rainMmYear": 927
+  "rainMmYear": 927,
+  "utcOffset": 0,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1770",
@@ -754,7 +931,11 @@
   "areaKm2": 159.4,
   "elevationM": 28,
   "avgTempC": 5.9,
-  "rainMmYear": 659
+  "rainMmYear": 659,
+  "utcOffset": 2,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1773",
@@ -766,7 +947,11 @@
   "areaKm2": 304,
   "elevationM": 6,
   "avgTempC": 6.7,
-  "rainMmYear": 658
+  "rainMmYear": 658,
+  "utcOffset": 2,
+  "coastKm": 12,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q216",
@@ -779,7 +964,11 @@
   "areaKm2": 401,
   "elevationM": 112,
   "avgTempC": 6.7,
-  "rainMmYear": 650
+  "rainMmYear": 650,
+  "utcOffset": 2,
+  "coastKm": 260,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q270",
@@ -792,7 +981,11 @@
   "areaKm2": 517.2,
   "elevationM": 118,
   "avgTempC": 8.2,
-  "rainMmYear": 514
+  "rainMmYear": 514,
+  "utcOffset": 1,
+  "coastKm": 262,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q31487",
@@ -805,7 +998,10 @@
   "areaKm2": 327,
   "elevationM": 219,
   "avgTempC": 9,
-  "rainMmYear": 686
+  "rainMmYear": 686,
+  "utcOffset": 1,
+  "coastKm": 481,
+  "regionCapital": true
  },
  {
   "id": "Q1792",
@@ -818,7 +1014,10 @@
   "areaKm2": 683,
   "elevationM": 11,
   "avgTempC": 8.3,
-  "rainMmYear": 631
+  "rainMmYear": 631,
+  "utcOffset": 1,
+  "coastKm": 6,
+  "regionCapital": true
  },
  {
   "id": "Q1085",
@@ -830,7 +1029,12 @@
   "areaKm2": 496.2,
   "elevationM": 235,
   "avgTempC": 9.7,
-  "rainMmYear": 499
+  "rainMmYear": 499,
+  "utcOffset": 1,
+  "coastKm": 391,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1780",
@@ -843,7 +1047,11 @@
   "areaKm2": 367.7,
   "elevationM": 152,
   "avgTempC": 10.2,
-  "rainMmYear": 616
+  "rainMmYear": 616,
+  "utcOffset": 1,
+  "coastKm": 372,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1781",
@@ -855,7 +1063,11 @@
   "areaKm2": 525.1,
   "elevationM": 117,
   "avgTempC": 11.3,
-  "rainMmYear": 531
+  "rainMmYear": 531,
+  "utcOffset": 1,
+  "coastKm": 418,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q437",
@@ -868,7 +1080,11 @@
   "areaKm2": 163.8,
   "elevationM": 309,
   "avgTempC": 9.5,
-  "rainMmYear": 1398
+  "rainMmYear": 1398,
+  "utcOffset": 1,
+  "coastKm": 72,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1435",
@@ -880,7 +1096,11 @@
   "areaKm2": 641.2,
   "elevationM": 127,
   "avgTempC": 11.3,
-  "rainMmYear": 885
+  "rainMmYear": 885,
+  "utcOffset": 1,
+  "coastKm": 118,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q11194",
@@ -893,7 +1113,11 @@
   "areaKm2": 141.5,
   "elevationM": 527,
   "avgTempC": 10.7,
-  "rainMmYear": 1051
+  "rainMmYear": 1051,
+  "utcOffset": 1,
+  "coastKm": 118,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3711",
@@ -906,7 +1130,11 @@
   "areaKm2": 360,
   "elevationM": 117,
   "avgTempC": 11.9,
-  "rainMmYear": 670
+  "rainMmYear": 670,
+  "utcOffset": 1,
+  "coastKm": 296,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q23564",
@@ -918,7 +1146,12 @@
   "population": 150977,
   "elevationM": 49,
   "avgTempC": 15.2,
-  "rainMmYear": 1570
+  "rainMmYear": 1570,
+  "utcOffset": 1,
+  "coastKm": 36,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q384",
@@ -930,7 +1163,11 @@
   "areaKm2": 571.5,
   "elevationM": 251,
   "avgTempC": 12.5,
-  "rainMmYear": 511
+  "rainMmYear": 511,
+  "utcOffset": 1,
+  "coastKm": 153,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q19689",
@@ -943,7 +1180,11 @@
   "areaKm2": 41.8,
   "elevationM": 110,
   "avgTempC": 15.3,
-  "rainMmYear": 1205
+  "rainMmYear": 1205,
+  "utcOffset": 1,
+  "coastKm": 26,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q472",
@@ -956,7 +1197,11 @@
   "areaKm2": 492,
   "elevationM": 560,
   "avgTempC": 10.1,
-  "rainMmYear": 617
+  "rainMmYear": 617,
+  "utcOffset": 2,
+  "coastKm": 215,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q19660",
@@ -968,7 +1213,12 @@
   "areaKm2": 226,
   "elevationM": 70,
   "avgTempC": 10.7,
-  "rainMmYear": 579
+  "rainMmYear": 579,
+  "utcOffset": 2,
+  "coastKm": 198,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q21197",
@@ -981,7 +1231,11 @@
   "areaKm2": 123,
   "elevationM": 85,
   "avgTempC": 10.2,
-  "rainMmYear": 546
+  "rainMmYear": 546,
+  "utcOffset": 2,
+  "coastKm": 147,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1899",
@@ -993,7 +1247,11 @@
   "areaKm2": 848,
   "elevationM": 179,
   "avgTempC": 7.9,
-  "rainMmYear": 607
+  "rainMmYear": 607,
+  "utcOffset": 2,
+  "coastKm": 366,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q36036",
@@ -1006,7 +1264,10 @@
   "areaKm2": 182,
   "elevationM": 296,
   "avgTempC": 7.4,
-  "rainMmYear": 690
+  "rainMmYear": 690,
+  "utcOffset": 2,
+  "coastKm": 594,
+  "regionCapital": true
  },
  {
   "id": "Q1874",
@@ -1019,7 +1280,10 @@
   "areaKm2": 236.9,
   "elevationM": 40,
   "avgTempC": 10.2,
-  "rainMmYear": 458
+  "rainMmYear": 458,
+  "utcOffset": 2,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q2280",
@@ -1031,7 +1295,12 @@
   "areaKm2": 409.5,
   "elevationM": 280,
   "avgTempC": 5.7,
-  "rainMmYear": 648
+  "rainMmYear": 648,
+  "utcOffset": 3,
+  "coastKm": 414,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1524",
@@ -1044,7 +1313,11 @@
   "areaKm2": 39,
   "elevationM": 74,
   "avgTempC": 17.9,
-  "rainMmYear": 401
+  "rainMmYear": 401,
+  "utcOffset": 2,
+  "coastKm": 6,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q17151",
@@ -1057,7 +1330,10 @@
   "areaKm2": 19.3,
   "elevationM": 6,
   "avgTempC": 15.3,
-  "rainMmYear": 450
+  "rainMmYear": 450,
+  "utcOffset": 2,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q3856",
@@ -1070,7 +1346,10 @@
   "areaKm2": 51.1,
   "elevationM": 220,
   "avgTempC": 19.2,
-  "rainMmYear": 352
+  "rainMmYear": 352,
+  "utcOffset": 2,
+  "coastKm": 18,
+  "capital": true
  },
  {
   "id": "Q649",
@@ -1082,7 +1361,11 @@
   "areaKm2": 2562,
   "elevationM": 156,
   "avgTempC": 5.3,
-  "rainMmYear": 685
+  "rainMmYear": 685,
+  "utcOffset": 3,
+  "coastKm": 635,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q656",
@@ -1094,7 +1377,10 @@
   "areaKm2": 1439,
   "elevationM": 3,
   "avgTempC": 5.4,
-  "rainMmYear": 648
+  "rainMmYear": 648,
+  "utcOffset": 3,
+  "coastKm": 5,
+  "ownRegion": true
  },
  {
   "id": "Q900",
@@ -1107,7 +1393,10 @@
   "areaKm2": 425.3,
   "elevationM": 60,
   "avgTempC": 4.2,
-  "rainMmYear": 523
+  "rainMmYear": 523,
+  "utcOffset": 3,
+  "coastKm": 975,
+  "regionCapital": true
  },
  {
   "id": "Q39420",
@@ -1120,7 +1409,9 @@
   "areaKm2": 176.8,
   "elevationM": 65,
   "avgTempC": 14.2,
-  "rainMmYear": 1618
+  "rainMmYear": 1618,
+  "utcOffset": 3,
+  "coastKm": 1
  },
  {
   "id": "Q1763",
@@ -1133,7 +1424,10 @@
   "areaKm2": 168.1,
   "elevationM": 50,
   "avgTempC": 0.2,
-  "rainMmYear": 482
+  "rainMmYear": 482,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q887",
@@ -1146,7 +1440,10 @@
   "areaKm2": 468,
   "elevationM": 237,
   "avgTempC": 2.5,
-  "rainMmYear": 518
+  "rainMmYear": 518,
+  "utcOffset": 5,
+  "coastKm": 1169,
+  "regionCapital": true
  },
  {
   "id": "Q883",
@@ -1159,7 +1456,10 @@
   "areaKm2": 505.6,
   "elevationM": 153,
   "avgTempC": 1.5,
-  "rainMmYear": 447
+  "rainMmYear": 447,
+  "utcOffset": 7,
+  "coastKm": 1374,
+  "regionCapital": true
  },
  {
   "id": "Q6576",
@@ -1172,7 +1472,10 @@
   "areaKm2": 277,
   "elevationM": 440,
   "avgTempC": 0.8,
-  "rainMmYear": 435
+  "rainMmYear": 435,
+  "utcOffset": 8,
+  "coastKm": 1792,
+  "regionCapital": true
  },
  {
   "id": "Q6610",
@@ -1185,7 +1488,10 @@
   "areaKm2": 122,
   "elevationM": 95,
   "avgTempC": -9.3,
-  "rainMmYear": 253
+  "rainMmYear": 253,
+  "utcOffset": 9,
+  "coastKm": 737,
+  "regionCapital": true
  },
  {
   "id": "Q175517",
@@ -1198,7 +1504,9 @@
   "areaKm2": 23.2,
   "elevationM": 90,
   "avgTempC": -8.4,
-  "rainMmYear": 542
+  "rainMmYear": 542,
+  "utcOffset": 7,
+  "coastKm": 211
  },
  {
   "id": "Q959",
@@ -1211,7 +1519,10 @@
   "areaKm2": 331.2,
   "elevationM": 12,
   "avgTempC": 5.5,
-  "rainMmYear": 716
+  "rainMmYear": 716,
+  "utcOffset": 10,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q406",
@@ -1223,7 +1534,11 @@
   "population": 15655924,
   "elevationM": 100,
   "avgTempC": 14.2,
-  "rainMmYear": 716
+  "rainMmYear": 716,
+  "utcOffset": 3,
+  "coastKm": 1,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q3640",
@@ -1235,7 +1550,12 @@
   "population": 5803482,
   "elevationM": 938,
   "avgTempC": 10.9,
-  "rainMmYear": 396
+  "rainMmYear": 396,
+  "utcOffset": 3,
+  "coastKm": 185,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q35997",
@@ -1248,7 +1568,11 @@
   "areaKm2": 944,
   "elevationM": 9,
   "avgTempC": 17.8,
-  "rainMmYear": 685
+  "rainMmYear": 685,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q6487",
@@ -1261,7 +1585,11 @@
   "areaKm2": 1417,
   "elevationM": 30,
   "avgTempC": 18.1,
-  "rainMmYear": 740
+  "rainMmYear": 740,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q994",
@@ -1273,7 +1601,12 @@
   "areaKm2": 720,
   "elevationM": 575,
   "avgTempC": 12.4,
-  "rainMmYear": 539
+  "rainMmYear": 539,
+  "utcOffset": 4,
+  "coastKm": 251,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1953",
@@ -1285,7 +1618,11 @@
   "areaKm2": 227,
   "elevationM": 987,
   "avgTempC": 11.4,
-  "rainMmYear": 340
+  "rainMmYear": 340,
+  "utcOffset": 4,
+  "coastKm": 290,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9248",
@@ -1297,7 +1634,11 @@
   "areaKm2": 2140,
   "elevationM": -28,
   "avgTempC": 14.2,
-  "rainMmYear": 244
+  "rainMmYear": 244,
+  "utcOffset": 4,
+  "coastKm": 3,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q3820",
@@ -1309,7 +1650,11 @@
   "population": 2421354,
   "elevationM": 0,
   "avgTempC": 20.5,
-  "rainMmYear": 850
+  "rainMmYear": 850,
+  "utcOffset": 2,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3766",
@@ -1322,7 +1667,11 @@
   "areaKm2": 105,
   "elevationM": 680,
   "avgTempC": 17.1,
-  "rainMmYear": 315
+  "rainMmYear": 315,
+  "utcOffset": 3,
+  "coastKm": 80,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q41183",
@@ -1335,7 +1684,10 @@
   "areaKm2": 190,
   "elevationM": 379,
   "avgTempC": 17.7,
-  "rainMmYear": 321
+  "rainMmYear": 321,
+  "utcOffset": 3,
+  "coastKm": 98,
+  "regionCapital": true
  },
  {
   "id": "Q3805",
@@ -1348,7 +1700,11 @@
   "areaKm2": 1680,
   "elevationM": 776,
   "avgTempC": 17.3,
-  "rainMmYear": 299
+  "rainMmYear": 299,
+  "utcOffset": 3,
+  "coastKm": 110,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1218",
@@ -1361,7 +1717,11 @@
   "areaKm2": 125.4,
   "elevationM": 754,
   "avgTempC": 16.3,
-  "rainMmYear": 439
+  "rainMmYear": 439,
+  "utcOffset": 2,
+  "coastKm": 53,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q33935",
@@ -1374,7 +1734,10 @@
   "areaKm2": 52,
   "elevationM": 5,
   "avgTempC": 19.9,
-  "rainMmYear": 556
+  "rainMmYear": 556,
+  "utcOffset": 2,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q1530",
@@ -1387,7 +1750,11 @@
   "areaKm2": 673,
   "elevationM": 34,
   "avgTempC": 22.8,
-  "rainMmYear": 157
+  "rainMmYear": 157,
+  "utcOffset": 3,
+  "coastKm": 491,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3616",
@@ -1400,7 +1767,11 @@
   "areaKm2": 686,
   "elevationM": 1179,
   "avgTempC": 16.8,
-  "rainMmYear": 246
+  "rainMmYear": 246,
+  "utcOffset": 3.5,
+  "coastKm": 108,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q42053",
@@ -1413,7 +1784,10 @@
   "areaKm2": 493.8,
   "elevationM": 1574,
   "avgTempC": 15.5,
-  "rainMmYear": 142
+  "rainMmYear": 142,
+  "utcOffset": 3.5,
+  "coastKm": 312,
+  "regionCapital": true
  },
  {
   "id": "Q121157",
@@ -1426,7 +1800,10 @@
   "areaKm2": 328,
   "elevationM": 982,
   "avgTempC": 14.1,
-  "rainMmYear": 274
+  "rainMmYear": 274,
+  "utcOffset": 3.5,
+  "coastKm": 501,
+  "regionCapital": true
  },
  {
   "id": "Q6397066",
@@ -1439,7 +1816,10 @@
   "areaKm2": 240,
   "elevationM": 1545,
   "avgTempC": 18.3,
-  "rainMmYear": 195
+  "rainMmYear": 195,
+  "utcOffset": 3.5,
+  "coastKm": 167,
+  "regionCapital": true
  },
  {
   "id": "Q3692",
@@ -1452,7 +1832,10 @@
   "areaKm2": 1798,
   "elevationM": 612,
   "avgTempC": 26.2,
-  "rainMmYear": 125
+  "rainMmYear": 125,
+  "utcOffset": 3,
+  "coastKm": 362,
+  "capital": true
  },
  {
   "id": "Q374365",
@@ -1464,7 +1847,9 @@
   "population": 4697000,
   "elevationM": 12,
   "avgTempC": 28,
-  "rainMmYear": 81
+  "rainMmYear": 81,
+  "utcOffset": 3,
+  "coastKm": 2
  },
  {
   "id": "Q5806",
@@ -1477,7 +1862,9 @@
   "areaKm2": 760,
   "elevationM": 277,
   "avgTempC": 30.4,
-  "rainMmYear": 88
+  "rainMmYear": 88,
+  "utcOffset": 3,
+  "coastKm": 68
  },
  {
   "id": "Q35484",
@@ -1490,7 +1877,9 @@
   "areaKm2": 589,
   "elevationM": 608,
   "avgTempC": 28,
-  "rainMmYear": 70
+  "rainMmYear": 70,
+  "utcOffset": 3,
+  "coastKm": 140
  },
  {
   "id": "Q35178",
@@ -1501,7 +1890,10 @@
   "population": 2989000,
   "elevationM": 16,
   "avgTempC": 25.9,
-  "rainMmYear": 113
+  "rainMmYear": 113,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "capital": true
  },
  {
   "id": "Q3882",
@@ -1513,7 +1905,11 @@
   "population": 297502,
   "areaKm2": 30,
   "avgTempC": 26.4,
-  "rainMmYear": 82
+  "rainMmYear": 82,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3861",
@@ -1526,7 +1922,11 @@
   "areaKm2": 132,
   "elevationM": 0,
   "avgTempC": 27.1,
-  "rainMmYear": 84
+  "rainMmYear": 84,
+  "utcOffset": 3,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1519",
@@ -1539,7 +1939,11 @@
   "areaKm2": 972,
   "elevationM": 14,
   "avgTempC": 27.3,
-  "rainMmYear": 62
+  "rainMmYear": 62,
+  "utcOffset": 4,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q612",
@@ -1551,7 +1955,10 @@
   "population": 3944751,
   "elevationM": 0,
   "avgTempC": 27.4,
-  "rainMmYear": 109
+  "rainMmYear": 109,
+  "utcOffset": 4,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q3826",
@@ -1564,7 +1971,11 @@
   "areaKm2": 3500,
   "elevationM": 69,
   "avgTempC": 27.1,
-  "rainMmYear": 102
+  "rainMmYear": 102,
+  "utcOffset": 4,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q2471",
@@ -1576,7 +1987,11 @@
   "areaKm2": 3450,
   "elevationM": 2150,
   "avgTempC": 20.4,
-  "rainMmYear": 257
+  "rainMmYear": 257,
+  "utcOffset": 3,
+  "coastKm": 143,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q5838",
@@ -1589,7 +2004,11 @@
   "areaKm2": 275,
   "elevationM": 1790,
   "avgTempC": 12.7,
-  "rainMmYear": 321
+  "rainMmYear": 321,
+  "utcOffset": 4.5,
+  "coastKm": 1026,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q269",
@@ -1601,7 +2020,11 @@
   "areaKm2": 334.8,
   "elevationM": 455,
   "avgTempC": 14.5,
-  "rainMmYear": 478
+  "rainMmYear": 478,
+  "utcOffset": 5,
+  "coastKm": 1214,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q5753",
@@ -1614,7 +2037,10 @@
   "areaKm2": 108,
   "elevationM": 702,
   "avgTempC": 14.2,
-  "rainMmYear": 403
+  "rainMmYear": 403,
+  "utcOffset": 5,
+  "coastKm": 1045,
+  "regionCapital": true
  },
  {
   "id": "Q35493",
@@ -1626,7 +2052,10 @@
   "areaKm2": 682,
   "elevationM": 893,
   "avgTempC": 9.2,
-  "rainMmYear": 523
+  "rainMmYear": 523,
+  "utcOffset": 5,
+  "coastKm": 1837,
+  "ownRegion": true
  },
  {
   "id": "Q1520",
@@ -1638,7 +2067,11 @@
   "areaKm2": 797.3,
   "elevationM": 347,
   "avgTempC": 3,
-  "rainMmYear": 295
+  "rainMmYear": 295,
+  "utcOffset": 5,
+  "coastKm": 1416,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9361",
@@ -1650,7 +2083,12 @@
   "areaKm2": 127,
   "elevationM": 750,
   "avgTempC": 11,
-  "rainMmYear": 427
+  "rainMmYear": 427,
+  "utcOffset": 6,
+  "coastKm": 1646,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9365",
@@ -1662,7 +2100,11 @@
   "areaKm2": 124.6,
   "elevationM": 706,
   "avgTempC": 15.6,
-  "rainMmYear": 567
+  "rainMmYear": 567,
+  "utcOffset": 5,
+  "coastKm": 1226,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q23438",
@@ -1674,7 +2116,11 @@
   "areaKm2": 765,
   "elevationM": 219,
   "avgTempC": 16.7,
-  "rainMmYear": 236
+  "rainMmYear": 236,
+  "utcOffset": 5,
+  "coastKm": 397,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q23430",
@@ -1686,7 +2132,11 @@
   "areaKm2": 4704.4,
   "elevationM": 1350,
   "avgTempC": -0.4,
-  "rainMmYear": 283
+  "rainMmYear": 283,
+  "utcOffset": 8,
+  "coastKm": 1309,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1353",
@@ -1699,7 +2149,9 @@
   "areaKm2": 1397.3,
   "elevationM": 221,
   "avgTempC": 25.1,
-  "rainMmYear": 724
+  "rainMmYear": 724,
+  "utcOffset": 5.5,
+  "coastKm": 831
  },
  {
   "id": "Q1156",
@@ -1712,7 +2164,10 @@
   "areaKm2": 603,
   "elevationM": 14,
   "avgTempC": 27.5,
-  "rainMmYear": 2143
+  "rainMmYear": 2143,
+  "utcOffset": 5.5,
+  "coastKm": 5,
+  "regionCapital": true
  },
  {
   "id": "Q1348",
@@ -1725,7 +2180,10 @@
   "areaKm2": 206.1,
   "elevationM": 9,
   "avgTempC": 26.8,
-  "rainMmYear": 1643
+  "rainMmYear": 1643,
+  "utcOffset": 5.5,
+  "coastKm": 47,
+  "regionCapital": true
  },
  {
   "id": "Q1352",
@@ -1738,7 +2196,10 @@
   "areaKm2": 426.8,
   "elevationM": 6,
   "avgTempC": 29,
-  "rainMmYear": 1248
+  "rainMmYear": 1248,
+  "utcOffset": 5.5,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q1355",
@@ -1751,7 +2212,10 @@
   "areaKm2": 741,
   "elevationM": 920,
   "avgTempC": 23.9,
-  "rainMmYear": 810
+  "rainMmYear": 810,
+  "utcOffset": 5.5,
+  "coastKm": 263,
+  "regionCapital": true
  },
  {
   "id": "Q1361",
@@ -1764,7 +2228,10 @@
   "areaKm2": 2053,
   "elevationM": 564,
   "avgTempC": 26.6,
-  "rainMmYear": 766
+  "rainMmYear": 766,
+  "utcOffset": 5.5,
+  "coastKm": 267,
+  "regionCapital": true
  },
  {
   "id": "Q1070",
@@ -1776,7 +2243,9 @@
   "population": 7645000,
   "elevationM": 53,
   "avgTempC": 27.4,
-  "rainMmYear": 765
+  "rainMmYear": 765,
+  "utcOffset": 5.5,
+  "coastKm": 75
  },
  {
   "id": "Q1538",
@@ -1789,7 +2258,9 @@
   "areaKm2": 710,
   "elevationM": 561,
   "avgTempC": 24.8,
-  "rainMmYear": 769
+  "rainMmYear": 769,
+  "utcOffset": 5.5,
+  "coastKm": 87
  },
  {
   "id": "Q66485",
@@ -1801,7 +2272,10 @@
   "population": 3073350,
   "elevationM": 431,
   "avgTempC": 25.2,
-  "rainMmYear": 625
+  "rainMmYear": 625,
+  "utcOffset": 5.5,
+  "coastKm": 593,
+  "regionCapital": true
  },
  {
   "id": "Q42941",
@@ -1814,7 +2288,9 @@
   "areaKm2": 188.4,
   "elevationM": 171,
   "avgTempC": 25.7,
-  "rainMmYear": 800
+  "rainMmYear": 800,
+  "utcOffset": 5.5,
+  "coastKm": 750
  },
  {
   "id": "Q79980",
@@ -1827,7 +2303,9 @@
   "areaKm2": 82.1,
   "elevationM": 76,
   "avgTempC": 26.5,
-  "rainMmYear": 1042
+  "rainMmYear": 1042,
+  "utcOffset": 5.5,
+  "coastKm": 593
  },
  {
   "id": "Q8660",
@@ -1840,7 +2318,10 @@
   "areaKm2": 3527,
   "elevationM": 8,
   "avgTempC": 26.6,
-  "rainMmYear": 142
+  "rainMmYear": 142,
+  "utcOffset": 5,
+  "coastKm": 5,
+  "regionCapital": true
  },
  {
   "id": "Q11739",
@@ -1853,7 +2334,10 @@
   "areaKm2": 1772,
   "elevationM": 217,
   "avgTempC": 24.1,
-  "rainMmYear": 521
+  "rainMmYear": 521,
+  "utcOffset": 5,
+  "coastKm": 1011,
+  "regionCapital": true
  },
  {
   "id": "Q1362",
@@ -1866,7 +2350,11 @@
   "areaKm2": 906,
   "elevationM": 490,
   "avgTempC": 21.5,
-  "rainMmYear": 1012
+  "rainMmYear": 1012,
+  "utcOffset": 5,
+  "coastKm": 1103,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1354",
@@ -1879,7 +2367,11 @@
   "areaKm2": 368,
   "elevationM": 4,
   "avgTempC": 25.9,
-  "rainMmYear": 2133
+  "rainMmYear": 2133,
+  "utcOffset": 6,
+  "coastKm": 18,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q376749",
@@ -1892,7 +2384,10 @@
   "areaKm2": 161,
   "elevationM": 6,
   "avgTempC": 26,
-  "rainMmYear": 2986
+  "rainMmYear": 2986,
+  "utcOffset": 6,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q3037",
@@ -1905,7 +2400,10 @@
   "areaKm2": 49.5,
   "elevationM": 1300,
   "avgTempC": 18.7,
-  "rainMmYear": 1674
+  "rainMmYear": 1674,
+  "utcOffset": 5.75,
+  "coastKm": 643,
+  "capital": true
  },
  {
   "id": "Q9270",
@@ -1918,7 +2416,11 @@
   "areaKm2": 27,
   "elevationM": 2321,
   "avgTempC": 14,
-  "rainMmYear": 1030
+  "rainMmYear": 1030,
+  "utcOffset": 6,
+  "coastKm": 441,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q35381",
@@ -1931,7 +2433,11 @@
   "areaKm2": 37.3,
   "elevationM": 1,
   "avgTempC": 27.7,
-  "rainMmYear": 2445
+  "rainMmYear": 2445,
+  "utcOffset": 5.5,
+  "coastKm": 4,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q9347",
@@ -1944,7 +2450,11 @@
   "areaKm2": 5.8,
   "elevationM": 2,
   "avgTempC": 28.7,
-  "rainMmYear": 1945
+  "rainMmYear": 1945,
+  "utcOffset": 5,
+  "coastKm": 1,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q956",
@@ -1955,7 +2465,11 @@
   "population": 21893095,
   "elevationM": 43,
   "avgTempC": 12.5,
-  "rainMmYear": 578
+  "rainMmYear": 578,
+  "utcOffset": 8,
+  "coastKm": 143,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q8686",
@@ -1966,7 +2480,10 @@
   "population": 24870895,
   "elevationM": 4,
   "avgTempC": 16.5,
-  "rainMmYear": 1061
+  "rainMmYear": 1061,
+  "utcOffset": 8,
+  "coastKm": 17,
+  "ownRegion": true
  },
  {
   "id": "Q16572",
@@ -1978,7 +2495,10 @@
   "population": 18676605,
   "elevationM": 21,
   "avgTempC": 22.3,
-  "rainMmYear": 1692
+  "rainMmYear": 1692,
+  "utcOffset": 8,
+  "coastKm": 15,
+  "regionCapital": true
  },
  {
   "id": "Q15174",
@@ -1991,7 +2511,9 @@
   "areaKm2": 1997.3,
   "elevationM": 0,
   "avgTempC": 23,
-  "rainMmYear": 1908
+  "rainMmYear": 1908,
+  "utcOffset": 8,
+  "coastKm": 3
  },
  {
   "id": "Q8646",
@@ -2003,7 +2525,10 @@
   "areaKm2": 2755,
   "elevationM": 7,
   "avgTempC": 23,
-  "rainMmYear": 2116
+  "rainMmYear": 2116,
+  "utcOffset": 8,
+  "coastKm": 0,
+  "ownRegion": true
  },
  {
   "id": "Q14773",
@@ -2015,7 +2540,10 @@
   "areaKm2": 115.3,
   "elevationM": 22,
   "avgTempC": 22.8,
-  "rainMmYear": 2009
+  "rainMmYear": 2009,
+  "utcOffset": 8,
+  "coastKm": 1,
+  "ownRegion": true
  },
  {
   "id": "Q11725",
@@ -2026,7 +2554,10 @@
   "population": 32054159,
   "elevationM": 237,
   "avgTempC": 18.7,
-  "rainMmYear": 1142
+  "rainMmYear": 1142,
+  "utcOffset": 8,
+  "coastKm": 868,
+  "ownRegion": true
  },
  {
   "id": "Q30002",
@@ -2038,7 +2569,10 @@
   "population": 20937757,
   "elevationM": 500,
   "avgTempC": 16.8,
-  "rainMmYear": 978
+  "rainMmYear": 978,
+  "utcOffset": 8,
+  "coastKm": 1064,
+  "regionCapital": true
  },
  {
   "id": "Q11746",
@@ -2050,7 +2584,10 @@
   "population": 12326518,
   "elevationM": 37,
   "avgTempC": 17.2,
-  "rainMmYear": 1265
+  "rainMmYear": 1265,
+  "utcOffset": 8,
+  "coastKm": 563,
+  "regionCapital": true
  },
  {
   "id": "Q5826",
@@ -2062,7 +2599,10 @@
   "population": 12952907,
   "elevationM": 405,
   "avgTempC": 13.9,
-  "rainMmYear": 624
+  "rainMmYear": 624,
+  "utcOffset": 8,
+  "coastKm": 909,
+  "regionCapital": true
  },
  {
   "id": "Q16666",
@@ -2074,7 +2614,11 @@
   "population": 9314685,
   "elevationM": 15,
   "avgTempC": 16,
-  "rainMmYear": 1072
+  "rainMmYear": 1072,
+  "utcOffset": 8,
+  "coastKm": 201,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q4970",
@@ -2086,7 +2630,10 @@
   "population": 11936010,
   "elevationM": 19,
   "avgTempC": 16.6,
-  "rainMmYear": 1339
+  "rainMmYear": 1339,
+  "utcOffset": 8,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q11736",
@@ -2097,7 +2644,10 @@
   "population": 13866009,
   "elevationM": 5,
   "avgTempC": 13.4,
-  "rainMmYear": 567
+  "rainMmYear": 567,
+  "utcOffset": 8,
+  "coastKm": 44,
+  "ownRegion": true
  },
  {
   "id": "Q170322",
@@ -2109,7 +2659,9 @@
   "population": 10071722,
   "elevationM": 0,
   "avgTempC": 13.2,
-  "rainMmYear": 701
+  "rainMmYear": 701,
+  "utcOffset": 8,
+  "coastKm": 6
  },
  {
   "id": "Q42956",
@@ -2121,7 +2673,10 @@
   "population": 10009854,
   "elevationM": 118,
   "avgTempC": 5,
-  "rainMmYear": 542
+  "rainMmYear": 542,
+  "utcOffset": 8,
+  "coastKm": 470,
+  "regionCapital": true
  },
  {
   "id": "Q182852",
@@ -2133,7 +2688,10 @@
   "population": 8460088,
   "elevationM": 1892,
   "avgTempC": 15.6,
-  "rainMmYear": 938
+  "rainMmYear": 938,
+  "utcOffset": 8,
+  "coastKm": 602,
+  "regionCapital": true
  },
  {
   "id": "Q5869",
@@ -2145,7 +2703,10 @@
   "population": 867891,
   "elevationM": 3650,
   "avgTempC": 7.3,
-  "rainMmYear": 403
+  "rainMmYear": 403,
+  "utcOffset": 8,
+  "coastKm": 674,
+  "regionCapital": true
  },
  {
   "id": "Q16959",
@@ -2157,7 +2718,10 @@
   "population": 4054369,
   "elevationM": 800,
   "avgTempC": 7.7,
-  "rainMmYear": 231
+  "rainMmYear": 231,
+  "utcOffset": 8,
+  "coastKm": 2265,
+  "regionCapital": true
  },
  {
   "id": "Q1867",
@@ -2169,7 +2733,10 @@
   "areaKm2": 271.8,
   "elevationM": 10,
   "avgTempC": 22,
-  "rainMmYear": 2849
+  "rainMmYear": 2849,
+  "utcOffset": 8,
+  "coastKm": 16,
+  "ownRegion": true
  },
  {
   "id": "Q8684",
@@ -2181,7 +2748,11 @@
   "areaKm2": 605.3,
   "elevationM": 38,
   "avgTempC": 12.1,
-  "rainMmYear": 1339
+  "rainMmYear": 1339,
+  "utcOffset": 9,
+  "coastKm": 22,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q16520",
@@ -2193,7 +2764,10 @@
   "areaKm2": 769.8,
   "elevationM": 30,
   "avgTempC": 14.4,
-  "rainMmYear": 1422
+  "rainMmYear": 1422,
+  "utcOffset": 9,
+  "coastKm": 5,
+  "ownRegion": true
  },
  {
   "id": "Q18808",
@@ -2205,7 +2779,11 @@
   "areaKm2": 3194,
   "elevationM": 38,
   "avgTempC": 10.2,
-  "rainMmYear": 1073
+  "rainMmYear": 1073,
+  "utcOffset": 9,
+  "coastKm": 36,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1490",
@@ -2217,7 +2795,11 @@
   "areaKm2": 2194.1,
   "elevationM": 6,
   "avgTempC": 15.8,
-  "rainMmYear": 1466
+  "rainMmYear": 1466,
+  "utcOffset": 9,
+  "coastKm": 8,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q38283",
@@ -2230,7 +2812,10 @@
   "areaKm2": 437.7,
   "elevationM": 24,
   "avgTempC": 15.8,
-  "rainMmYear": 1638
+  "rainMmYear": 1638,
+  "utcOffset": 9,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q35765",
@@ -2243,7 +2828,10 @@
   "areaKm2": 223,
   "elevationM": 20,
   "avgTempC": 16.4,
-  "rainMmYear": 1390
+  "rainMmYear": 1390,
+  "utcOffset": 9,
+  "coastKm": 8,
+  "regionCapital": true
  },
  {
   "id": "Q34600",
@@ -2255,7 +2843,10 @@
   "population": 1463723,
   "areaKm2": 827.8,
   "avgTempC": 14.4,
-  "rainMmYear": 1646
+  "rainMmYear": 1646,
+  "utcOffset": 9,
+  "coastKm": 48,
+  "regionCapital": true
  },
  {
   "id": "Q11751",
@@ -2267,7 +2858,10 @@
   "population": 2326844,
   "areaKm2": 326.4,
   "avgTempC": 15.6,
-  "rainMmYear": 1942
+  "rainMmYear": 1942,
+  "utcOffset": 9,
+  "coastKm": 10,
+  "regionCapital": true
  },
  {
   "id": "Q48320",
@@ -2279,7 +2873,10 @@
   "population": 1521707,
   "areaKm2": 557,
   "avgTempC": 14.8,
-  "rainMmYear": 1409
+  "rainMmYear": 1409,
+  "utcOffset": 9,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q34664",
@@ -2291,7 +2888,10 @@
   "population": 1198021,
   "areaKm2": 905,
   "avgTempC": 15.9,
-  "rainMmYear": 1913
+  "rainMmYear": 1913,
+  "utcOffset": 9,
+  "coastKm": 4,
+  "regionCapital": true
  },
  {
   "id": "Q26600",
@@ -2304,7 +2904,10 @@
   "areaKm2": 340,
   "elevationM": 8,
   "avgTempC": 16.4,
-  "rainMmYear": 1648
+  "rainMmYear": 1648,
+  "utcOffset": 9,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q37951",
@@ -2317,7 +2920,10 @@
   "areaKm2": 1121.3,
   "elevationM": 5,
   "avgTempC": 8.6,
-  "rainMmYear": 1226
+  "rainMmYear": 1226,
+  "utcOffset": 9,
+  "coastKm": 15,
+  "regionCapital": true
  },
  {
   "id": "Q1861",
@@ -2329,7 +2935,11 @@
   "areaKm2": 1568.7,
   "elevationM": 2,
   "avgTempC": 28.6,
-  "rainMmYear": 1402
+  "rainMmYear": 1402,
+  "utcOffset": 7,
+  "coastKm": 18,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q52028",
@@ -2341,7 +2951,10 @@
   "areaKm2": 405,
   "elevationM": 310,
   "avgTempC": 26,
-  "rainMmYear": 1056
+  "rainMmYear": 1056,
+  "utcOffset": 7,
+  "coastKm": 261,
+  "regionCapital": true
  },
  {
   "id": "Q1858",
@@ -2353,7 +2966,11 @@
   "areaKm2": 3359.8,
   "elevationM": 16,
   "avgTempC": 23.7,
-  "rainMmYear": 1621
+  "rainMmYear": 1621,
+  "utcOffset": 7,
+  "coastKm": 83,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q25282",
@@ -2364,7 +2981,10 @@
   "population": 2819900,
   "elevationM": 19,
   "avgTempC": 26.2,
-  "rainMmYear": 2034
+  "rainMmYear": 2034,
+  "utcOffset": 7,
+  "coastKm": 1,
+  "ownRegion": true
  },
  {
   "id": "Q1854",
@@ -2375,7 +2995,10 @@
   "population": 14002598,
   "elevationM": 13,
   "avgTempC": 27.6,
-  "rainMmYear": 1889
+  "rainMmYear": 1889,
+  "utcOffset": 7,
+  "coastKm": 12,
+  "ownRegion": true
  },
  {
   "id": "Q1850",
@@ -2387,7 +3010,11 @@
   "areaKm2": 678.5,
   "elevationM": 11,
   "avgTempC": 28,
-  "rainMmYear": 1325
+  "rainMmYear": 1325,
+  "utcOffset": 7,
+  "coastKm": 133,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9326",
@@ -2399,7 +3026,11 @@
   "areaKm2": 3920,
   "elevationM": 174,
   "avgTempC": 26.4,
-  "rainMmYear": 1692
+  "rainMmYear": 1692,
+  "utcOffset": 7,
+  "coastKm": 333,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q37995",
@@ -2412,7 +3043,10 @@
   "areaKm2": 576,
   "elevationM": 15,
   "avgTempC": 27.4,
-  "rainMmYear": 2567
+  "rainMmYear": 2567,
+  "utcOffset": 6.5,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q185518",
@@ -2425,7 +3059,10 @@
   "areaKm2": 163.8,
   "elevationM": 22,
   "avgTempC": 27.5,
-  "rainMmYear": 812
+  "rainMmYear": 812,
+  "utcOffset": 6.5,
+  "coastKm": 333,
+  "regionCapital": true
  },
  {
   "id": "Q1865",
@@ -2437,7 +3074,10 @@
   "areaKm2": 243.7,
   "elevationM": 50,
   "avgTempC": 27.6,
-  "rainMmYear": 2379
+  "rainMmYear": 2379,
+  "utcOffset": 8,
+  "coastKm": 38,
+  "capital": true
  },
  {
   "id": "Q334",
@@ -2448,7 +3088,10 @@
   "population": 5866139,
   "areaKm2": 719.1,
   "avgTempC": 26.8,
-  "rainMmYear": 2381
+  "rainMmYear": 2381,
+  "utcOffset": 8,
+  "coastKm": 3,
+  "capital": true
  },
  {
   "id": "Q3630",
@@ -2460,7 +3103,11 @@
   "areaKm2": 662,
   "elevationM": 91,
   "avgTempC": 27.1,
-  "rainMmYear": 2071
+  "rainMmYear": 2071,
+  "utcOffset": 7,
+  "coastKm": 8,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q11462",
@@ -2473,7 +3120,10 @@
   "areaKm2": 351,
   "elevationM": 2,
   "avgTempC": 28,
-  "rainMmYear": 1662
+  "rainMmYear": 1662,
+  "utcOffset": 7,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q11506",
@@ -2486,7 +3136,10 @@
   "areaKm2": 124,
   "elevationM": 34,
   "avgTempC": 27.2,
-  "rainMmYear": 1723
+  "rainMmYear": 1723,
+  "utcOffset": 8,
+  "coastKm": 5,
+  "regionCapital": true
  },
  {
   "id": "Q1461",
@@ -2498,7 +3151,11 @@
   "population": 1902590,
   "elevationM": 9,
   "avgTempC": 27.4,
-  "rainMmYear": 2348
+  "rainMmYear": 2348,
+  "utcOffset": 8,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1467",
@@ -2511,7 +3168,10 @@
   "areaKm2": 315,
   "elevationM": 135,
   "avgTempC": 27.1,
-  "rainMmYear": 1559
+  "rainMmYear": 1559,
+  "utcOffset": 8,
+  "coastKm": 0,
+  "regionCapital": true
  },
  {
   "id": "Q9310",
@@ -2524,7 +3184,11 @@
   "areaKm2": 178.6,
   "elevationM": 11,
   "avgTempC": 27.2,
-  "rainMmYear": 960
+  "rainMmYear": 960,
+  "utcOffset": 9,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q9279",
@@ -2537,7 +3201,11 @@
   "areaKm2": 100.4,
   "elevationM": 14,
   "avgTempC": 27.5,
-  "rainMmYear": 3733
+  "rainMmYear": 3733,
+  "utcOffset": 8,
+  "coastKm": 8,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q85",
@@ -2550,7 +3218,11 @@
   "areaKm2": 528,
   "elevationM": 23,
   "avgTempC": 21.7,
-  "rainMmYear": 25
+  "rainMmYear": 25,
+  "utcOffset": 2,
+  "coastKm": 116,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q87",
@@ -2563,7 +3235,10 @@
   "areaKm2": 2523,
   "elevationM": -1,
   "avgTempC": 20.5,
-  "rainMmYear": 173
+  "rainMmYear": 173,
+  "utcOffset": 2,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q130514",
@@ -2576,7 +3251,10 @@
   "areaKm2": 416,
   "elevationM": 89,
   "avgTempC": 24.9,
-  "rainMmYear": 0
+  "rainMmYear": 0,
+  "utcOffset": 2,
+  "coastKm": 167,
+  "regionCapital": true
  },
  {
   "id": "Q1963",
@@ -2587,7 +3265,11 @@
   "population": 5345000,
   "elevationM": 382,
   "avgTempC": 29.7,
-  "rainMmYear": 120
+  "rainMmYear": 120,
+  "utcOffset": 2,
+  "coastKm": 634,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3579",
@@ -2600,7 +3282,11 @@
   "areaKm2": 3127,
   "elevationM": 81,
   "avgTempC": 19.8,
-  "rainMmYear": 329
+  "rainMmYear": 329,
+  "utcOffset": 2,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3572",
@@ -2613,7 +3299,11 @@
   "areaKm2": 212.6,
   "elevationM": 4,
   "avgTempC": 18.8,
-  "rainMmYear": 479
+  "rainMmYear": 479,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3561",
@@ -2626,7 +3316,11 @@
   "areaKm2": 363,
   "elevationM": 0,
   "avgTempC": 18.4,
-  "rainMmYear": 751
+  "rainMmYear": 751,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q7903",
@@ -2639,7 +3333,10 @@
   "areaKm2": 384,
   "elevationM": 115,
   "avgTempC": 17.1,
-  "rainMmYear": 402
+  "rainMmYear": 402,
+  "utcOffset": 1,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q3551",
@@ -2652,7 +3349,11 @@
   "areaKm2": 118,
   "elevationM": 87,
   "avgTempC": 16.9,
-  "rainMmYear": 489
+  "rainMmYear": 489,
+  "utcOffset": 1,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q101625",
@@ -2665,7 +3366,10 @@
   "areaKm2": 230,
   "elevationM": 465,
   "avgTempC": 19.2,
-  "rainMmYear": 256
+  "rainMmYear": 256,
+  "utcOffset": 1,
+  "coastKm": 138,
+  "regionCapital": true
  },
  {
   "id": "Q80985",
@@ -2678,7 +3382,10 @@
   "areaKm2": 320,
   "elevationM": 408,
   "avgTempC": 18,
-  "rainMmYear": 548
+  "rainMmYear": 548,
+  "utcOffset": 1,
+  "coastKm": 134,
+  "regionCapital": true
  },
  {
   "id": "Q3718",
@@ -2690,7 +3397,11 @@
   "areaKm2": 79.8,
   "elevationM": 10,
   "avgTempC": 24.4,
-  "rainMmYear": 374
+  "rainMmYear": 374,
+  "utcOffset": 0,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3703",
@@ -2702,7 +3413,11 @@
   "areaKm2": 245,
   "elevationM": 350,
   "avgTempC": 27.9,
-  "rainMmYear": 887
+  "rainMmYear": 887,
+  "utcOffset": 0,
+  "coastKm": 683,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9427",
@@ -2715,7 +3430,10 @@
   "areaKm2": 147.9,
   "elevationM": 261,
   "avgTempC": 28.7,
-  "rainMmYear": 167
+  "rainMmYear": 167,
+  "utcOffset": 0,
+  "coastKm": 1268,
+  "regionCapital": true
  },
  {
   "id": "Q3777",
@@ -2728,7 +3446,11 @@
   "areaKm2": 219.3,
   "elevationM": 305,
   "avgTempC": 28.5,
-  "rainMmYear": 736
+  "rainMmYear": 736,
+  "utcOffset": 0,
+  "coastKm": 758,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3674",
@@ -2740,7 +3462,11 @@
   "areaKm2": 239.3,
   "elevationM": 207,
   "avgTempC": 29.6,
-  "rainMmYear": 475
+  "rainMmYear": 475,
+  "utcOffset": 1,
+  "coastKm": 783,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1515",
@@ -2753,7 +3479,10 @@
   "areaKm2": 2119,
   "elevationM": 18,
   "avgTempC": 26.8,
-  "rainMmYear": 1701
+  "rainMmYear": 1701,
+  "utcOffset": 0,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q3733",
@@ -2766,7 +3495,11 @@
   "areaKm2": 450,
   "elevationM": 13,
   "avgTempC": 27.7,
-  "rainMmYear": 3637
+  "rainMmYear": 3637,
+  "utcOffset": 0,
+  "coastKm": 0,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3780",
@@ -2779,7 +3512,11 @@
   "areaKm2": 357,
   "elevationM": 26,
   "avgTempC": 27.2,
-  "rainMmYear": 3088
+  "rainMmYear": 3088,
+  "utcOffset": 0,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3748",
@@ -2791,7 +3528,10 @@
   "population": 1761032,
   "areaKm2": 194.3,
   "avgTempC": 26.2,
-  "rainMmYear": 4473
+  "rainMmYear": 4473,
+  "utcOffset": 0,
+  "coastKm": 0,
+  "capital": true
  },
  {
   "id": "Q3761",
@@ -2804,7 +3544,11 @@
   "areaKm2": 173,
   "elevationM": 61,
   "avgTempC": 27.1,
-  "rainMmYear": 883
+  "rainMmYear": 883,
+  "utcOffset": 0,
+  "coastKm": 12,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3792",
@@ -2817,7 +3561,11 @@
   "areaKm2": 90,
   "elevationM": 10,
   "avgTempC": 27.5,
-  "rainMmYear": 957
+  "rainMmYear": 957,
+  "utcOffset": 0,
+  "coastKm": 4,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q8673",
@@ -2830,7 +3578,9 @@
   "areaKm2": 1171.3,
   "elevationM": 34,
   "avgTempC": 27,
-  "rainMmYear": 1534
+  "rainMmYear": 1534,
+  "utcOffset": 1,
+  "coastKm": 1
  },
  {
   "id": "Q3787",
@@ -2843,7 +3593,11 @@
   "areaKm2": 713,
   "elevationM": 360,
   "avgTempC": 27.3,
-  "rainMmYear": 1359
+  "rainMmYear": 1359,
+  "utcOffset": 1,
+  "coastKm": 426,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q132830",
@@ -2856,7 +3610,10 @@
   "areaKm2": 210,
   "elevationM": 13,
   "avgTempC": 26.5,
-  "rainMmYear": 3184
+  "rainMmYear": 3184,
+  "utcOffset": 1,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q3808",
@@ -2869,7 +3626,11 @@
   "areaKm2": 180,
   "elevationM": 764,
   "avgTempC": 23.6,
-  "rainMmYear": 1637
+  "rainMmYear": 1637,
+  "utcOffset": 1,
+  "coastKm": 188,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3825",
@@ -2882,7 +3643,10 @@
   "areaKm2": 189,
   "elevationM": 13,
   "avgTempC": 26.4,
-  "rainMmYear": 2729
+  "rainMmYear": 2729,
+  "utcOffset": 1,
+  "coastKm": 6,
+  "capital": true
  },
  {
   "id": "Q3838",
@@ -2893,7 +3657,11 @@
   "population": 14565700,
   "elevationM": 240,
   "avgTempC": 25.8,
-  "rainMmYear": 1429
+  "rainMmYear": 1429,
+  "utcOffset": 1,
+  "coastKm": 360,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q3844",
@@ -2905,7 +3673,10 @@
   "areaKm2": 588,
   "elevationM": 320,
   "avgTempC": 25.2,
-  "rainMmYear": 1429
+  "rainMmYear": 1429,
+  "utcOffset": 1,
+  "coastKm": 357,
+  "capital": true
  },
  {
   "id": "Q3897",
@@ -2918,7 +3689,11 @@
   "areaKm2": 113,
   "elevationM": 6,
   "avgTempC": 25.6,
-  "rainMmYear": 490
+  "rainMmYear": 490,
+  "utcOffset": 1,
+  "coastKm": 4,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3624",
@@ -2930,7 +3705,12 @@
   "areaKm2": 527,
   "elevationM": 2355,
   "avgTempC": 16.5,
-  "rainMmYear": 1129
+  "rainMmYear": 1129,
+  "utcOffset": 3,
+  "coastKm": 497,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q3642",
@@ -2942,7 +3722,11 @@
   "population": 963000,
   "elevationM": 2325,
   "avgTempC": 17.9,
-  "rainMmYear": 485
+  "rainMmYear": 485,
+  "utcOffset": 3,
+  "coastKm": 62,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3604",
@@ -2955,7 +3739,12 @@
   "areaKm2": 200,
   "elevationM": 14,
   "avgTempC": 29.6,
-  "rainMmYear": 133
+  "rainMmYear": 133,
+  "utcOffset": 3,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q2449",
@@ -2967,7 +3756,10 @@
   "areaKm2": 91,
   "elevationM": 9,
   "avgTempC": 27.1,
-  "rainMmYear": 441
+  "rainMmYear": 441,
+  "utcOffset": 3,
+  "coastKm": 10,
+  "capital": true
  },
  {
   "id": "Q3870",
@@ -2980,7 +3772,11 @@
   "areaKm2": 696,
   "elevationM": 1661,
   "avgTempC": 19.7,
-  "rainMmYear": 1007
+  "rainMmYear": 1007,
+  "utcOffset": 3,
+  "coastKm": 408,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q225641",
@@ -2993,7 +3789,10 @@
   "areaKm2": 294.7,
   "elevationM": 50,
   "avgTempC": 26,
-  "rainMmYear": 1055
+  "rainMmYear": 1055,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q3894",
@@ -3006,7 +3805,11 @@
   "areaKm2": 189,
   "elevationM": 1190,
   "avgTempC": 21.6,
-  "rainMmYear": 1314
+  "rainMmYear": 1314,
+  "utcOffset": 3,
+  "coastKm": 909,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3859",
@@ -3018,7 +3821,11 @@
   "areaKm2": 730,
   "elevationM": 1567,
   "avgTempC": 19.8,
-  "rainMmYear": 1006
+  "rainMmYear": 1006,
+  "utcOffset": 2,
+  "coastKm": 1051,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q1960",
@@ -3031,7 +3838,10 @@
   "areaKm2": 1393,
   "elevationM": 12,
   "avgTempC": 26.3,
-  "rainMmYear": 1118
+  "rainMmYear": 1118,
+  "utcOffset": 3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q2222874",
@@ -3042,7 +3852,10 @@
   "region": "Mjini Magharibi Region",
   "population": 709809,
   "avgTempC": 26.2,
-  "rainMmYear": 1629
+  "rainMmYear": 1629,
+  "utcOffset": 3,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q3881",
@@ -3055,7 +3868,11 @@
   "areaKm2": 360,
   "elevationM": 1279,
   "avgTempC": 20.3,
-  "rainMmYear": 823
+  "rainMmYear": 823,
+  "utcOffset": 2,
+  "coastKm": 810,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3921",
@@ -3068,7 +3885,10 @@
   "areaKm2": 960.6,
   "elevationM": 1492,
   "avgTempC": 18.7,
-  "rainMmYear": 854
+  "rainMmYear": 854,
+  "utcOffset": 2,
+  "coastKm": 417,
+  "capital": true
  },
  {
   "id": "Q3889",
@@ -3080,7 +3900,10 @@
   "areaKm2": 346.8,
   "elevationM": 31,
   "avgTempC": 23,
-  "rainMmYear": 753
+  "rainMmYear": 753,
+  "utcOffset": 2,
+  "coastKm": 0,
+  "capital": true
  },
  {
   "id": "Q3915",
@@ -3093,7 +3916,11 @@
   "areaKm2": 88,
   "elevationM": 1276,
   "avgTempC": 18.9,
-  "rainMmYear": 1255
+  "rainMmYear": 1255,
+  "utcOffset": 3,
+  "coastKm": 162,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3929",
@@ -3106,7 +3933,12 @@
   "areaKm2": 46.7,
   "elevationM": 134,
   "avgTempC": 23.4,
-  "rainMmYear": 1613
+  "rainMmYear": 1613,
+  "utcOffset": 4,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q3935",
@@ -3118,7 +3950,11 @@
   "population": 486169,
   "elevationM": 1650,
   "avgTempC": 19.7,
-  "rainMmYear": 364
+  "rainMmYear": 364,
+  "utcOffset": 2,
+  "coastKm": 263,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3919",
@@ -3131,7 +3967,10 @@
   "areaKm2": 169,
   "elevationM": 1014,
   "avgTempC": 21.2,
-  "rainMmYear": 465
+  "rainMmYear": 465,
+  "utcOffset": 2,
+  "coastKm": 676,
+  "capital": true
  },
  {
   "id": "Q34647",
@@ -3144,7 +3983,10 @@
   "areaKm2": 1644,
   "elevationM": 1753,
   "avgTempC": 15.2,
-  "rainMmYear": 750
+  "rainMmYear": 750,
+  "utcOffset": 2,
+  "coastKm": 444,
+  "regionCapital": true
  },
  {
   "id": "Q3926",
@@ -3157,7 +3999,10 @@
   "areaKm2": 687.5,
   "elevationM": 1339,
   "avgTempC": 18.1,
-  "rainMmYear": 688
+  "rainMmYear": 688,
+  "utcOffset": 2,
+  "coastKm": 430,
+  "capital": true
  },
  {
   "id": "Q5468",
@@ -3170,7 +4015,9 @@
   "areaKm2": 225.9,
   "elevationM": 22,
   "avgTempC": 20.8,
-  "rainMmYear": 1012
+  "rainMmYear": 1012,
+  "utcOffset": 2,
+  "coastKm": 1
  },
  {
   "id": "Q5465",
@@ -3183,7 +4030,11 @@
   "areaKm2": 2454.7,
   "elevationM": 5,
   "avgTempC": 17.8,
-  "rainMmYear": 592
+  "rainMmYear": 592,
+  "utcOffset": 2,
+  "coastKm": 3,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q172",
@@ -3196,7 +4047,10 @@
   "areaKm2": 630.2,
   "elevationM": 76,
   "avgTempC": 8.7,
-  "rainMmYear": 835
+  "rainMmYear": 835,
+  "utcOffset": -5,
+  "coastKm": 516,
+  "regionCapital": true
  },
  {
   "id": "Q340",
@@ -3209,7 +4063,9 @@
   "areaKm2": 498,
   "elevationM": 31,
   "avgTempC": 6.8,
-  "rainMmYear": 1015
+  "rainMmYear": 1015,
+  "utcOffset": -5,
+  "coastKm": 259
  },
  {
   "id": "Q24639",
@@ -3222,7 +4078,9 @@
   "areaKm2": 115,
   "elevationM": 2,
   "avgTempC": 10.5,
-  "rainMmYear": 1766
+  "rainMmYear": 1766,
+  "utcOffset": -8,
+  "coastKm": 3
  },
  {
   "id": "Q36312",
@@ -3235,7 +4093,9 @@
   "areaKm2": 825.6,
   "elevationM": 1045,
   "avgTempC": 4.5,
-  "rainMmYear": 423
+  "rainMmYear": 423,
+  "utcOffset": -7,
+  "coastKm": 650
  },
  {
   "id": "Q2096",
@@ -3248,7 +4108,10 @@
   "areaKm2": 767.9,
   "elevationM": 674,
   "avgTempC": 3.3,
-  "rainMmYear": 471
+  "rainMmYear": 471,
+  "utcOffset": -7,
+  "coastKm": 790,
+  "regionCapital": true
  },
  {
   "id": "Q1930",
@@ -3261,7 +4124,10 @@
   "areaKm2": 2778.6,
   "elevationM": 70,
   "avgTempC": 5.9,
-  "rainMmYear": 927
+  "rainMmYear": 927,
+  "utcOffset": -5,
+  "coastKm": 405,
+  "capital": true
  },
  {
   "id": "Q2145",
@@ -3274,7 +4140,10 @@
   "areaKm2": 485.2,
   "elevationM": 98,
   "avgTempC": 4.7,
-  "rainMmYear": 1236
+  "rainMmYear": 1236,
+  "utcOffset": -5,
+  "coastKm": 27,
+  "regionCapital": true
  },
  {
   "id": "Q2135",
@@ -3287,7 +4156,10 @@
   "areaKm2": 448.9,
   "elevationM": 238,
   "avgTempC": 3.1,
-  "rainMmYear": 556
+  "rainMmYear": 556,
+  "utcOffset": -6,
+  "coastKm": 829,
+  "regionCapital": true
  },
  {
   "id": "Q226",
@@ -3299,7 +4171,10 @@
   "population": 18326,
   "elevationM": 5,
   "avgTempC": -0.8,
-  "rainMmYear": 618
+  "rainMmYear": 618,
+  "utcOffset": -2,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q60",
@@ -3312,7 +4187,9 @@
   "areaKm2": 1213.4,
   "elevationM": 25,
   "avgTempC": 12,
-  "rainMmYear": 1211
+  "rainMmYear": 1211,
+  "utcOffset": -5,
+  "coastKm": 1
  },
  {
   "id": "Q65",
@@ -3325,7 +4202,9 @@
   "areaKm2": 1302.2,
   "elevationM": 106,
   "avgTempC": 18.9,
-  "rainMmYear": 400
+  "rainMmYear": 400,
+  "utcOffset": -8,
+  "coastKm": 22
  },
  {
   "id": "Q1297",
@@ -3338,7 +4217,9 @@
   "areaKm2": 606.4,
   "elevationM": 179,
   "avgTempC": 9.9,
-  "rainMmYear": 942
+  "rainMmYear": 942,
+  "utcOffset": -6,
+  "coastKm": 951
  },
  {
   "id": "Q16555",
@@ -3351,7 +4232,9 @@
   "areaKm2": 1724.5,
   "elevationM": 13,
   "avgTempC": 20.9,
-  "rainMmYear": 1216
+  "rainMmYear": 1216,
+  "utcOffset": -6,
+  "coastKm": 31
  },
  {
   "id": "Q16556",
@@ -3364,7 +4247,10 @@
   "areaKm2": 1341.5,
   "elevationM": 331,
   "avgTempC": 22.7,
-  "rainMmYear": 204
+  "rainMmYear": 204,
+  "utcOffset": -7,
+  "coastKm": 263,
+  "regionCapital": true
  },
  {
   "id": "Q1345",
@@ -3377,7 +4263,9 @@
   "areaKm2": 369.6,
   "elevationM": 12,
   "avgTempC": 12.9,
-  "rainMmYear": 1133
+  "rainMmYear": 1133,
+  "utcOffset": -5,
+  "coastKm": 3
  },
  {
   "id": "Q975",
@@ -3390,7 +4278,9 @@
   "areaKm2": 1208.8,
   "elevationM": 198,
   "avgTempC": 20.7,
-  "rainMmYear": 796
+  "rainMmYear": 796,
+  "utcOffset": -6,
+  "coastKm": 191
  },
  {
   "id": "Q16552",
@@ -3403,7 +4293,9 @@
   "areaKm2": 964.5,
   "elevationM": 129,
   "avgTempC": 17.6,
-  "rainMmYear": 280
+  "rainMmYear": 280,
+  "utcOffset": -8,
+  "coastKm": 1
  },
  {
   "id": "Q16557",
@@ -3416,7 +4308,9 @@
   "areaKm2": 996.6,
   "elevationM": 131,
   "avgTempC": 19.2,
-  "rainMmYear": 934
+  "rainMmYear": 934,
+  "utcOffset": -6,
+  "coastKm": 376
  },
  {
   "id": "Q16559",
@@ -3429,7 +4323,10 @@
   "areaKm2": 790.1,
   "elevationM": 149,
   "avgTempC": 20.3,
-  "rainMmYear": 831
+  "rainMmYear": 831,
+  "utcOffset": -6,
+  "coastKm": 204,
+  "regionCapital": true
  },
  {
   "id": "Q62",
@@ -3442,7 +4339,9 @@
   "areaKm2": 600.6,
   "elevationM": 30,
   "avgTempC": 14.2,
-  "rainMmYear": 850
+  "rainMmYear": 850,
+  "utcOffset": -8,
+  "coastKm": 3
  },
  {
   "id": "Q5083",
@@ -3455,7 +4354,9 @@
   "areaKm2": 369.2,
   "elevationM": 40,
   "avgTempC": 11,
-  "rainMmYear": 986
+  "rainMmYear": 986,
+  "utcOffset": -8,
+  "coastKm": 1
  },
  {
   "id": "Q6106",
@@ -3468,7 +4369,9 @@
   "areaKm2": 375.8,
   "elevationM": 152,
   "avgTempC": 11,
-  "rainMmYear": 1139
+  "rainMmYear": 1139,
+  "utcOffset": -8,
+  "coastKm": 81
  },
  {
   "id": "Q23768",
@@ -3481,7 +4384,9 @@
   "areaKm2": 348.2,
   "elevationM": 610,
   "avgTempC": 19.9,
-  "rainMmYear": 112
+  "rainMmYear": 112,
+  "utcOffset": -8,
+  "coastKm": 379
  },
  {
   "id": "Q23337",
@@ -3494,7 +4399,10 @@
   "areaKm2": 289.4,
   "elevationM": 1288,
   "avgTempC": 11.7,
-  "rainMmYear": 458
+  "rainMmYear": 458,
+  "utcOffset": -7,
+  "coastKm": 876,
+  "regionCapital": true
  },
  {
   "id": "Q16554",
@@ -3507,7 +4415,10 @@
   "areaKm2": 401.4,
   "elevationM": 1609,
   "avgTempC": 10.6,
-  "rainMmYear": 424
+  "rainMmYear": 424,
+  "utcOffset": -7,
+  "coastKm": 1199,
+  "regionCapital": true
  },
  {
   "id": "Q36091",
@@ -3520,7 +4431,9 @@
   "areaKm2": 148.8,
   "elevationM": 264,
   "avgTempC": 7.5,
-  "rainMmYear": 753
+  "rainMmYear": 753,
+  "utcOffset": -6,
+  "coastKm": 1131
  },
  {
   "id": "Q41819",
@@ -3533,7 +4446,9 @@
   "areaKm2": 826.2,
   "elevationM": 277,
   "avgTempC": 13,
-  "rainMmYear": 1009
+  "rainMmYear": 1009,
+  "utcOffset": -6,
+  "coastKm": 1010
  },
  {
   "id": "Q38022",
@@ -3546,7 +4461,9 @@
   "areaKm2": 171,
   "elevationM": 149,
   "avgTempC": 13.4,
-  "rainMmYear": 976
+  "rainMmYear": 976,
+  "utcOffset": -6,
+  "coastKm": 899
  },
  {
   "id": "Q23197",
@@ -3559,7 +4476,10 @@
   "areaKm2": 1362.2,
   "elevationM": 182,
   "avgTempC": 15,
-  "rainMmYear": 1267
+  "rainMmYear": 1267,
+  "utcOffset": -6,
+  "coastKm": 614,
+  "regionCapital": true
  },
  {
   "id": "Q34404",
@@ -3572,7 +4492,9 @@
   "areaKm2": 907,
   "elevationM": 11,
   "avgTempC": 20.6,
-  "rainMmYear": 1595
+  "rainMmYear": 1595,
+  "utcOffset": -6,
+  "coastKm": 7
  },
  {
   "id": "Q23556",
@@ -3585,7 +4507,10 @@
   "areaKm2": 348,
   "elevationM": 225,
   "avgTempC": 17,
-  "rainMmYear": 1295
+  "rainMmYear": 1295,
+  "utcOffset": -5,
+  "coastKm": 356,
+  "regionCapital": true
  },
  {
   "id": "Q8652",
@@ -3598,7 +4523,9 @@
   "areaKm2": 145.2,
   "elevationM": 2,
   "avgTempC": 24.6,
-  "rainMmYear": 1502
+  "rainMmYear": 1502,
+  "utcOffset": -5,
+  "coastKm": 2
  },
  {
   "id": "Q61",
@@ -3611,7 +4538,11 @@
   "areaKm2": 177,
   "elevationM": 72,
   "avgTempC": 13.5,
-  "rainMmYear": 1041
+  "rainMmYear": 1041,
+  "utcOffset": -5,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q100",
@@ -3624,7 +4555,10 @@
   "areaKm2": 232.2,
   "elevationM": 43,
   "avgTempC": 10.1,
-  "rainMmYear": 1121
+  "rainMmYear": 1121,
+  "utcOffset": -5,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q1342",
@@ -3637,7 +4571,9 @@
   "areaKm2": 151.1,
   "elevationM": 373,
   "avgTempC": 10.7,
-  "rainMmYear": 972
+  "rainMmYear": 972,
+  "utcOffset": -5,
+  "coastKm": 304
  },
  {
   "id": "Q12439",
@@ -3650,7 +4586,9 @@
   "areaKm2": 370,
   "elevationM": 183,
   "avgTempC": 9.7,
-  "rainMmYear": 883
+  "rainMmYear": 883,
+  "utcOffset": -5,
+  "coastKm": 632
  },
  {
   "id": "Q39450",
@@ -3662,7 +4600,9 @@
   "population": 291247,
   "elevationM": 31,
   "avgTempC": 2.6,
-  "rainMmYear": 883
+  "rainMmYear": 883,
+  "utcOffset": -9,
+  "coastKm": 1
  },
  {
   "id": "Q18094",
@@ -3675,7 +4615,10 @@
   "areaKm2": 177.2,
   "elevationM": 12,
   "avgTempC": 24.9,
-  "rainMmYear": 1350
+  "rainMmYear": 1350,
+  "utcOffset": -10,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q41211",
@@ -3688,7 +4631,10 @@
   "areaKm2": 120.2,
   "elevationM": 34,
   "avgTempC": 26.1,
-  "rainMmYear": 1656
+  "rainMmYear": 1656,
+  "utcOffset": -4,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q1489",
@@ -3700,7 +4646,11 @@
   "areaKm2": 1485,
   "elevationM": 2240,
   "avgTempC": 16.9,
-  "rainMmYear": 715
+  "rainMmYear": 715,
+  "utcOffset": -6,
+  "coastKm": 252,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q9022",
@@ -3713,7 +4663,10 @@
   "areaKm2": 145,
   "elevationM": 1536,
   "avgTempC": 21,
-  "rainMmYear": 908
+  "rainMmYear": 908,
+  "utcOffset": -6,
+  "coastKm": 197,
+  "regionCapital": true
  },
  {
   "id": "Q81033",
@@ -3726,7 +4679,10 @@
   "areaKm2": 969.7,
   "elevationM": 546,
   "avgTempC": 22.4,
-  "rainMmYear": 659
+  "rainMmYear": 659,
+  "utcOffset": -6,
+  "coastKm": 293,
+  "regionCapital": true
  },
  {
   "id": "Q124739",
@@ -3739,7 +4695,9 @@
   "areaKm2": 637,
   "elevationM": 20,
   "avgTempC": 18.3,
-  "rainMmYear": 270
+  "rainMmYear": 270,
+  "utcOffset": -8,
+  "coastKm": 8
  },
  {
   "id": "Q8969",
@@ -3751,7 +4709,9 @@
   "population": 888797,
   "elevationM": 5,
   "avgTempC": 26.3,
-  "rainMmYear": 1232
+  "rainMmYear": 1232,
+  "utcOffset": -5,
+  "coastKm": 4
  },
  {
   "id": "Q1555",
@@ -3764,7 +4724,11 @@
   "areaKm2": 692,
   "elevationM": 1500,
   "avgTempC": 19.5,
-  "rainMmYear": 1250
+  "rainMmYear": 1250,
+  "utcOffset": -6,
+  "coastKm": 81,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3110",
@@ -3777,7 +4741,11 @@
   "areaKm2": 72.3,
   "elevationM": 670,
   "avgTempC": 23.6,
-  "rainMmYear": 1869
+  "rainMmYear": 1869,
+  "utcOffset": -6,
+  "coastKm": 26,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3238",
@@ -3790,7 +4758,11 @@
   "areaKm2": 201.5,
   "elevationM": 990,
   "avgTempC": 21.7,
-  "rainMmYear": 1061
+  "rainMmYear": 1061,
+  "utcOffset": -6,
+  "coastKm": 80,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3274",
@@ -3803,7 +4775,9 @@
   "areaKm2": 267.2,
   "elevationM": 143,
   "avgTempC": 26.5,
-  "rainMmYear": 1518
+  "rainMmYear": 1518,
+  "utcOffset": -6,
+  "coastKm": 44
  },
  {
   "id": "Q3070",
@@ -3816,7 +4790,11 @@
   "areaKm2": 44.6,
   "elevationM": 1161,
   "avgTempC": 20.9,
-  "rainMmYear": 3133
+  "rainMmYear": 3133,
+  "utcOffset": -6,
+  "coastKm": 54,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q3306",
@@ -3829,7 +4807,11 @@
   "areaKm2": 275,
   "elevationM": 20,
   "avgTempC": 27,
-  "rainMmYear": 2178
+  "rainMmYear": 2178,
+  "utcOffset": -5,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1563",
@@ -3842,7 +4824,11 @@
   "areaKm2": 728.3,
   "elevationM": 59,
   "avgTempC": 25.3,
-  "rainMmYear": 1281
+  "rainMmYear": 1281,
+  "utcOffset": -5,
+  "coastKm": 2,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q34692",
@@ -3854,7 +4840,11 @@
   "areaKm2": 22,
   "elevationM": 9,
   "avgTempC": 26.8,
-  "rainMmYear": 1064
+  "rainMmYear": 1064,
+  "utcOffset": -5,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q34261",
@@ -3867,7 +4857,11 @@
   "areaKm2": 36,
   "elevationM": 98,
   "avgTempC": 26.4,
-  "rainMmYear": 1159
+  "rainMmYear": 1159,
+  "utcOffset": -5,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q34820",
@@ -3880,7 +4874,11 @@
   "areaKm2": 1302.2,
   "elevationM": 14,
   "avgTempC": 26.6,
-  "rainMmYear": 1653
+  "rainMmYear": 1653,
+  "utcOffset": -4,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q2467",
@@ -3892,7 +4890,10 @@
   "areaKm2": 207,
   "elevationM": 34,
   "avgTempC": 24.9,
-  "rainMmYear": 1294
+  "rainMmYear": 1294,
+  "utcOffset": -5,
+  "coastKm": 1,
+  "capital": true
  },
  {
   "id": "Q2841",
@@ -3905,7 +4906,12 @@
   "areaKm2": 1578,
   "elevationM": 2582,
   "avgTempC": 14.1,
-  "rainMmYear": 1330
+  "rainMmYear": 1330,
+  "utcOffset": -5,
+  "coastKm": 336,
+  "capital": true,
+  "regionCapital": true,
+  "ownRegion": true
  },
  {
   "id": "Q48278",
@@ -3918,7 +4924,10 @@
   "areaKm2": 380.7,
   "elevationM": 1405,
   "avgTempC": 22.4,
-  "rainMmYear": 2454
+  "rainMmYear": 2454,
+  "utcOffset": -5,
+  "coastKm": 193,
+  "regionCapital": true
  },
  {
   "id": "Q51103",
@@ -3931,7 +4940,10 @@
   "areaKm2": 564,
   "elevationM": 1018,
   "avgTempC": 23.3,
-  "rainMmYear": 1885
+  "rainMmYear": 1885,
+  "utcOffset": -5,
+  "coastKm": 72,
+  "regionCapital": true
  },
  {
   "id": "Q657461",
@@ -3944,7 +4956,9 @@
   "areaKm2": 572,
   "elevationM": 2,
   "avgTempC": 27.8,
-  "rainMmYear": 1120
+  "rainMmYear": 1120,
+  "utcOffset": -5,
+  "coastKm": 1
  },
  {
   "id": "Q1533",
@@ -3956,7 +4970,10 @@
   "areaKm2": 776,
   "elevationM": 920,
   "avgTempC": 21.7,
-  "rainMmYear": 1003
+  "rainMmYear": 1003,
+  "utcOffset": -4,
+  "coastKm": 12,
+  "capital": true
  },
  {
   "id": "Q2900",
@@ -3969,7 +4986,11 @@
   "areaKm2": 372.4,
   "elevationM": 2850,
   "avgTempC": 13.3,
-  "rainMmYear": 1066
+  "rainMmYear": 1066,
+  "utcOffset": -5,
+  "coastKm": 158,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q43509",
@@ -3982,7 +5003,10 @@
   "areaKm2": 354.5,
   "elevationM": 4,
   "avgTempC": 25.4,
-  "rainMmYear": 1095
+  "rainMmYear": 1095,
+  "utcOffset": -5,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q2868",
@@ -3995,7 +5019,11 @@
   "areaKm2": 2672.3,
   "elevationM": 154,
   "avgTempC": 19.2,
-  "rainMmYear": 26
+  "rainMmYear": 26,
+  "utcOffset": -5,
+  "coastKm": 6,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q5582862",
@@ -4007,7 +5035,10 @@
   "population": 428450,
   "elevationM": 3399,
   "avgTempC": 11.4,
-  "rainMmYear": 702
+  "rainMmYear": 702,
+  "utcOffset": -5,
+  "coastKm": 345,
+  "regionCapital": true
  },
  {
   "id": "Q159273",
@@ -4020,7 +5051,10 @@
   "areaKm2": 650,
   "elevationM": 2335,
   "avgTempC": 15.7,
-  "rainMmYear": 78
+  "rainMmYear": 78,
+  "utcOffset": -5,
+  "coastKm": 87,
+  "regionCapital": true
  },
  {
   "id": "Q1491",
@@ -4033,7 +5067,11 @@
   "areaKm2": 472,
   "elevationM": 3640,
   "avgTempC": 10.9,
-  "rainMmYear": 620
+  "rainMmYear": 620,
+  "utcOffset": -4,
+  "coastKm": 315,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q10717",
@@ -4046,7 +5084,10 @@
   "areaKm2": 147.6,
   "elevationM": 3,
   "avgTempC": 27,
-  "rainMmYear": 1950
+  "rainMmYear": 1950,
+  "utcOffset": -4,
+  "coastKm": 2,
+  "capital": true
  },
  {
   "id": "Q3001",
@@ -4059,7 +5100,11 @@
   "areaKm2": 182,
   "elevationM": 3,
   "avgTempC": 27,
-  "rainMmYear": 2035
+  "rainMmYear": 2035,
+  "utcOffset": -3,
+  "coastKm": 4,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q44401",
@@ -4072,7 +5117,10 @@
   "areaKm2": 23.6,
   "elevationM": 143,
   "avgTempC": 25,
-  "rainMmYear": 2528
+  "rainMmYear": 2528,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q40236",
@@ -4084,7 +5132,10 @@
   "population": 2303732,
   "elevationM": 92,
   "avgTempC": 26.6,
-  "rainMmYear": 2280
+  "rainMmYear": 2280,
+  "utcOffset": -4,
+  "coastKm": 969,
+  "regionCapital": true
  },
  {
   "id": "Q12829733",
@@ -4097,7 +5148,10 @@
   "areaKm2": 1059.5,
   "elevationM": 10,
   "avgTempC": 26.4,
-  "rainMmYear": 2662
+  "rainMmYear": 2662,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q43463",
@@ -4110,7 +5164,10 @@
   "areaKm2": 314.9,
   "elevationM": 21,
   "avgTempC": 26.6,
-  "rainMmYear": 1592
+  "rainMmYear": 1592,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q48344",
@@ -4122,7 +5179,10 @@
   "areaKm2": 218.8,
   "elevationM": 6,
   "avgTempC": 25.5,
-  "rainMmYear": 1632
+  "rainMmYear": 1632,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q36947",
@@ -4135,7 +5195,10 @@
   "areaKm2": 693,
   "elevationM": 8,
   "avgTempC": 25.4,
-  "rainMmYear": 2036
+  "rainMmYear": 2036,
+  "utcOffset": -3,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q2844",
@@ -4147,7 +5210,11 @@
   "population": 2996899,
   "elevationM": 1171,
   "avgTempC": 20.3,
-  "rainMmYear": 1502
+  "rainMmYear": 1502,
+  "utcOffset": -3,
+  "coastKm": 874,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q42800",
@@ -4160,7 +5227,10 @@
   "areaKm2": 330.9,
   "elevationM": 760,
   "avgTempC": 21.7,
-  "rainMmYear": 1576
+  "rainMmYear": 1576,
+  "utcOffset": -3,
+  "coastKm": 317,
+  "regionCapital": true
  },
  {
   "id": "Q8678",
@@ -4172,7 +5242,10 @@
   "areaKm2": 1260,
   "elevationM": 31,
   "avgTempC": 23.6,
-  "rainMmYear": 1211
+  "rainMmYear": 1211,
+  "utcOffset": -3,
+  "coastKm": 4,
+  "regionCapital": true
  },
  {
   "id": "Q174",
@@ -4184,7 +5257,10 @@
   "areaKm2": 1523,
   "elevationM": 760,
   "avgTempC": 19,
-  "rainMmYear": 1485
+  "rainMmYear": 1485,
+  "utcOffset": -3,
+  "coastKm": 44,
+  "regionCapital": true
  },
  {
   "id": "Q4361",
@@ -4197,7 +5273,10 @@
   "areaKm2": 430.7,
   "elevationM": 935,
   "avgTempC": 17.6,
-  "rainMmYear": 1523
+  "rainMmYear": 1523,
+  "utcOffset": -3,
+  "coastKm": 54,
+  "regionCapital": true
  },
  {
   "id": "Q40269",
@@ -4210,7 +5289,10 @@
   "areaKm2": 496.8,
   "elevationM": 10,
   "avgTempC": 20.1,
-  "rainMmYear": 1500
+  "rainMmYear": 1500,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q2933",
@@ -4222,7 +5304,10 @@
   "areaKm2": 117,
   "elevationM": 43,
   "avgTempC": 23.2,
-  "rainMmYear": 1408
+  "rainMmYear": 1408,
+  "utcOffset": -3,
+  "coastKm": 817,
+  "capital": true
  },
  {
   "id": "Q1335",
@@ -4235,7 +5320,11 @@
   "areaKm2": 730,
   "elevationM": 41,
   "avgTempC": 16.3,
-  "rainMmYear": 923
+  "rainMmYear": 923,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q1486",
@@ -4247,7 +5336,11 @@
   "areaKm2": 203.3,
   "elevationM": 25,
   "avgTempC": 17.3,
-  "rainMmYear": 1113
+  "rainMmYear": 1113,
+  "utcOffset": -3,
+  "coastKm": 2,
+  "capital": true,
+  "ownRegion": true
  },
  {
   "id": "Q52535",
@@ -4260,7 +5353,9 @@
   "areaKm2": 179,
   "elevationM": 31,
   "avgTempC": 17.4,
-  "rainMmYear": 982
+  "rainMmYear": 982,
+  "utcOffset": -3,
+  "coastKm": 242
  },
  {
   "id": "Q44237",
@@ -4273,7 +5368,10 @@
   "areaKm2": 54,
   "elevationM": 769,
   "avgTempC": 16.6,
-  "rainMmYear": 256
+  "rainMmYear": 256,
+  "utcOffset": -3,
+  "coastKm": 245,
+  "regionCapital": true
  },
  {
   "id": "Q44254",
@@ -4286,7 +5384,10 @@
   "areaKm2": 23,
   "elevationM": 23,
   "avgTempC": 6,
-  "rainMmYear": 505
+  "rainMmYear": 505,
+  "utcOffset": -3,
+  "coastKm": 1,
+  "regionCapital": true
  },
  {
   "id": "Q2887",
@@ -4299,7 +5400,11 @@
   "areaKm2": 837.9,
   "elevationM": 575,
   "avgTempC": 15.4,
-  "rainMmYear": 407
+  "rainMmYear": 407,
+  "utcOffset": -4,
+  "coastKm": 91,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q33986",
@@ -4312,7 +5417,10 @@
   "areaKm2": 48,
   "elevationM": 21,
   "avgTempC": 15.7,
-  "rainMmYear": 401
+  "rainMmYear": 401,
+  "utcOffset": -4,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q3130",
@@ -4324,7 +5432,10 @@
   "population": 5450496,
   "elevationM": 6,
   "avgTempC": 18,
-  "rainMmYear": 1243
+  "rainMmYear": 1243,
+  "utcOffset": 10,
+  "coastKm": 3,
+  "regionCapital": true
  },
  {
   "id": "Q3141",
@@ -4336,7 +5447,10 @@
   "population": 5350705,
   "elevationM": 31,
   "avgTempC": 15.1,
-  "rainMmYear": 651
+  "rainMmYear": 651,
+  "utcOffset": 10,
+  "coastKm": 6,
+  "regionCapital": true
  },
  {
   "id": "Q34932",
@@ -4348,7 +5462,10 @@
   "population": 2706966,
   "elevationM": 0,
   "avgTempC": 20.8,
-  "rainMmYear": 1280
+  "rainMmYear": 1280,
+  "utcOffset": 10,
+  "coastKm": 16,
+  "regionCapital": true
  },
  {
   "id": "Q3183",
@@ -4360,7 +5477,10 @@
   "population": 2141834,
   "elevationM": 2,
   "avgTempC": 18.9,
-  "rainMmYear": 759
+  "rainMmYear": 759,
+  "utcOffset": 8,
+  "coastKm": 11,
+  "regionCapital": true
  },
  {
   "id": "Q5112",
@@ -4373,7 +5493,10 @@
   "areaKm2": 1295,
   "elevationM": 1,
   "avgTempC": 16.7,
-  "rainMmYear": 635
+  "rainMmYear": 635,
+  "utcOffset": 9.5,
+  "coastKm": 10,
+  "regionCapital": true
  },
  {
   "id": "Q3114",
@@ -4386,7 +5509,11 @@
   "areaKm2": 471.8,
   "elevationM": 578,
   "avgTempC": 13.4,
-  "rainMmYear": 698
+  "rainMmYear": 698,
+  "utcOffset": 10,
+  "coastKm": 108,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q11568",
@@ -4399,7 +5526,10 @@
   "areaKm2": 40.6,
   "elevationM": 0,
   "avgTempC": 27.4,
-  "rainMmYear": 1794
+  "rainMmYear": 1794,
+  "utcOffset": 9.5,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q40191",
@@ -4411,7 +5541,10 @@
   "population": 197451,
   "elevationM": 54,
   "avgTempC": 12.3,
-  "rainMmYear": 772
+  "rainMmYear": 772,
+  "utcOffset": 10,
+  "coastKm": 2,
+  "regionCapital": true
  },
  {
   "id": "Q37100",
@@ -4424,7 +5557,9 @@
   "areaKm2": 559,
   "elevationM": 196,
   "avgTempC": 14.4,
-  "rainMmYear": 1378
+  "rainMmYear": 1378,
+  "utcOffset": 12,
+  "coastKm": 1
  },
  {
   "id": "Q23661",
@@ -4437,7 +5572,11 @@
   "areaKm2": 444,
   "elevationM": 0,
   "avgTempC": 13.3,
-  "rainMmYear": 1257
+  "rainMmYear": 1257,
+  "utcOffset": 12,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q79990",
@@ -4450,7 +5589,10 @@
   "areaKm2": 295.2,
   "elevationM": 20,
   "avgTempC": 12.2,
-  "rainMmYear": 809
+  "rainMmYear": 809,
+  "utcOffset": 12,
+  "coastKm": 10,
+  "regionCapital": true
  },
  {
   "id": "Q36526",
@@ -4463,7 +5605,11 @@
   "areaKm2": 240,
   "elevationM": 74,
   "avgTempC": 26.6,
-  "rainMmYear": 1499
+  "rainMmYear": 1499,
+  "utcOffset": 10,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q38807",
@@ -4475,7 +5621,11 @@
   "population": 88271,
   "elevationM": 0,
   "avgTempC": 25.2,
-  "rainMmYear": 2634
+  "rainMmYear": 2634,
+  "utcOffset": 12,
+  "coastKm": 1,
+  "capital": true,
+  "regionCapital": true
  },
  {
   "id": "Q130800",
@@ -4488,6 +5638,10 @@
   "areaKm2": 17.4,
   "elevationM": 9,
   "avgTempC": 25.5,
-  "rainMmYear": 1779
+  "rainMmYear": 1779,
+  "utcOffset": -10,
+  "coastKm": 3,
+  "regionCapital": true,
+  "ownRegion": true
  }
 ]

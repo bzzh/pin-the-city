@@ -1,3 +1,4 @@
+import { roundLabel } from '../categories/categories.js';
 import { planRounds } from './trio.js';
 import {
   MAX_ROUND_POINTS,
@@ -73,7 +74,7 @@ export function startGame({ map, panel, cities, categories, label, confidence = 
     const place = level ? confidencePoints(level, km) : placementPoints(km);
     const record = {
       city: round.winner.name,
-      category: round.category.label,
+      category: roundLabel(round),
       correct,
       km: Math.round(km),
       choicePoints: choice,

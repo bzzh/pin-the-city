@@ -2,6 +2,7 @@
 // leaderboard server function (supabase/functions/submit-score), so a submitted score is
 // always recalculated from the picks, confidence levels and map taps rather than trusted
 // from the browser.
+import { categoriesFor } from '../categories/categories.js';
 import { dailyRandom } from '../game/daily.js';
 import {
   ROUNDS_PER_GAME,
@@ -40,7 +41,7 @@ export function scoreSubmission({ cities, categories, dateKey, picks, guesses, l
     throw new Error(`Expected ${ROUNDS_PER_GAME} confidence levels.`);
   }
 
-  const rounds = planRounds(cities, categories, ROUNDS_PER_GAME, dailyRandom(dateKey));
+  const rounds = planRounds(cities, categoriesFor(dateKey, categories), ROUNDS_PER_GAME, dailyRandom(dateKey));
   const records = rounds.map((round, i) => {
     const picked = round.cities.find((city) => city.id === picks[i]);
     if (!picked) throw new Error(`Round ${i + 1}: that city was not one of the choices.`);

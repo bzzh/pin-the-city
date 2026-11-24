@@ -1,4 +1,4 @@
-import { advantage, statValue } from '../categories/categories.js';
+import { lead, statValue } from '../categories/categories.js';
 
 // `random` returns a number in [0, 1), like Math.random. The daily mode passes a seeded one.
 function shuffle(items, random) {
@@ -10,23 +10,41 @@ function shuffle(items, random) {
   return copy;
 }
 
-// Picks three cities for a category where the winner beats both others by a margin inside the
-// category's band (close enough to be hard, far enough to be fair), or null if none exists.
-export function pickTrio(cities, category, random = Math.random) {
-  const pool = shuffle(
-    cities.filter((city) => Number.isFinite(statValue(category, city))),
-    random,
-  );
+// Picks a trio from `cities` for one context (a country, a reference city...) or none.
+function pickTrioIn(cities, category, context, random) {
+  const value = new Map();
+  for (const city of cities) {
+    if (category.inContext && !category.inContext(city, context)) continue;
+    const v = statValue(category, city, context);
+    if (Number.isFinite(v)) value.set(city, v);
+  }
+  const pool = shuffle([...value.keys()], random);
   const { min, max } = category.margin;
 
   for (const winner of pool) {
     const losers = pool.filter((city) => {
-      const lead = advantage(category, winner, city);
-      return lead >= min && lead <= max;
+      const margin = lead(category, value.get(winner), value.get(city));
+      return margin >= min && margin <= max && (!category.decoy || category.decoy(city, winner, context));
     });
-    if (losers.length >= 2) {
-      return { category, cities: shuffle([winner, losers[0], losers[1]], random), winner };
+    // With a trap, the first wrong answer is a trap and the second any other.
+    const first = category.trap ? losers.find((city) => category.trap(city, winner, context)) : losers[0];
+    const second = losers.find((city) => city !== first);
+    if (first && second) {
+      return { category, context, cities: shuffle([winner, first, second], random), winner };
     }
+  }
+  return null;
+}
+
+// Picks three cities for a category where the winner beats both others by a margin inside the
+// category's band (close enough to be hard, far enough to be fair), or null if none exists.
+// For a category with contexts, tries them in random order until one has a fair trio; the
+// round then carries the `context` its question is about.
+export function pickTrio(cities, category, random = Math.random) {
+  if (!category.contexts) return pickTrioIn(cities, category, undefined, random);
+  for (const context of shuffle(category.contexts(cities), random)) {
+    const round = pickTrioIn(cities, category, context, random);
+    if (round) return round;
   }
   return null;
 }

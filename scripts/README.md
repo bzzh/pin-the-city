@@ -9,3 +9,6 @@ Run with Node when the data needs rebuilding; they are not part of the game itse
 - `wikidata.js` — shared helper for Wikidata queries
 - `build-climate.js` — adds yearly average temperature and rainfall from WorldClim to
   `public/data/cities.json`. Run it after `build-cities.js`, which rewrites the file without them.
+- `build-facts.js` — adds national and regional capitals (Wikidata), standard-time UTC offsets (`geo-tz`) and
+  distance to the sea (Natural Earth 10 m coastline, a file you download) to
+  `public/data/cities.json`. Like the climate script, run it after `build-cities.js`.

@@ -96,10 +96,10 @@ describe('planRounds', () => {
   });
 
   it('stops at the family limit rather than repeating a family', () => {
-    // The fixture only has coordinates, so only the "position" family is playable.
-    const rounds = planRounds(sampleCities, categories, MAX_PER_FAMILY, seededRandom(1));
-    expect(rounds.every((round) => round.category.family === 'position')).toBe(true);
-    expect(() => planRounds(sampleCities, categories, MAX_PER_FAMILY + 1, seededRandom(1))).toThrow();
+    const position = categories.filter((category) => category.family === 'position');
+    const rounds = planRounds(sampleCities, position, MAX_PER_FAMILY, seededRandom(1));
+    expect(rounds).toHaveLength(MAX_PER_FAMILY);
+    expect(() => planRounds(sampleCities, position, MAX_PER_FAMILY + 1, seededRandom(1))).toThrow();
   });
 
   it('fails clearly when no category has data', () => {
